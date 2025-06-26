@@ -5,75 +5,95 @@
   <title>🇮🇹 2026 이탈리아 여행 일정</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --green: #008C45;
+      --white: #F4F5F0;
+      --red: #CD212A;
+      --gray: #666;
+    }
     body {
       font-family: 'Roboto', sans-serif;
-      background: linear-gradient(to right, #008C45 33%, #F4F5F0 33% 66%, #CD212A 66%);
+      background: linear-gradient(to right, var(--green) 33%, var(--white) 33% 66%, var(--red) 66%);
       margin: 0;
       padding: 0;
       color: #333;
     }
     header {
-      background: rgba(255, 255, 255, 0.9);
-      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 30px 20px;
+      text-align: center;
     }
     header h1 {
       margin: 0;
       font-size: 2em;
-      color: #b22222;
+      color: var(--red);
     }
     .container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 30px auto;
       padding: 0 20px;
     }
     .day-card {
-      background-color: white;
-      border-left: 5px solid #b22222;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 24px;
+      padding: 20px 24px;
+      border-left: 6px solid var(--red);
+      transition: transform 0.2s ease-in-out;
     }
-    .day-card h2 {
-      margin-top: 0;
-      color: #b22222;
+    .day-card:hover {
+      transform: translateY(-3px);
+    }
+    .day-title {
       font-size: 1.3em;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 10px;
     }
-    .day-card ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    .day-card li {
-      margin: 8px 0;
+    .info-block {
+      margin: 6px 0;
+      font-size: 0.95em;
+      line-height: 1.6;
       padding-left: 1em;
       position: relative;
     }
-    .day-card li::before {
-      content: "\2022";
+    .info-block::before {
+      content: "•";
       position: absolute;
       left: 0;
-      color: #b22222;
+      color: var(--red);
     }
     .summary {
-      background: white;
-      border-left: 5px solid #444;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      background: #fff;
+      border-left: 6px solid #444;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       margin-top: 40px;
+      padding: 20px 24px;
     }
     .summary h2 {
+      font-size: 1.2em;
+      color: var(--red);
       margin-top: 0;
-      font-size: 1.3em;
-      color: #b22222;
     }
     .summary table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 12px;
     }
     .summary td {
-      padding: 6px 10px;
+      padding: 8px 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95em;
+    }
+    @media (max-width: 600px) {
+      .day-card {
+        padding: 16px;
+      }
+      .summary td {
+        font-size: 0.85em;
+      }
     }
   </style>
 </head>
@@ -82,84 +102,65 @@
     <h1>🇮🇹 2026 이탈리아 10박 11일 여행 일정</h1>
   </header>
   <div class="container">
+
+    <!-- 일정 카드들 -->
     <div class="day-card">
-      <h2>7/1 (수): 로마 도착</h2>
-      <ul>
-        <li>트레비 분수, 판테온, 콜로세움, 트라스테베레 산책</li>
-        <li>🏨 Singer Palace Hotel Roma</li>
-      </ul>
+      <div class="day-title">7/1 (수): 로마 도착</div>
+      <div class="info-block">트레비 분수, 판테온, 콜로세움, 트라스테베레 산책</div>
+      <div class="info-block">🏨 Singer Palace Hotel Roma</div>
     </div>
     <div class="day-card">
-      <h2>7/2 (목): 로마</h2>
-      <ul>
-        <li>바티칸 박물관, 성 베드로 대성당, 산탄젤로성, 쿠킹클래스</li>
-        <li>🏨 Singer Palace Hotel Roma</li>
-      </ul>
+      <div class="day-title">7/2 (목): 로마</div>
+      <div class="info-block">바티칸 박물관, 성 베드로 대성당, 산탄젤로성, 쿠킹클래스</div>
+      <div class="info-block">🏨 Singer Palace Hotel Roma</div>
     </div>
     <div class="day-card">
-      <h2>7/3 (금): 피렌체</h2>
-      <ul>
-        <li>두오모, 우피치 미술관, 시뇨리아 광장, 미켈란젤로 언덕</li>
-        <li>🏨 Golden Tower Hotel & Spa</li>
-      </ul>
+      <div class="day-title">7/3 (금): 피렌체</div>
+      <div class="info-block">두오모, 우피치 미술관, 시뇨리아 광장, 미켈란젤로 언덕</div>
+      <div class="info-block">🏨 Golden Tower Hotel & Spa</div>
     </div>
     <div class="day-card">
-      <h2>7/4 (토): 발도르차</h2>
-      <ul>
-        <li>🍷 Ercolani 와이너리 포함 와인투어 (피엔차, 몬테풀치아노 등)</li>
-        <li>🏨 Golden Tower Hotel & Spa</li>
-      </ul>
+      <div class="day-title">7/4 (토): 발도르차</div>
+      <div class="info-block">🍷 Ercolani 와이너리 포함 와인투어 (피엔차, 몬테풀치아노 등)</div>
+      <div class="info-block">🏨 Golden Tower Hotel & Spa</div>
     </div>
     <div class="day-card">
-      <h2>7/5 (일): 친퀘테레</h2>
-      <ul>
-        <li>마나롤라 → 베르나차 → 몬테로소 트레킹, 해변 일몰</li>
-        <li>🏨 Vernazza 고급 B&B</li>
-      </ul>
+      <div class="day-title">7/5 (일): 친퀘테레</div>
+      <div class="info-block">마나롤라 → 베르나차 → 몬테로소 트레킹, 해변 일몰</div>
+      <div class="info-block">🏨 Vernazza 고급 B&B</div>
     </div>
     <div class="day-card">
-      <h2>7/6 (월): 밀라노</h2>
-      <ul>
-        <li>두오모 대성당, 최후의 만찬, 갈레리아 쇼핑</li>
-        <li>🏨 Park Hyatt Milano</li>
-      </ul>
+      <div class="day-title">7/6 (월): 밀라노</div>
+      <div class="info-block">두오모 대성당, 최후의 만찬, 갈레리아 쇼핑</div>
+      <div class="info-block">🏨 Park Hyatt Milano</div>
     </div>
     <div class="day-card">
-      <h2>7/7 (화): 베네치아</h2>
-      <ul>
-        <li>산마르코 대성당, 두칼레 궁전, 곤돌라 탑승</li>
-        <li>🏨 Palazzo Venart Luxury Hotel</li>
-      </ul>
+      <div class="day-title">7/7 (화): 베네치아</div>
+      <div class="info-block">산마르코 대성당, 두칼레 궁전, 곤돌라 탑승</div>
+      <div class="info-block">🏨 Palazzo Venart Luxury Hotel</div>
     </div>
     <div class="day-card">
-      <h2>7/8 (수): 마테라 이동</h2>
-      <ul>
-        <li>베네치아 → 바리 → 마테라 / 사씨 지구 산책</li>
-        <li>🏨 Palazzo Gattini</li>
-      </ul>
+      <div class="day-title">7/8 (수): 마테라 이동</div>
+      <div class="info-block">베네치아 → 바리 → 마테라 / 사씨 지구 산책</div>
+      <div class="info-block">🏨 Palazzo Gattini</div>
     </div>
     <div class="day-card">
-      <h2>7/9 (목): 마테라</h2>
-      <ul>
-        <li>동굴교회, 석회절벽 전망, 전통 저녁</li>
-        <li>🏨 Palazzo Gattini</li>
-      </ul>
+      <div class="day-title">7/9 (목): 마테라</div>
+      <div class="info-block">동굴교회, 석회절벽 전망, 전통 저녁</div>
+      <div class="info-block">🏨 Palazzo Gattini</div>
     </div>
     <div class="day-card">
-      <h2>7/10 (금): 나폴리</h2>
-      <ul>
-        <li>폼페이 or Underground Naples 투어, 해산물 저녁</li>
-        <li>🏨 Grand Hotel Vesuvio</li>
-      </ul>
+      <div class="day-title">7/10 (금): 나폴리</div>
+      <div class="info-block">폼페이 or Underground Naples 투어, 해산물 저녁</div>
+      <div class="info-block">🏨 Grand Hotel Vesuvio</div>
     </div>
     <div class="day-card">
-      <h2>7/11 (토): 로마 귀환</h2>
-      <ul>
-        <li>공항 이동 & 인천행 항공편 탑승</li>
-        <li>✈️ 출국</li>
-      </ul>
+      <div class="day-title">7/11 (토): 로마 귀환</div>
+      <div class="info-block">공항 이동 & 인천행 항공편 탑승</div>
+      <div class="info-block">✈️ 출국</div>
     </div>
 
+    <!-- 요약 카드 -->
     <div class="summary">
       <h2>📊 전체 예상 경비 (1인 기준)</h2>
       <table>
@@ -172,6 +173,7 @@
         <tr><td>🛍 기타 경비 (젤라또, 커피, 쇼핑 등)</td><td>₩150,000</td></tr>
       </table>
     </div>
+
   </div>
 </body>
 </html>
