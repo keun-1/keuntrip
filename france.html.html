@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>프랑스 여행 일정</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #0d47a1;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .day-card {
+      background-color: white;
+      border-left: 5px solid #0d47a1;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .day-card h2 {
+      margin-top: 0;
+      color: #0d47a1;
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    .day-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .day-card li {
+      margin: 8px 0;
+      padding-left: 1em;
+      position: relative;
+    }
+    .day-card li::before {
+      content: "\2022";
+      position: absolute;
+      left: 0;
+      color: #0d47a1;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5em;
+      }
+      .day-card h2 {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🇫🇷 프랑스 여행 일정</h1>
+  </header>
+  <div class="container">
+
+    <div class="day-card">
+      <h2>🗓️ DAY1 (5/24, 토): 인천 → 파리</h2>
+      <ul>
+        <li>11:10 ~ 18:30 ✈️ 인천 → 파리 (대한항공 KE901)</li>
+        <li>18:30 ~ 20:00 공항 → 호텔 이동</li>
+        <li>20:10 ~ 21:40 식당 이동 및 식사 (에펠탑 근처)</li>
+        <li>21:50 ~ 22:30 에펠탑 야경 감상 + 반짝이 쇼</li>
+        <li>22:30 ~ 숙소 복귀 및 휴식</li>
+      </ul>
+    </div>
+
+    <div class="day-card">
+      <h2>🗓️ DAY2 (5/25, 일)</h2>
+      <ul>
+        <li>8:20 ~ 9:30 파리 → 베르사유 이동 (RER C선)</li>
+        <li>9:30 ~ 10:25 입장 대기</li>
+        <li>10:30 ~ 14:00 궁전 + 정원 + 트리아농 관람</li>
+        <li>14:00 ~ 15:00 점심 (테이크아웃 권장)</li>
+        <li>15:00 ~ 16:00 파리 시내 복귀</li>
+        <li>16:00 ~ 17:30 오르세 미술관 관람</li>
+        <li>17:30 ~ 18:30 로댕 미술관 관람</li>
+        <li>18:30 ~ 20:00 개선문 + 상젤리제 거리 산책</li>
+        <li>20:00 ~ 21:30 저녁식사</li>
+        <li>21:30 ~ 22:30 몽파르나스타워 야경 감상</li>
+        <li>22:30 ~ 숙소 복귀 및 휴식</li>
+      </ul>
+    </div>
+
+    <div class="day-card">
+      <h2>🗓️ DAY3 (5/26, 월): 파리 → 브뤼셀</h2>
+      <ul>
+        <li>7:00 ~ 8:00 조식 및 준비</li>
+        <li>8:00 ~ 9:00 노트르담 대성당 외부 및 산책</li>
+        <li>9:00 ~ 10:00 사랑해벽, 사크레쾨르 대성당 관람</li>
+        <li>10:00 ~ 11:00 루브르 박물관 이동 및 대기</li>
+        <li>11:30 ~ 16:00 루브르 관람 + 내부 점심 식사</li>
+        <li>16:00 ~ 17:00 오페라 가르니에 관람</li>
+        <li>17:00 ~ 18:30 휴식 및 저녁 도시락 준비</li>
+        <li>18:30 ~ 19:30 기차역 이동</li>
+        <li>20:22 ~ 21:47 파리 → 브뤼셀 이동 (기차)</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
