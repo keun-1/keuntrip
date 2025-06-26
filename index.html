@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Keun's Travel Record</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      font-family: 'Roboto', sans-serif;
+      background: #e3e9f0;
+      color: #333;
+      padding: 10px;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #0d47a1;
+      margin: 10px 0 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      padding: 0 10px;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+    .country-group {
+      background: linear-gradient(to bottom right, #ffffff, #f0f3f8);
+      border-left: 5px solid #0d47a1;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+    .country-group:hover {
+      transform: translateY(-3px);
+    }
+    .country {
+      margin-bottom: 10px;
+    }
+    .country h2 {
+      font-size: 1em;
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+    .flag {
+      font-size: 1.3em;
+      margin-right: 6px;
+    }
+    ul {
+      list-style: disc;
+      margin-left: 18px;
+      font-size: 0.85em;
+      line-height: 1.3em;
+      padding-left: 0;
+    }
+    a.country-link {
+      text-decoration: none;
+      color: #0d47a1;
+    }
+    a.country-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌍 Keun's Travel Record</h1>
+  <div class="grid">
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇫🇷</span><a class="country-link" href="france.html">France</a></h2><ul><li>Paris</li></ul></div>
+      <div class="country"><h2><span class="flag">🇧🇪</span><a class="country-link" href="belgium.html">Belgium</a></h2><ul><li>Brussels</li><li>Bruges</li></ul></div>
+      <div class="country"><h2><span class="flag">🇦🇪</span><a class="country-link" href="uae.html">UAE</a></h2><ul><li>Abu Dhabi</li><li>Dubai</li></ul></div>
+    </div>
+
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇨🇭</span><a class="country-link" href="#">Switzerland</a></h2><ul><li>Zurich</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇬🇧</span><a class="country-link" href="#">United Kingdom</a></h2><ul><li>London</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇯🇵</span><a class="country-link" href="#">Japan</a></h2><ul><li>Tokyo</li><li>Osaka</li><li>Kyoto</li><li>Fukuoka</li><li>Hiroshima</li><li>Nagasaki</li><li>Okinawa</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇨🇳</span><a class="country-link" href="#">China</a></h2><ul><li>Shanghai</li><li>Hong Kong</li><li>Macau</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇹🇼</span><a class="country-link" href="#">Taiwan</a></h2><ul><li>Taipei</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇹🇭</span><a class="country-link" href="#">Thailand</a></h2><ul><li>Bangkok</li><li>Pattaya</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇲🇳</span><a class="country-link" href="#">Mongolia</a></h2><ul><li>Gobi Desert</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇷🇺</span><a class="country-link" href="#">Russia</a></h2><ul><li>Moscow</li><li>Saint Petersburg</li><li>Novosibirsk</li><li>Yekaterinburg</li><li>Irkutsk</li><li>Vladivostok</li></ul></div>
+    </div>
+    <div class="country-group">
+      <div class="country"><h2><span class="flag">🇮🇹</span><a class="country-link" href="italy.html">Italy</a></h2><ul><li>Rome</li><li>Florence</li><li>Venice</li><li>Milan</li><li>Matera</li><li>Naples</li><li>Vernazza</li><li>Portovenere</li></ul></div>
+    </div>
+  </div>
+</body>
+</html>
