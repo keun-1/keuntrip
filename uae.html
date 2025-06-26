@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>아랍에미리트 여행 일정</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(to right, #ff0000 20%, #00732f 20% 53%, #ffffff 53% 86%, #000000 86%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .day-card {
+      background-color: white;
+      border-left: 5px solid #0d47a1;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      padding: 20px;
+    }
+    .day-card h2 {
+      margin-top: 0;
+      color: #0d47a1;
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    .day-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    .day-card li {
+      margin: 8px 0;
+      padding-left: 1em;
+      position: relative;
+    }
+    .day-card li::before {
+      content: "\2022";
+      position: absolute;
+      left: 0;
+      color: #0d47a1;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5em;
+      }
+      .day-card h2 {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🇦🇪 아랍에미리트 여행 일정</h1>
+  </header>
+  <div class="container">
+
+    <div class="day-card">
+      <h2>🗓️ DAY7 (5/30, 금)</h2>
+      <ul>
+        <li>21:45 ✈️ 에미리츠항공 EK182 (브뤼셀 → 두바이 / 6시간 30분)</li>
+        <li>07:00 렌터카 픽업 (허츠)</li>
+        <li>팜 주메이라 드라이브</li>
+        <li>09:30 미래박물관 (예약)</li>
+        <li>두바이몰 주차 → 몰 탐방 + 부르즈 칼리파 전망대</li>
+        <li>점심 후 아부다비로 이동</li>
+        <li>15:00 더 리츠칼튼 아부다비 체크인</li>
+        <li>17:00 대통령 궁 (카스르 알 와탄)</li>
+        <li>일몰 시간에 셰이크 자이드 그랜드 모스크</li>
+      </ul>
+    </div>
+
+    <div class="day-card">
+      <h2>🗓️ DAY8 (5/31, 토): 두바이 → 인천</h2>
+      <ul>
+        <li>오전 호캉스 후 12:00 체크아웃</li>
+        <li>13:00 아부다비 지오노트 레스토랑</li>
+        <li>페라리 월드 관람</li>
+        <li>렌터카 19:00까지 반납</li>
+        <li>20:55 ✈️ 대한항공 KE952 (두바이 → 인천 / 8시간 50분)</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Keun's Travel Record</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      font-family: 'Roboto', sans-serif;
+      background: #f9fafb;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      overflow: hidden;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.4em;
+      margin-bottom: 24px;
+      color: #0d47a1;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding: 10px;
+    }
+    .country-group {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      transition: all 0.2s ease-in-out;
+      border-top: 5px solid #0d47a1;
+    }
+    .country-group:hover {
+      transform: translateY(-4px);
+    }
+    .country h2 {
+      font-size: 1.1em;
+      margin: 0;
+      color: #0d47a1;
+      display: flex;
+      align-items: center;
+    }
+    .flag {
+      font-size: 1.3em;
+      margin-right: 8px;
+    }
+    .travel-date {
+      font-size: 0.75em;
+      color: #777;
+      margin-top: 4px;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      padding-left: 0;
+      font-size: 0.9em;
+      color: #444;
+    }
+    a.country-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    a.country-link:hover {
+      text-decoration: underline;
+    }
+    .sub-region {
+      margin-bottom: 10px;
+    }
+    .sub-region .travel-date {
+      padding-left: 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌍 Keun's Travel Record</h1>
+  <div class="grid">
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇫🇷</span><a class="country-link" href="france.html">France</a></h2>
+        <div class="travel-date">Visited: 2025년 5월</div>
+        <ul><li>Paris</li></ul>
+      </div>
+      <div class="country">
+        <h2><span class="flag">🇧🇪</span><a class="country-link" href="belgium.html">Belgium</a></h2>
+        <div class="travel-date">Visited: 2025년 5월</div>
+        <ul><li>Brussels</li><li>Bruges</li></ul>
+      </div>
+      <div class="country">
+        <h2><span class="flag">🇦🇪</span><a class="country-link" href="uae.html">UAE</a></h2>
+        <div class="travel-date">Visited: 2025년 5월</div>
+        <ul><li>Abu Dhabi</li><li>Dubai</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇮🇳</span><a class="country-link" href="india.html">India</a></h2>
+        <div class="travel-date">Visited: 2024년 11월</div>
+        <ul><li>New Delhi</li><li>Jaipur</li><li>Agra</li><li>Varanasi</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇨🇭</span><a class="country-link" href="#">Switzerland</a></h2>
+        <ul><li>Zurich</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇬🇧</span><a class="country-link" href="#">United Kingdom</a></h2>
+        <div class="travel-date">Visited: 2023년 3월</div>
+        <ul><li>London</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇯🇵</span><a class="country-link" href="#">Japan</a></h2>
+        <ul><li>Tokyo</li><li>Osaka</li><li>Kyoto</li><li>Fukuoka</li><li>Hiroshima</li><li>Nagasaki</li><li>Okinawa</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇨🇳</span><a class="country-link" href="#">China</a></h2>
+        <div class="sub-region">
+          <div class="travel-date">Visited: 2024년 9월</div>
+          <ul><li>Shanghai</li></ul>
+        </div>
+      <h2><span class="flag">🇭🇰</span><a class="country-link" href="#">Hong Kong</a></h2>
+        <div class="sub-region">
+          <div class="travel-date">Visited: 2024년 3월</div>
+        </div>
+      <h2><span class="flag">🇲🇴</span><a class="country-link" href="#">Macau</a></h2>
+        <div class="sub-region">
+          <div class="travel-date">Visited: 2024년 3월</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇹🇼</span><a class="country-link" href="#">Taiwan</a></h2>
+        <ul><li>Taipei</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇹🇭</span><a class="country-link" href="#">Thailand</a></h2>
+        <ul><li>Bangkok</li><li>Pattaya</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇲🇳</span><a class="country-link" href="#">Mongolia</a></h2>
+        <ul><li>Gobi Desert</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇷🇺</span><a class="country-link" href="#">Russia</a></h2>
+        <ul><li>Moscow</li><li>Saint Petersburg</li><li>Novosibirsk</li><li>Yekaterinburg</li><li>Irkutsk</li><li>Vladivostok</li></ul>
+      </div>
+    </div>
+
+    <div class="country-group">
+      <div class="country">
+        <h2><span class="flag">🇮🇹</span><a class="country-link" href="italy.html">Italy</a></h2>
+        <div class="travel-date">Planned: 2026년 7월</div>
+        <ul><li>Rome</li><li>Florence</li><li>Venice</li><li>Milan</li><li>Matera</li><li>Naples</li><li>Vernazza</li><li>Portovenere</li></ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
