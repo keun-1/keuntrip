@@ -2,80 +2,89 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>프랑스 여행 일정</title>
+  <title>🇫🇷 프랑스 여행 일정</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --main-blue: #0d47a1;
+      --accent-red: #ef4135;
+      --white: #ffffff;
+      --light-gray: #f4f6f8;
+    }
     body {
       font-family: 'Roboto', sans-serif;
-      background: #f4f6f8;
       margin: 0;
-      padding: 0;
+      background: var(--light-gray);
       color: #333;
     }
     header {
       background: linear-gradient(to right, #0055a4 33%, #ffffff 33%, #ffffff 66%, #ef4135 66%);
-      color: #0d47a1;
-      padding: 30px 20px;
+      padding: 40px 20px;
       text-align: center;
     }
     header h1 {
       margin: 0;
       font-size: 2em;
-      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+      color: #0d47a1;
     }
     .container {
-      max-width: 900px;
-      margin: 30px auto;
+      max-width: 960px;
+      margin: 40px auto;
       padding: 0 20px;
     }
     .day-card {
-      background-color: white;
-      border-left: 5px solid #0d47a1;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px 24px;
       margin-bottom: 30px;
-      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      border-left: 6px solid var(--main-blue);
     }
-    .day-card h2 {
-      margin-top: 0;
-      color: #0d47a1;
-      font-size: 1.4em;
+    .day-title {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: var(--main-blue);
       margin-bottom: 10px;
     }
-    .day-card ul {
-      list-style-type: none;
-      padding-left: 0;
+    .itinerary-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
-    .day-card li {
+    .itinerary-list li {
       margin: 8px 0;
-      padding-left: 1em;
+      padding-left: 16px;
       position: relative;
+      line-height: 1.5;
     }
-    .day-card li::before {
-      content: "\2022";
+    .itinerary-list li::before {
+      content: "•";
       position: absolute;
       left: 0;
-      color: #0d47a1;
+      color: var(--main-blue);
+      font-size: 1.2em;
     }
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.5em;
       }
-      .day-card h2 {
-        font-size: 1.2em;
+      .day-title {
+        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <h1>🇫🇷 프랑스 여행 일정</h1>
   </header>
+
   <div class="container">
 
     <div class="day-card">
-      <h2>🗓️ DAY1 (5/24, 토): 인천 → 파리</h2>
-      <ul>
+      <div class="day-title">🗓️ DAY1 (5/24, 토): 인천 → 파리</div>
+      <ul class="itinerary-list">
         <li>11:10 ~ 18:30 ✈️ 인천 → 파리 (대한항공 KE901)</li>
         <li>18:30 ~ 20:00 공항 → 호텔 이동</li>
         <li>20:10 ~ 21:40 식당 이동 및 식사 (에펠탑 근처)</li>
@@ -85,8 +94,8 @@
     </div>
 
     <div class="day-card">
-      <h2>🗓️ DAY2 (5/25, 일)</h2>
-      <ul>
+      <div class="day-title">🗓️ DAY2 (5/25, 일)</div>
+      <ul class="itinerary-list">
         <li>8:20 ~ 9:30 파리 → 베르사유 이동 (RER C선)</li>
         <li>9:30 ~ 10:25 입장 대기</li>
         <li>10:30 ~ 14:00 궁전 + 정원 + 트리아농 관람</li>
@@ -94,7 +103,7 @@
         <li>15:00 ~ 16:00 파리 시내 복귀</li>
         <li>16:00 ~ 17:30 오르세 미술관 관람</li>
         <li>17:30 ~ 18:30 로댕 미술관 관람</li>
-        <li>18:30 ~ 20:00 개선문 + 상젤리제 거리 산책</li>
+        <li>18:30 ~ 20:00 개선문 + 샹젤리제 거리 산책</li>
         <li>20:00 ~ 21:30 저녁식사</li>
         <li>21:30 ~ 22:30 몽파르나스타워 야경 감상</li>
         <li>22:30 ~ 숙소 복귀 및 휴식</li>
@@ -102,8 +111,8 @@
     </div>
 
     <div class="day-card">
-      <h2>🗓️ DAY3 (5/26, 월): 파리 → 브뤼셀</h2>
-      <ul>
+      <div class="day-title">🗓️ DAY3 (5/26, 월): 파리 → 브뤼셀</div>
+      <ul class="itinerary-list">
         <li>7:00 ~ 8:00 조식 및 준비</li>
         <li>8:00 ~ 9:00 노트르담 대성당 외부 및 산책</li>
         <li>9:00 ~ 10:00 사랑해벽, 사크레쾨르 대성당 관람</li>
@@ -117,5 +126,6 @@
     </div>
 
   </div>
+
 </body>
 </html>
