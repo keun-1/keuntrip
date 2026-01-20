@@ -27,7 +27,7 @@
     }
 
     .container {
-      max-width: 680px;
+      max-width: 720px;
       margin: 60px auto;
       padding: 0 25px;
     }
@@ -90,16 +90,16 @@
 
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      font-size: 13px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      font-size: 12.5px;
     }
 
     .info-item b {
       display: block;
       margin-bottom: 5px;
       color: var(--text);
-      font-size: 14px;
+      font-size: 13.5px;
     }
 
     .day-wrapper {
@@ -169,7 +169,7 @@
       margin-bottom: 10px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       .grid { grid-template-columns: 1fr; }
       .container { margin: 40px auto; }
     }
@@ -187,7 +187,7 @@
     <h2>RESERVATION & ESSENTIALS</h2>
     <div class="grid">
       <div class="info-item">
-        <a href="https://www.google.com/maps/search/Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+        <a href="https://www.google.com/maps/search/%ED%95%98%EB%84%A4%EB%8B%A4%EA%B3%B5%ED%95%AD+%EB%8B%9B%EC%82%B0%EB%A0%8C%ED%84%B0%EC%B9%B4" target="_blank">
           <b>닛산 렌터카 (하네다) ↗</b>
           <span style="color:var(--sub-text)">보험: 풀 서포트(NOC 면제) 필수<br>지참: 국제면허, 여권 실물, ETC 카드</span>
         </a>
@@ -196,7 +196,13 @@
         <a href="https://www.google.com/maps/search/Torishige+Shinjuku" target="_blank">
           <b>토리시게 (鳥茂) ↗</b>
           <span style="color:var(--sub-text)">3/4(수) 21:30 (2명, 테이블)<br>예약자: 박근일 (パク グニル)</span>
-          <span style="color:var(--accent); display:block; font-size:12px; margin-top:5px; font-weight:700;">※ 3/3(화) 예약 확인 SMS 답장 필수</span>
+          <span style="color:var(--accent); display:block; font-size:11px; margin-top:5px; font-weight:700;">※ 3/3(화) 예약 확인 SMS 답장 필수</span>
+        </a>
+      </div>
+      <div class="info-item">
+        <a href="https://www.google.com/maps/search/%EA%B9%80%ED%8F%AC%EA%B3%B5%ED%95%AD+3%EC%B8%B5+%EB%A9%B4%EC%84%B8%ED%92%88+%EC%9D%B8%EB%8F%84%EC%9E%A5" target="_blank">
+          <b>와인 면세점 픽업 ↗</b>
+          <span style="color:var(--sub-text)">김포공항 3층 34번 게이트 앞<br>운영시간: 07:00 ~ 20:00</span>
         </a>
       </div>
     </div>
@@ -208,7 +214,7 @@
     <div class="timeline-item">
       <div class="time">10:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+        <a href="https://www.google.com/maps/search/%ED%95%98%EB%84%A4%EB%8B%A4%EA%B3%B5%ED%95%AD+%EB%8B%9B%EC%82%B0%EB%A0%8C%ED%84%B0%EC%B9%B4" target="_blank">
           <span class="title">하네다 공항 닛산 렌터카 픽업 ↗</span>
         </a>
       </div>
@@ -217,7 +223,7 @@
     <div class="timeline-item">
       <div class="time">11:15</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Dangozaka+SA+Downhill" target="_blank">
+        <a href="https://www.google.com/maps/search/Dangozaka+Service+Area+Down" target="_blank">
           <span class="title">단고자카 SA (하행) ↗</span>
           <span class="desc">중식: 고퀄리티 에키벤 구매 후 차내 이동</span>
         </a>
@@ -227,7 +233,7 @@
     <div class="timeline-item">
       <div class="time">12:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Hatsukari+PA+Downhill" target="_blank">
+        <a href="https://www.google.com/maps/search/Hatsukari+Parking+Area+Down" target="_blank">
           <span class="title">하츠카리 PA (하행) ↗</span>
           <span class="desc">정면 후지산 조망 및 휴식</span>
         </a>
@@ -271,12 +277,12 @@
     <div class="timeline-item">
       <div class="time">18:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Fujikawaguchiko+Kodachi+1599-5" target="_blank">
+        <a href="https://www.google.com/maps/search/Kodachi+1599-5+Fujikawaguchiko" target="_blank">
           <span class="title">숙소 체크인 및 와인 타임 ↗</span>
         </a>
         <div class="wine-note">
-          <div>🍷 <b>DBR 카로:</b> 라피트 로칠드의 정교한 절제미와 말벡의 강력한 탄닌이 만나, 단맛 없이 묵직한 타격감을 선사하는 단단한 구조감의 레드 와인</div>
-          <div>🥂 <b>하트포드 코트:</b> 산미를 부드럽게 억제하고 버터리한 유질감을 극대화하여, 입안에서 미끄러지는 듯한 텍스처와 압도적인 볼륨감을 보여주는 프리미엄 화이트</div>
+          <div>🍷 <b>DBR 카로:</b> 라피트의 절제미를 음미하며 후지산의 정적과 함께 묵직한 타격감을 즐기세요.</div>
+          <div>🥂 <b>하트포드 코트:</b> 버터리한 유질감이 150년 고택에서 식사 후 느끼는 미각의 여운을 부드럽게 감싸줄 것입니다.</div>
         </div>
       </div>
     </div>
@@ -312,9 +318,9 @@
     <div class="timeline-item">
       <div class="time">11:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Koushuya+Fujikawaguchiko" target="_blank">
+        <a href="https://www.google.com/maps/search/Koushuya+Gyukatsu+Fujikawaguchiko" target="_blank">
           <span class="title">중식: 규카츠 전문점 코슈야 (甲州家) ↗</span>
-          <span class="desc">야마나시 프리미엄 소고기 규카츠</span>
+          <span class="desc">야마나시 프리미엄 소고기 미식</span>
         </a>
       </div>
     </div>
@@ -332,7 +338,7 @@
     <div class="timeline-item">
       <div class="time">15:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Hakone+Shrine+Heiwa+no+Torii" target="_blank">
+        <a href="https://www.google.com/maps/search/Hakone+Shrine+Peace+Torii" target="_blank">
           <span class="title">하코네 신사 & 평화의 토리이 ↗</span>
         </a>
         <div class="tip">
@@ -344,7 +350,7 @@
     <div class="timeline-item">
       <div class="time">17:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Ebina+SA+Uphill" target="_blank">
+        <a href="https://www.google.com/maps/search/Ebina+Service+Area+Up" target="_blank">
           <span class="title">에비나 SA (상행) ↗</span>
           <span class="desc">도쿄 진입 전 마지막 관문이자 최대 규모 휴게소</span>
         </a>
@@ -354,7 +360,7 @@
     <div class="timeline-item">
       <div class="time">19:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/Nissan+Rent+A+Car+Shibuya+Cross+Tower" target="_blank">
+        <a href="https://www.google.com/maps/search/Nissan+Rent-a-car+Shibuya+Cross+Tower" target="_blank">
           <span class="title">시부야 렌터카 반납 ↗</span>
           <span class="desc">시부야 크로스 타워 (반납 전 주유 필수)</span>
         </a>
@@ -366,7 +372,7 @@
       <div class="content">
         <a href="https://www.google.com/maps/search/Torishige+Shinjuku" target="_blank">
           <span class="title">저녁: 토리시게 (鳥茂) ↗</span>
-          <span class="desc">일본 최고봉 꼬치 요리</span>
+          <span class="desc">일본 최고봉 꼬치 요리 미식 피날레</span>
         </a>
       </div>
     </div>
@@ -375,4 +381,3 @@
 
 </body>
 </html>
-
