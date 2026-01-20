@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>2026 TOKYO/FUJI TRAVEL</title>
+  <title>2026.03 TOKYO & FUJI TRAVEL</title>
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
@@ -11,8 +11,9 @@
       --text: #1a1a1a;
       --sub-text: #707070;
       --accent: #bc002d;
-      --border: #e8e8e8;
+      --border: #eeeeee;
       --card-bg: #fbfbfb;
+      --tip-bg: #f8f8f8;
     }
 
     body {
@@ -26,17 +27,19 @@
     }
 
     .container {
-      max-width: 650px;
+      max-width: 680px;
       margin: 60px auto;
       padding: 0 25px;
     }
 
     header {
-      margin-bottom: 50px;
+      margin-bottom: 60px;
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 20px;
     }
 
     header h1 {
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 800;
       letter-spacing: -1px;
       margin: 0;
@@ -45,9 +48,9 @@
     header p {
       color: var(--sub-text);
       font-size: 13px;
-      margin-top: 5px;
+      margin-top: 8px;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
 
     a {
@@ -60,73 +63,75 @@
       opacity: 0.5;
     }
 
+    /* 정보 섹션 */
     .important-box {
       border: 1px solid var(--border);
       background-color: var(--card-bg);
-      padding: 25px;
-      margin-bottom: 40px;
+      padding: 30px;
+      margin-bottom: 50px;
     }
 
     .important-box h2 {
       font-size: 13px;
       font-weight: 700;
-      margin: 0 0 15px 0;
+      margin: 0 0 20px 0;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       display: flex;
       align-items: center;
     }
 
     .important-box h2::before {
       content: "";
-      width: 3px;
-      height: 13px;
-      background: var(--accent);
-      margin-right: 8px;
-      display: inline-block;
+      width: 12px;
+      height: 1px;
+      background: var(--text);
+      margin-right: 10px;
     }
 
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 30px;
       font-size: 13px;
     }
 
     .info-item b {
       display: block;
-      margin-bottom: 3px;
+      margin-bottom: 5px;
       color: var(--text);
+      font-size: 14px;
     }
 
+    /* 일정 레이아웃 */
     .day-wrapper {
-      margin-bottom: 50px;
+      margin-bottom: 70px;
     }
 
     .day-label {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
-      border-bottom: 2px solid var(--text);
-      padding-bottom: 10px;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      display: block;
     }
 
     .timeline-item {
       display: flex;
-      margin-bottom: 25px;
+      margin-bottom: 35px;
     }
 
     .time {
       width: 70px;
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--text);
       flex-shrink: 0;
+      padding-top: 2px;
     }
 
     .content {
       flex-grow: 1;
-      font-size: 14px;
+      font-size: 14.5px;
     }
 
     .content .title {
@@ -135,21 +140,42 @@
     }
 
     .content .desc {
-      font-size: 12.5px;
+      font-size: 13px;
       color: var(--sub-text);
-      margin-top: 4px;
+      margin-top: 6px;
       display: block;
     }
 
-    .content .note {
-      font-size: 12px;
-      color: var(--accent);
-      margin-top: 4px;
-      display: block;
+    /* 💡 알고 가면 좋은 정보 스타일 */
+    .tip {
+      background-color: var(--tip-bg);
+      padding: 15px 18px;
+      margin-top: 12px;
+      font-size: 12.5px;
+      color: #555;
+      border-left: 1px solid #ddd;
+    }
+
+    .tip b {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    /* 와인 노트 스타일 */
+    .wine-note {
+      margin-top: 15px;
+      border-top: 1px dashed #eee;
+      padding-top: 15px;
+      font-size: 13px;
+    }
+
+    .wine-note div {
+      margin-bottom: 8px;
     }
 
     @media (max-width: 480px) {
       .grid { grid-template-columns: 1fr; }
+      .container { margin: 40px auto; }
     }
   </style>
 </head>
@@ -158,23 +184,23 @@
 <div class="container">
   <header>
     <h1>2026.03 JAPAN</h1>
-    <p>Tokyo & Fuji Expedition</p>
+    <p>Minimalism & Mt. Fuji Expedition</p>
   </header>
 
   <div class="important-box">
-    <h2>Reservation & Info</h2>
+    <h2>RESERVATION & ESSENTIALS</h2>
     <div class="grid">
       <div class="info-item">
-        <a href="https://www.google.com/maps/search/?api=1&query=닛산+렌터카+하네다+공항+제3터미널" target="_blank">
-          <b>닛산 렌터카 하네다</b>
+        <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+          <b>닛산 렌터카 (하네다) ↗</b>
           <span style="color:var(--sub-text)">보험: 풀 서포트(NOC 면제) 필수<br>지참: 국제면허, 여권 실물, ETC 카드</span>
         </a>
       </div>
       <div class="info-item">
         <a href="https://www.google.com/maps/search/?api=1&query=Torishige+Shinjuku" target="_blank">
-          <b>토리시게 (鳥茂)</b>
+          <b>토리시게 (鳥茂) ↗</b>
           <span style="color:var(--sub-text)">3/4(수) 21:30 (2명, 테이블)<br>예약자: 박근일 (パク グニル)</span>
-          <span style="color:var(--accent); display:block; font-size:11.5px; margin-top:3px;">※ 전날 확인 SMS 회신 필수</span>
+          <span style="color:var(--accent); display:block; font-size:12px; margin-top:5px; font-weight:700;">※ 3/3(화) 예약 확인 SMS 답장 필수</span>
         </a>
       </div>
     </div>
@@ -182,77 +208,79 @@
 
   <div class="day-wrapper">
     <div class="day-label">Day 1. 3월 3일 (화)</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="time">10:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=닛산+렌터카+하네다+공항+제3터미널" target="_blank">
-            <span class="title">하네다 공항 닛산 렌터카 픽업 ↗</span>
-            <span class="desc">차량 인수 후 가와구치코 방면 이동</span>
-          </a>
+    
+    <div class="timeline-item">
+      <div class="time">10:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+          <span class="title">하네다 공항 닛산 렌터카 픽업 ↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">11:15</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Dangozaka+SA+Downhill" target="_blank">
+          <span class="title">단고자카 SA (하행) ↗</span>
+          <span class="desc">중식: 고퀄리티 에키벤 구매 후 차내 이동</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">12:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Hatsukari+PA+Downhill" target="_blank">
+          <span class="title">하츠카리 PA (하행) ↗</span>
+          <span class="desc">정면 후지산 조망 및 휴식</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">13:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Chureito+Pagoda" target="_blank">
+          <span class="title">아라쿠라야마 센겐 공원 ↗</span>
+        </a>
+        <div class="tip">
+          💡 이곳의 5층탑은 1958년 전몰자를 위로하기 위해 세워진 <b>'평화의 탑'</b>입니다. 399개의 계단은 '사쿠야히메'의 계단이라 불리며, 끝에 오르면 가장 상징적인 후지산 뷰를 만나게 됩니다.
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="time">11:15</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=단고자카+SA+하행" target="_blank">
-            <span class="title">단고자카 SA (하행) ↗</span>
-            <span class="desc">중식: 에키벤 구매 및 차내 취식</span>
-          </a>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">15:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Mt.+Fuji+Panoramic+Ropeway" target="_blank">
+          <span class="title">카와구치호 파노라마 로프웨이 ↗</span>
+        </a>
+        <div class="tip">
+          💡 전래동화 <b>'카치카치야마'</b>의 배경지로, 정상 텐죠산은 후지산 능선이 가장 완벽한 삼각형으로 보이는 지점으로 유명합니다.
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="time">12:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=Hatsukari+Parking+Area+Downbound" target="_blank">
-            <span class="title">하츠카리 PA (하행) ↗</span>
-            <span class="desc">후지산 조망 및 휴게</span>
-          </a>
-        </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">16:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Sanrokuen+Fujikawaguchiko" target="_blank">
+          <span class="title">석식: 산로쿠엔 (山麓園) ↗</span>
+          <span class="desc">150년 고택의 이로리 화로 꼬치 요리</span>
+        </a>
       </div>
-      <div class="timeline-item">
-        <div class="time">13:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=아라쿠라야마+센겐+공원" target="_blank">
-            <span class="title">아라쿠라야마 센겐 공원 ↗</span>
-            <span class="desc">399계단 / 오층탑 조망</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">15:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=Mt.+Fuji+Panoramic+Ropeway" target="_blank">
-            <span class="title">카와구치호 파노라마 로프웨이 ↗</span>
-            <span class="desc">호수 및 후지산 능선 조망</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">16:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=Sanrokuen+Kawaguchiko" target="_blank">
-            <span class="title">석식: 산로쿠엔 (山麓園) ↗</span>
-            <span class="desc">150년 고택 이로리 구이 (18:00 종료 대비)</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">17:30</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=Lawson+Kawaguchiko" target="_blank">
-            <span class="title">편의점 쇼핑 ↗</span>
-            <span class="desc">와인 안주(치즈, 생햄 등) 구매</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">18:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=35.500918,138.756303" target="_blank">
-            <span class="title">숙소 체크인 (Kodachi 1599-5) ↗</span>
-            <span class="desc">정적인 분위기에서 휴식</span>
-          </a>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">18:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Kodachi+1599-5+Fujikawaguchiko" target="_blank">
+          <span class="title">숙소 체크인 및 와인 타임 ↗</span>
+        </a>
+        <div class="wine-note">
+          <div>🍷 <b>DBR 카로:</b> 라피트의 절제미를 음미하며 후지산의 정적과 함께 묵직한 타격감을 즐기세요.</div>
+          <div>🥂 <b>하트포드 코트:</b> 버터리한 유질감이 고택 식사 후의 여운을 부드럽게 감싸줄 것입니다.</div>
         </div>
       </div>
     </div>
@@ -260,92 +288,80 @@
 
   <div class="day-wrapper">
     <div class="day-label">Day 2. 3월 4일 (수)</div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="time">07:30</div>
-        <div class="content">
-          <span class="title">숙소 체크아웃</span>
+    
+    <div class="timeline-item">
+      <div class="time">08:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Saiko+Iyashi-no-Sato+Nenba" target="_blank">
+          <span class="title">사이호 이야시노사토 넨바 ↗</span>
+        </a>
+        <div class="tip">
+          💡 <b>'이야시(치유)'</b>라는 이름처럼 전통 초가집들이 모여 있는 풍경은 사용자님이 선호하시는 <b>'소재의 본질'</b>이 주는 편안함을 선사합니다.
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="time">08:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=사이호+이야시노사토+넨바" target="_blank">
-            <span class="title">사이호 이야시노사토 넨바 ↗</span>
-            <span class="desc">전통 초가집 마을</span>
-          </a>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">10:00</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Oshino+Hakkai" target="_blank">
+          <span class="title">오시노 핫카이 (忍野八海) ↗</span>
+        </a>
+        <div class="tip">
+          💡 후지산 눈이 녹아 80년간 걸러져 솟아오르는 샘물입니다. 수심 8m 바닥까지 보이는 투명함은 고대부터 신성시되었습니다.
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="time">10:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=오시노+핫카이" target="_blank">
-            <span class="title">오시노 핫카이 (忍野八海) ↗</span>
-            <span class="desc">후지산 용수 샘물 탐방</span>
-          </a>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">11:30</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Koushuya+Beef+Cutlet+Yamanashi" target="_blank">
+          <span class="title">중식: 규카츠 전문점 코슈야 (甲州家) ↗</span>
+          <span class="desc">야마나시 프리미엄 소고기 미식</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">13:15</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Toraya+Kobo+Gotemba" target="_blank">
+          <span class="title">토라야 공방 & 구 키시 저택 ↗</span>
+          <span class="desc">대나무 숲 속의 건축 미학과 화과자</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">15:30</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Hakone+Shrine+Torii+of+Peace" target="_blank">
+          <span class="title">하코네 신사 & 평화의 토리이 ↗</span>
+        </a>
+        <div class="tip">
+          💡 호수 위 붉은 토리이와 푸른 물의 대비는 시각적 충격뿐만 아니라 <b>'콰이어트 럭셔리'</b>의 공간감을 보여줍니다.
         </div>
       </div>
-      <div class="timeline-item">
-        <div class="time">11:30</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=牛かつ専門店+甲州家" target="_blank">
-            <span class="title">중식: 牛かつ専門店 甲州家 (Koushuya) ↗</span>
-            <span class="desc">규카츠 전문점</span>
-          </a>
-        </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">19:30</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Shibuya+Cross+Tower" target="_blank">
+          <span class="title">시부야 렌터카 반납 ↗</span>
+          <span class="desc">시부야 크로스 타워 (반납 전 주유 필수)</span>
+        </a>
       </div>
-      <div class="timeline-item">
-        <div class="time">13:15</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=토라야+공방" target="_blank">
-            <span class="title">토라야 공방 & 구 키시 저택 ↗</span>
-            <span class="desc">대나무 숲 건축물 / 화과자 및 차</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">15:30</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=Hakone+Shrine+Heiwa+no+Torii" target="_blank">
-            <span class="title">하코네 신사 ↗</span>
-            <span class="desc">평화의 토리이</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">17:30</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=Ebina+Service+Area+Upbound" target="_blank">
-            <span class="title">에비나 SA (상행) ↗</span>
-            <span class="desc">도쿄 진입 전 휴식 및 기념품 구매</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">19:30</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=닛산+렌터카+시부야+크로스타워점" target="_blank">
-            <span class="title">시부야 렌터카 반납 ↗</span>
-            <span class="note">※ 반납 전 주유 필수 (시부야 크로스 타워)</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">20:00</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=미쓰이+가든+호텔+진구+가이엔+프리미어" target="_blank">
-            <span class="title">호텔 체크인 (미쓰이 가든 진구 가이엔) ↗</span>
-          </a>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="time">21:30</div>
-        <div class="content">
-          <a href="https://www.google.com/maps/search/?api=1&query=Torishige+Shinjuku" target="_blank">
-            <span class="title">저녁: 토리시게 (鳥茂) ↗</span>
-            <span class="desc">꼬치 요리 미식 피날레</span>
-          </a>
-        </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">21:30</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/?api=1&query=Torishige+Shinjuku" target="_blank">
+          <span class="title">저녁: 토리시게 (鳥茂) ↗</span>
+          <span class="desc">일본 최고봉 꼬치 요리 미식 피날레</span>
+        </a>
       </div>
     </div>
   </div>
