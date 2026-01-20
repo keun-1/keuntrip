@@ -2,232 +2,312 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>2026.03 TOKYO/FUJI TRAVEL</title>
+  <title>2026 TOKYO/FUJI TRAVEL</title>
   <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
     :root {
-      --bg-color: #ffffff;
-      --text-main: #1a1a1a;
-      --text-sub: #666666;
-      --border-color: #e0e0e0;
-      --point-color: #000000;
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --sub-text: #707070;
+      --accent: #bc002d; /* 일본 국기 포인트 컬러 */
+      --border: #e8e8e8;
+      --card-bg: #fbfbfb;
     }
+
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.5;
+      font-family: 'Pretendard', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
       margin: 0;
-      padding: 40px 20px;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
     }
-    .wrapper {
-      max-width: 700px;
-      margin: 0 auto;
+
+    .container {
+      max-width: 650px;
+      margin: 60px auto;
+      padding: 0 25px;
     }
+
     header {
-      border-bottom: 2px solid var(--point-color);
-      padding-bottom: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      text-align: left;
     }
+
     header h1 {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
       margin: 0;
     }
+
     header p {
+      color: var(--sub-text);
       font-size: 14px;
-      color: var(--text-sub);
-      margin: 5px 0 0 0;
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    /* 정보 섹션 */
-    .section {
+    /* 주요 예약 정보 */
+    .important-box {
+      border: 1px solid var(--border);
+      background-color: var(--card-bg);
+      padding: 25px;
       margin-bottom: 40px;
     }
-    .section-title {
-      font-size: 16px;
+
+    .important-box h2 {
+      font-size: 14px;
       font-weight: 700;
-      border-bottom: 1px solid var(--point-color);
-      padding-bottom: 8px;
-      margin-bottom: 15px;
+      margin: 0 0 15px 0;
       text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
     }
 
-    /* 렌터카 박스 */
-    .info-box {
-      background-color: #f9f9f9;
-      padding: 20px;
-      border: 1px solid var(--border-color);
-      font-size: 14px;
-    }
-    .info-box ul {
-      margin: 0;
-      padding-left: 18px;
-    }
-    .info-box li {
-      margin-bottom: 5px;
-    }
-    .important {
-      font-weight: 700;
-      text-decoration: underline;
+    .important-box h2::before {
+      content: "";
+      width: 3px;
+      height: 14px;
+      background: var(--accent);
+      margin-right: 8px;
+      display: inline-block;
     }
 
-    /* 일정 테이블 */
-    .schedule-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      font-size: 13.5px;
     }
-    .schedule-table th {
-      display: none;
-    }
-    .schedule-table td {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border-color);
-      vertical-align: top;
-    }
-    .time {
-      width: 80px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-    .event {
-      color: var(--text-main);
-    }
-    .memo {
+
+    .info-item b {
       display: block;
-      font-size: 13px;
-      color: var(--text-sub);
-      margin-top: 4px;
+      margin-bottom: 3px;
+      color: var(--text);
+    }
+
+    .info-item span {
+      color: var(--sub-text);
+    }
+
+    /* 타임라인 일정 */
+    .day-wrapper {
+      margin-bottom: 50px;
     }
 
     .day-label {
       font-size: 18px;
       font-weight: 700;
-      margin: 30px 0 10px 0;
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 10px;
+      margin-bottom: 25px;
     }
 
+    .timeline {
+      position: relative;
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: 25px;
+    }
+
+    .time {
+      width: 70px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+
+    .content {
+      flex-grow: 1;
+      font-size: 14.5px;
+    }
+
+    .content .title {
+      font-weight: 700;
+      display: block;
+    }
+
+    .content .desc {
+      font-size: 13px;
+      color: var(--sub-text);
+      margin-top: 4px;
+      display: block;
+    }
+
+    .content .note {
+      font-size: 12px;
+      color: var(--accent);
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* 모바일 대응 */
     @media (max-width: 480px) {
-      .time { width: 60px; }
+      .grid { grid-template-columns: 1fr; }
+      .container { margin: 30px auto; }
     }
   </style>
 </head>
 <body>
 
-<div class="wrapper">
+<div class="container">
   <header>
-    <h1>2026.03 TOKYO & FUJI</h1>
-    <p>3박 4일 여행 일정 관리</p>
+    <h1>2026.03 JAPAN</h1>
+    <p>Tokyo & Fuji Expedition</p>
   </header>
 
-  <div class="section">
-    <div class="section-title">Rent-a-car</div>
-    <div class="info-box">
-      <ul>
-        <li>업체: 닛산 렌터카 (하네다 공항 픽업 / 시부야 크로스 타워 반납)</li>
-        <li>보험: <span class="important">현장 '풀 서포트 플랜(NOC 면제)' 업그레이드 필수</span></li>
-        <li>필수 지참: 국제운전면허증, ETC 카드 대여 확인</li>
-      </ul>
+  <div class="important-box">
+    <h2>Reservation & Info</h2>
+    <div class="grid">
+      <div class="info-item">
+        <b>닛산 렌터카</b>
+        <span>하네다 픽업 / 시부야 반납<br>
+        보험: 풀 서포트(NOC 면제) 필수<br>
+        지참: 국제운전면허증, 여권, ETC 카드</span>
+      </div>
+      <div class="info-item">
+        <b>토리시게 (鳥茂)</b>
+        <span>3/4(수) 21:30 (2명, 테이블)<br>
+        예약자: パク グニル (박근일)<br>
+        <span style="color:var(--accent)">※ 전날 확인 SMS 회신 필수</span></span>
+      </div>
     </div>
   </div>
 
-  <div class="day-label">Day 1. 3월 3일 (화)</div>
-  <table class="schedule-table">
-    <tr>
-      <td class="time">10:00</td>
-      <td class="event">
-        하네다 공항 닛산 렌터카 픽업
-        <span class="memo">가와구치코 방면 이동 (약 1시간 40분)</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">12:30</td>
-      <td class="event">
-        아라쿠라야마 센겐 공원
-        <span class="memo">399계단 / 오층탑 및 후지산 조망</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">14:30</td>
-      <td class="event">
-        카와구치호 파노라마 로프웨이
-        <span class="memo">전용 주차장 이용</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">16:30</td>
-      <td class="event">
-        숙소 체크인
-        <span class="memo">Kodachi 1599-5</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">18:30</td>
-      <td class="event">
-        저녁: 산로쿠엔 (山麓園)
-        <span class="memo">이로리 꼬치 구이 (숙소에서 차로 10분)</span>
-      </td>
-    </tr>
-  </table>
+  <div class="day-wrapper">
+    <div class="day-label">Day 1. 3월 3일 (화)</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">10:00</div>
+        <div class="content">
+          <span class="title">하네다 공항 닛산 렌터카 픽업</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">11:15</div>
+        <div class="content">
+          <span class="title">단고자카 SA (하행)</span>
+          <span class="desc">중식: 에키벤 및 단팥빵 구매</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">12:00</div>
+        <div class="content">
+          <span class="title">하츠카리 PA (하행)</span>
+          <span class="desc">후지산 조망 및 휴식</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">13:00</div>
+        <div class="content">
+          <span class="title">아라쿠라야마 센겐 공원</span>
+          <span class="desc">399계단 / 오층탑 및 설산 조망</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">15:00</div>
+        <div class="content">
+          <span class="title">카와구치호 파노라마 로프웨이</span>
+          <span class="desc">호수 전체 및 능선 조망</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">16:30</div>
+        <div class="content">
+          <span class="title">숙소 체크인 (Kodachi 1599-5)</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">18:30</div>
+        <div class="content">
+          <span class="title">저녁: 산로쿠엔 (山麓園)</span>
+          <span class="desc">150년 고택 이로리 꼬치 구이</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class="day-label">Day 2. 3월 4일 (수)</div>
-  <table class="schedule-table">
-    <tr>
-      <td class="time">08:00</td>
-      <td class="event">
-        사이호 이야시노사토 넨바
-        <span class="memo">전통 초가집 마을</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">10:00</td>
-      <td class="event">
-        오시노 핫카이 (忍野八海)
-        <span class="memo">후지산 용수 샘물 탐방</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">11:30</td>
-      <td class="event">
-        점심: 호토 후도 (히가시코이즈미점)
-        <span class="memo">야마나시 향토 요리 / 미니멀 건축물</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">13:15</td>
-      <td class="event">
-        토라야 공방 & 구 키시 저택
-        <span class="memo">화과자 및 대나무 숲 건축 미학</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">15:30</td>
-      <td class="event">
-        하코네 신사
-        <span class="memo">평화의 토리이</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">19:30</td>
-      <td class="event">
-        시부야 렌터카 반납
-        <span class="memo">시부야 크로스 타워 점 (반납 전 주유 필수)</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="time">20:00</td>
-      <td class="event">
-        미쓰이 가든 호텔 진구 가이엔 체크인
-      </td>
-    </tr>
-    <tr>
-      <td class="time">21:30</td>
-      <td class="event">
-        저녁: 토리시게 (鳥茂)
-        <span class="memo">부속 부위 꼬치 요리 (사전 예약 필수)</span>
-      </td>
-    </tr>
-  </table>
+  <div class="day-wrapper">
+    <div class="day-label">Day 2. 3월 4일 (수)</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">07:30</div>
+        <div class="content">
+          <span class="title">숙소 체크아웃</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">08:00</div>
+        <div class="content">
+          <span class="title">사이호 이야시노사토 넨바</span>
+          <span class="desc">전통 초가집 마을</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">10:00</div>
+        <div class="content">
+          <span class="title">오시노 핫카이 (忍野八海)</span>
+          <span class="desc">후지산 용수 샘물 탐방</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">11:30</div>
+        <div class="content">
+          <span class="title">중식: 호토 후도 (히가시코이즈미점)</span>
+          <span class="desc">미니멀 건축물 / 향토 요리 호토</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">13:15</div>
+        <div class="content">
+          <span class="title">토라야 공방 & 구 키시 저택</span>
+          <span class="desc">대나무 숲 건축물 / 화과자 및 차</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">15:30</div>
+        <div class="content">
+          <span class="title">하코네 신사</span>
+          <span class="desc">평화의 토리이</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">17:30</div>
+        <div class="content">
+          <span class="title">에비나 SA (상행)</span>
+          <span class="desc">마지막 휴식 및 기념품 구매</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">19:30</div>
+        <div class="content">
+          <span class="title">시부야 렌터카 반납</span>
+          <span class="note">※ 시부야 크로스 타워 점 (반납 전 주유 필수)</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">20:00</div>
+        <div class="content">
+          <span class="title">호텔 체크인 (미쓰이 가든 진구 가이엔)</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">21:30</div>
+        <div class="content">
+          <span class="title">저녁: 토리시게 (鳥茂)</span>
+          <span class="desc">꼬치 요리 미식 피날레</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </body>
