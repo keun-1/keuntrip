@@ -13,7 +13,7 @@
       --accent: #bc002d;
       --border: #eeeeee;
       --card-bg: #fbfbfb;
-      --tip-bg: #f8f8f8;
+      --tip-bg: #f9f9f9;
     }
 
     body {
@@ -63,7 +63,6 @@
       opacity: 0.5;
     }
 
-    /* 정보 섹션 */
     .important-box {
       border: 1px solid var(--border);
       background-color: var(--card-bg);
@@ -103,7 +102,6 @@
       font-size: 14px;
     }
 
-    /* 일정 레이아웃 */
     .day-wrapper {
       margin-bottom: 70px;
     }
@@ -117,7 +115,7 @@
 
     .timeline-item {
       display: flex;
-      margin-bottom: 35px;
+      margin-bottom: 40px;
     }
 
     .time {
@@ -146,31 +144,29 @@
       display: block;
     }
 
-    /* 💡 알고 가면 좋은 정보 스타일 */
     .tip {
       background-color: var(--tip-bg);
-      padding: 15px 18px;
-      margin-top: 12px;
-      font-size: 12.5px;
-      color: #555;
+      padding: 18px;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #444;
       border-left: 1px solid #ddd;
+      text-align: justify;
     }
 
     .tip b {
       color: var(--text);
-      font-weight: 700;
     }
 
-    /* 와인 노트 스타일 */
     .wine-note {
       margin-top: 15px;
       border-top: 1px dashed #eee;
       padding-top: 15px;
-      font-size: 13px;
+      font-size: 13.5px;
     }
 
     .wine-note div {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     @media (max-width: 480px) {
@@ -191,13 +187,13 @@
     <h2>RESERVATION & ESSENTIALS</h2>
     <div class="grid">
       <div class="info-item">
-        <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+        <a href="https://www.google.com/maps/search/Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
           <b>닛산 렌터카 (하네다) ↗</b>
           <span style="color:var(--sub-text)">보험: 풀 서포트(NOC 면제) 필수<br>지참: 국제면허, 여권 실물, ETC 카드</span>
         </a>
       </div>
       <div class="info-item">
-        <a href="https://www.google.com/maps/search/?api=1&query=Torishige+Shinjuku" target="_blank">
+        <a href="https://www.google.com/maps/search/Torishige+Shinjuku" target="_blank">
           <b>토리시게 (鳥茂) ↗</b>
           <span style="color:var(--sub-text)">3/4(수) 21:30 (2명, 테이블)<br>예약자: 박근일 (パク グニル)</span>
           <span style="color:var(--accent); display:block; font-size:12px; margin-top:5px; font-weight:700;">※ 3/3(화) 예약 확인 SMS 답장 필수</span>
@@ -212,7 +208,7 @@
     <div class="timeline-item">
       <div class="time">10:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+        <a href="https://www.google.com/maps/search/Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
           <span class="title">하네다 공항 닛산 렌터카 픽업 ↗</span>
         </a>
       </div>
@@ -221,7 +217,7 @@
     <div class="timeline-item">
       <div class="time">11:15</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Dangozaka+SA+Downhill" target="_blank">
+        <a href="https://www.google.com/maps/search/Dangozaka+SA+Downhill" target="_blank">
           <span class="title">단고자카 SA (하행) ↗</span>
           <span class="desc">중식: 고퀄리티 에키벤 구매 후 차내 이동</span>
         </a>
@@ -231,7 +227,7 @@
     <div class="timeline-item">
       <div class="time">12:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Hatsukari+PA+Downhill" target="_blank">
+        <a href="https://www.google.com/maps/search/Hatsukari+PA+Downhill" target="_blank">
           <span class="title">하츠카리 PA (하행) ↗</span>
           <span class="desc">정면 후지산 조망 및 휴식</span>
         </a>
@@ -241,11 +237,11 @@
     <div class="timeline-item">
       <div class="time">13:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Chureito+Pagoda" target="_blank">
+        <a href="https://www.google.com/maps/search/Arakurayama+Sengen+Park" target="_blank">
           <span class="title">아라쿠라야마 센겐 공원 ↗</span>
         </a>
         <div class="tip">
-          💡 이곳의 5층탑은 1958년 전몰자를 위로하기 위해 세워진 <b>'평화의 탑'</b>입니다. 399개의 계단은 '사쿠야히메'의 계단이라 불리며, 끝에 오르면 가장 상징적인 후지산 뷰를 만나게 됩니다.
+          💡 알고 가면 좋은 정보: 이곳의 5층탑은 단순한 장식이 아니라 1958년 전몰자를 위로하기 위해 세워진 <b>'평화의 탑'</b>입니다. 399개의 계단은 '사쿠야히메(후지산의 여신)'의 계단이라 불리며, 끝까지 오르면 일본에서 가장 유명한 후지산 뷰를 만나게 됩니다.
         </div>
       </div>
     </div>
@@ -253,11 +249,11 @@
     <div class="timeline-item">
       <div class="time">15:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Mt.+Fuji+Panoramic+Ropeway" target="_blank">
+        <a href="https://www.google.com/maps/search/Mt.+Fuji+Panoramic+Ropeway" target="_blank">
           <span class="title">카와구치호 파노라마 로프웨이 ↗</span>
         </a>
         <div class="tip">
-          💡 전래동화 <b>'카치카치야마'</b>의 배경지로, 정상 텐죠산은 후지산 능선이 가장 완벽한 삼각형으로 보이는 지점으로 유명합니다.
+          💡 알고 가면 좋은 정보: 이곳은 일본 전래동화 <b>'카치카치야마(토끼와 너구리)'</b>의 배경지입니다. 곳곳에 토끼와 너구리 조각상이 있는 이유죠. 정상의 '텐죠산'은 후지산 능선이 가장 완벽한 삼각형으로 보이는 지점으로 유명합니다.
         </div>
       </div>
     </div>
@@ -265,7 +261,7 @@
     <div class="timeline-item">
       <div class="time">16:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Sanrokuen+Fujikawaguchiko" target="_blank">
+        <a href="https://www.google.com/maps/search/Sanrokuen+Fujikawaguchiko" target="_blank">
           <span class="title">석식: 산로쿠엔 (山麓園) ↗</span>
           <span class="desc">150년 고택의 이로리 화로 꼬치 요리</span>
         </a>
@@ -275,12 +271,12 @@
     <div class="timeline-item">
       <div class="time">18:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Kodachi+1599-5+Fujikawaguchiko" target="_blank">
+        <a href="https://www.google.com/maps/search/Fujikawaguchiko+Kodachi+1599-5" target="_blank">
           <span class="title">숙소 체크인 및 와인 타임 ↗</span>
         </a>
         <div class="wine-note">
           <div>🍷 <b>DBR 카로:</b> 라피트의 절제미를 음미하며 후지산의 정적과 함께 묵직한 타격감을 즐기세요.</div>
-          <div>🥂 <b>하트포드 코트:</b> 버터리한 유질감이 고택 식사 후의 여운을 부드럽게 감싸줄 것입니다.</div>
+          <div>🥂 <b>하트포드 코트:</b> 버터리한 유질감이 150년 고택에서 식사 후 느끼는 미각의 여운을 부드럽게 감싸줄 것입니다.</div>
         </div>
       </div>
     </div>
@@ -292,11 +288,11 @@
     <div class="timeline-item">
       <div class="time">08:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Saiko+Iyashi-no-Sato+Nenba" target="_blank">
+        <a href="https://www.google.com/maps/search/Saiko+Iyashi-no-Sato+Nenba" target="_blank">
           <span class="title">사이호 이야시노사토 넨바 ↗</span>
         </a>
         <div class="tip">
-          💡 <b>'이야시(치유)'</b>라는 이름처럼 전통 초가집들이 모여 있는 풍경은 사용자님이 선호하시는 <b>'소재의 본질'</b>이 주는 편안함을 선사합니다.
+          💡 알고 가면 좋은 정보: 1966년 산사태로 소실되었던 마을을 복원한 곳입니다. '이야시(치유)'라는 이름처럼 전통 초가집(카부토즈쿠리)들이 옹기종기 모여 있는 모습은 사용자님이 선호하시는 <b>'소재의 본질'</b>이 주는 편안함을 선사합니다.
         </div>
       </div>
     </div>
@@ -304,11 +300,11 @@
     <div class="timeline-item">
       <div class="time">10:00</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Oshino+Hakkai" target="_blank">
+        <a href="https://www.google.com/maps/search/Oshino+Hakkai" target="_blank">
           <span class="title">오시노 핫카이 (忍野八海) ↗</span>
         </a>
         <div class="tip">
-          💡 후지산 눈이 녹아 80년간 걸러져 솟아오르는 샘물입니다. 수심 8m 바닥까지 보이는 투명함은 고대부터 신성시되었습니다.
+          💡 알고 가면 좋은 정보: 후지산의 눈이 녹아 땅속 암반에서 약 80년간 걸러져 솟아오르는 샘물입니다. 물의 투명도가 너무 높아 수심 8m 바닥까지 선명히 보이는데, 이는 고대부터 후지산 참배객들이 몸을 씻던 신성한 장소였습니다.
         </div>
       </div>
     </div>
@@ -316,7 +312,7 @@
     <div class="timeline-item">
       <div class="time">11:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Koushuya+Beef+Cutlet+Yamanashi" target="_blank">
+        <a href="https://www.google.com/maps/search/Koushuya+Fujikawaguchiko" target="_blank">
           <span class="title">중식: 규카츠 전문점 코슈야 (甲州家) ↗</span>
           <span class="desc">야마나시 프리미엄 소고기 미식</span>
         </a>
@@ -326,7 +322,7 @@
     <div class="timeline-item">
       <div class="time">13:15</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Toraya+Kobo+Gotemba" target="_blank">
+        <a href="https://www.google.com/maps/search/Toraya+Kobo+Gotemba" target="_blank">
           <span class="title">토라야 공방 & 구 키시 저택 ↗</span>
           <span class="desc">대나무 숲 속의 건축 미학과 화과자</span>
         </a>
@@ -336,19 +332,29 @@
     <div class="timeline-item">
       <div class="time">15:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Hakone+Shrine+Torii+of+Peace" target="_blank">
+        <a href="https://www.google.com/maps/search/Hakone+Shrine+Heiwa+no+Torii" target="_blank">
           <span class="title">하코네 신사 & 평화의 토리이 ↗</span>
         </a>
         <div class="tip">
-          💡 호수 위 붉은 토리이와 푸른 물의 대비는 시각적 충격뿐만 아니라 <b>'콰이어트 럭셔리'</b>의 공간감을 보여줍니다.
+          💡 알고 가면 좋은 정보: 수면 위에 세워진 '평화의 토리이'는 1952년 샌프란시스코 강화 조약 체결과 현 상황의 평화를 기념하기 위해 건립되었습니다. 붉은 칠과 푸른 호수의 대비는 시각적 충격뿐만 아니라 <b>'콰이어트 럭셔리'</b>의 공간감을 보여줍니다.
         </div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">17:30</div>
+      <div class="content">
+        <a href="https://www.google.com/maps/search/Ebina+SA+Uphill" target="_blank">
+          <span class="title">에비나 SA (상행) ↗</span>
+          <span class="desc">도쿄 진입 전 마지막 관문이자 최대 규모 휴게소</span>
+        </a>
       </div>
     </div>
 
     <div class="timeline-item">
       <div class="time">19:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Shibuya+Cross+Tower" target="_blank">
+        <a href="https://www.google.com/maps/search/Nissan+Rent+A+Car+Shibuya+Cross+Tower" target="_blank">
           <span class="title">시부야 렌터카 반납 ↗</span>
           <span class="desc">시부야 크로스 타워 (반납 전 주유 필수)</span>
         </a>
@@ -358,7 +364,7 @@
     <div class="timeline-item">
       <div class="time">21:30</div>
       <div class="content">
-        <a href="https://www.google.com/maps/search/?api=1&query=Torishige+Shinjuku" target="_blank">
+        <a href="https://www.google.com/maps/search/Torishige+Shinjuku" target="_blank">
           <span class="title">저녁: 토리시게 (鳥茂) ↗</span>
           <span class="desc">일본 최고봉 꼬치 요리 미식 피날레</span>
         </a>
