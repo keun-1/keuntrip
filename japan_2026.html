@@ -10,7 +10,7 @@
       --bg: #ffffff;
       --text: #1a1a1a;
       --sub-text: #707070;
-      --accent: #bc002d; /* 일본 국기 포인트 컬러 */
+      --accent: #bc002d;
       --border: #e8e8e8;
       --card-bg: #fbfbfb;
     }
@@ -33,7 +33,6 @@
 
     header {
       margin-bottom: 50px;
-      text-align: left;
     }
 
     header h1 {
@@ -51,7 +50,17 @@
       letter-spacing: 2px;
     }
 
-    /* 주요 예약 정보 */
+    /* 링크 스타일링: 미니멀 유지 */
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s ease;
+    }
+
+    a:hover {
+      opacity: 0.6;
+    }
+
     .important-box {
       border: 1px solid var(--border);
       background-color: var(--card-bg);
@@ -91,11 +100,6 @@
       color: var(--text);
     }
 
-    .info-item span {
-      color: var(--sub-text);
-    }
-
-    /* 타임라인 일정 */
     .day-wrapper {
       margin-bottom: 50px;
     }
@@ -106,10 +110,6 @@
       border-bottom: 2px solid var(--text);
       padding-bottom: 10px;
       margin-bottom: 25px;
-    }
-
-    .timeline {
-      position: relative;
     }
 
     .timeline-item {
@@ -135,6 +135,13 @@
       display: block;
     }
 
+    .content .title svg {
+      width: 12px;
+      height: 12px;
+      margin-left: 4px;
+      fill: var(--sub-text);
+    }
+
     .content .desc {
       font-size: 13px;
       color: var(--sub-text);
@@ -149,10 +156,8 @@
       display: block;
     }
 
-    /* 모바일 대응 */
     @media (max-width: 480px) {
       .grid { grid-template-columns: 1fr; }
-      .container { margin: 30px auto; }
     }
   </style>
 </head>
@@ -168,16 +173,17 @@
     <h2>Reservation & Info</h2>
     <div class="grid">
       <div class="info-item">
-        <b>닛산 렌터카</b>
-        <span>하네다 픽업 / 시부야 반납<br>
-        보험: 풀 서포트(NOC 면제) 필수<br>
-        지참: 국제운전면허증, 여권, ETC 카드</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+          <b>닛산 렌터카 하네다</b>
+          <span style="color:var(--sub-text)">보험: 풀 서포트(NOC 면제) 필수<br>지참: 국제면허, 여권, ETC 카드</span>
+        </a>
       </div>
       <div class="info-item">
-        <b>토리시게 (鳥茂)</b>
-        <span>3/4(수) 21:30 (2명, 테이블)<br>
-        예약자: パク グニル (박근일)<br>
-        <span style="color:var(--accent)">※ 전날 확인 SMS 회신 필수</span></span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Torishige+Shinjuku" target="_blank">
+          <b>토리시게 (鳥茂)</b>
+          <span style="color:var(--sub-text)">3/4(수) 21:30 (2명, 테이블)<br>예약자: パク グニル (박근일)</span>
+          <span style="color:var(--accent); display:block; font-size:12px; margin-top:3px;">※ 전날 확인 SMS 회신 필수</span>
+        </a>
       </div>
     </div>
   </div>
@@ -188,48 +194,62 @@
       <div class="timeline-item">
         <div class="time">10:00</div>
         <div class="content">
-          <span class="title">하네다 공항 닛산 렌터카 픽업</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Haneda+Airport" target="_blank">
+            <span class="title">하네다 공항 닛산 렌터카 픽업 ↗</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">11:15</div>
         <div class="content">
-          <span class="title">단고자카 SA (하행)</span>
-          <span class="desc">중식: 에키벤 및 단팥빵 구매</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Dangozaka+Service+Area+Downbound" target="_blank">
+            <span class="title">단고자카 SA (하행) ↗</span>
+            <span class="desc">중식: 에키벤 및 단팥빵 구매</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">12:00</div>
         <div class="content">
-          <span class="title">하츠카리 PA (하행)</span>
-          <span class="desc">후지산 조망 및 휴식</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Hatsukari+Parking+Area+Downbound" target="_blank">
+            <span class="title">하츠카리 PA (하행) ↗</span>
+            <span class="desc">후지산 조망 및 휴식</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">13:00</div>
         <div class="content">
-          <span class="title">아라쿠라야마 센겐 공원</span>
-          <span class="desc">399계단 / 오층탑 및 설산 조망</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Arakurayama+Sengen+Park" target="_blank">
+            <span class="title">아라쿠라야마 센겐 공원 ↗</span>
+            <span class="desc">399계단 / 오층탑 및 설산 조망</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">15:00</div>
         <div class="content">
-          <span class="title">카와구치호 파노라마 로프웨이</span>
-          <span class="desc">호수 전체 및 능선 조망</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kawaguchiko+Panoramic+Ropeway" target="_blank">
+            <span class="title">카와구치호 파노라마 로프웨이 ↗</span>
+            <span class="desc">호수 전체 및 능선 조망</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">16:30</div>
         <div class="content">
-          <span class="title">숙소 체크인 (Kodachi 1599-5)</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kodachi+1599-5+Fujikawaguchiko" target="_blank">
+            <span class="title">숙소 체크인 (Kodachi 1599-5) ↗</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">18:30</div>
         <div class="content">
-          <span class="title">저녁: 산로쿠엔 (山麓園)</span>
-          <span class="desc">150년 고택 이로리 꼬치 구이</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Sanrokuen+Fujikawaguchiko" target="_blank">
+            <span class="title">저녁: 산로쿠엔 (山麓園) ↗</span>
+            <span class="desc">150년 고택 이로리 꼬치 구이</span>
+          </a>
         </div>
       </div>
     </div>
@@ -239,71 +259,83 @@
     <div class="day-label">Day 2. 3월 4일 (수)</div>
     <div class="timeline">
       <div class="timeline-item">
-        <div class="time">07:30</div>
-        <div class="content">
-          <span class="title">숙소 체크아웃</span>
-        </div>
-      </div>
-      <div class="timeline-item">
         <div class="time">08:00</div>
         <div class="content">
-          <span class="title">사이호 이야시노사토 넨바</span>
-          <span class="desc">전통 초가집 마을</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Saiko+Iyashi-no-Sato+Nenba" target="_blank">
+            <span class="title">사이호 이야시노사토 넨바 ↗</span>
+            <span class="desc">전통 초가집 마을</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">10:00</div>
         <div class="content">
-          <span class="title">오시노 핫카이 (忍野八海)</span>
-          <span class="desc">후지산 용수 샘물 탐방</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Oshino+Hakkai" target="_blank">
+            <span class="title">오시노 핫카이 (忍野八海) ↗</span>
+            <span class="desc">후지산 용수 샘물 탐방</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">11:30</div>
         <div class="content">
-          <span class="title">중식: 호토 후도 (히가시코이즈미점)</span>
-          <span class="desc">미니멀 건축물 / 향토 요리 호토</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Hoto+Fudo+Higashikoizumi" target="_blank">
+            <span class="title">중식: 호토 후도 (히가시코이즈미점) ↗</span>
+            <span class="desc">미니멀 건축물 / 향토 요리 호토</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">13:15</div>
         <div class="content">
-          <span class="title">토라야 공방 & 구 키시 저택</span>
-          <span class="desc">대나무 숲 건축물 / 화과자 및 차</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Toraya+Kobo+Gotemba" target="_blank">
+            <span class="title">토라야 공방 & 구 키시 저택 ↗</span>
+            <span class="desc">대나무 숲 건축물 / 화과자 및 차</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">15:30</div>
         <div class="content">
-          <span class="title">하코네 신사</span>
-          <span class="desc">평화의 토리이</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Hakone+Shrine+Peace+Torii" target="_blank">
+            <span class="title">하코네 신사 ↗</span>
+            <span class="desc">평화의 토리이</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">17:30</div>
         <div class="content">
-          <span class="title">에비나 SA (상행)</span>
-          <span class="desc">마지막 휴식 및 기념품 구매</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Ebina+Service+Area+Upbound" target="_blank">
+            <span class="title">에비나 SA (상행) ↗</span>
+            <span class="desc">마지막 휴식 및 기념품 구매</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">19:30</div>
         <div class="content">
-          <span class="title">시부야 렌터카 반납</span>
-          <span class="note">※ 시부야 크로스 타워 점 (반납 전 주유 필수)</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Nissan+Rent+A+Car+Shibuya+Cross+Tower" target="_blank">
+            <span class="title">시부야 렌터카 반납 ↗</span>
+            <span class="note">※ 시부야 크로스 타워 점 (반납 전 주유 필수)</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">20:00</div>
         <div class="content">
-          <span class="title">호텔 체크인 (미쓰이 가든 진구 가이엔)</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Mitsui+Garden+Hotel+Jingugaien+Tokyo+Du+Parc" target="_blank">
+            <span class="title">호텔 체크인 (미쓰이 가든 진구 가이엔) ↗</span>
+          </a>
         </div>
       </div>
       <div class="timeline-item">
         <div class="time">21:30</div>
         <div class="content">
-          <span class="title">저녁: 토리시게 (鳥茂)</span>
-          <span class="desc">꼬치 요리 미식 피날레</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Torishige+Shinjuku" target="_blank">
+            <span class="title">저녁: 토리시게 (鳥茂) ↗</span>
+            <span class="desc">꼬치 요리 미식 피날레</span>
+          </a>
         </div>
       </div>
     </div>
