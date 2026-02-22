@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japan 2026.03 — Minimalism & Mt. Fuji</title>
+<title>富士より東京へ — Japan 2026.03</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+KR:wght@300;400&family=Noto+Serif+JP:wght@200;300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
   :root {
     --ink: #1a1a18;
@@ -516,6 +517,94 @@
 
   footer span { color: var(--gold); }
 
+  /* ── QR TICKET ── */
+  .ticket-box {
+    margin-top: 1rem;
+    background: #1a1a18;
+    color: var(--sand);
+    overflow: hidden;
+  }
+  .ticket-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.1rem;
+    background: #111110;
+    border-bottom: 1px solid #2e2c28;
+  }
+  .ticket-header-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .ticket-confirmed {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: #6dbf7e;
+  }
+  .ticket-body {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+  }
+  .ticket-qr {
+    padding: 1rem;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #2e2c28;
+  }
+  .ticket-qr canvas, .ticket-qr img {
+    display: block !important;
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .ticket-info {
+    padding: 0.9rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .ticket-row { display: flex; flex-direction: column; gap: 0.05rem; }
+  .ticket-row-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--stone);
+    text-transform: uppercase;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .ticket-row-value { font-size: 0.8rem; color: var(--sand); line-height: 1.4; }
+  .ticket-row-value.mono {
+    font-family: monospace;
+    font-size: 0.63rem;
+    color: var(--gold);
+    word-break: break-all;
+  }
+  hr.ticket-divider {
+    border: none;
+    border-top: 1px dashed #2e2c28;
+    margin: 0 1rem;
+  }
+  .ticket-notice {
+    padding: 0.65rem 1rem;
+    font-size: 0.71rem;
+    color: var(--stone);
+    line-height: 1.7;
+  }
+  .ticket-notice strong { color: #f0a080; }
+
+  @media (max-width: 640px) {
+    .ticket-body { grid-template-columns: 100px 1fr; }
+    .ticket-qr { padding: 0.65rem; }
+    .ticket-qr canvas, .ticket-qr img { width: 76px !important; height: 76px !important; }
+    .ticket-info { padding: 0.7rem 0.8rem; }
+    .ticket-row-value { font-size: 0.75rem; }
+    .ticket-row-value.mono { font-size: 0.58rem; }
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -537,12 +626,74 @@
     transform: none;
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 600px) {
-    .event { grid-template-columns: 56px 1fr; }
-    .event::before { left: 25px; }
-    .event-dot { left: 20px; }
-    .event-time { font-size: 0.82rem; }
+  /* ── RESPONSIVE / MOBILE ── */
+  @media (max-width: 640px) {
+    /* Layout */
+    .hero { padding: 2.5rem 5vw 3.5rem; }
+    .hero-title { font-size: clamp(2.6rem, 13vw, 4rem); }
+    .essentials { padding: 2.5rem 4vw; }
+    .essentials-grid { grid-template-columns: 1fr; }
+    .days-wrapper { padding: 3rem 4vw; }
+    .day-block { margin-bottom: 3.5rem; }
+    .day-num { font-size: clamp(3rem, 14vw, 4rem); }
+    .day-title { font-size: clamp(1.2rem, 5vw, 1.6rem); }
+
+    /* Timeline */
+    .event { grid-template-columns: 52px 1fr; gap: 0 1rem; }
+    .event::before { left: 23px; }
+    .event-dot { left: 18px; top: 12px; width: 10px; height: 10px; }
+    .event-time { font-size: 0.85rem; padding-top: 0.2rem; }
+    .event-body { padding-bottom: 1.8rem; }
+    .event-name { font-size: 1.05rem; }
+    .event-sub { font-size: 0.8rem; }
+
+    /* Tip box: stack label above content on mobile */
+    .tip-row {
+      grid-template-columns: 1fr;
+    }
+    .tip-row-label {
+      border-right: none;
+      border-bottom: 1px solid #e2ddd5;
+      white-space: normal;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.66rem;
+      background: #f2ede4;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .tip-row-content {
+      padding: 0.6rem 0.85rem;
+      font-size: 0.8rem;
+    }
+    .tip-header-label { font-size: 0.62rem; letter-spacing: 0.25em; }
+
+    /* Menu list */
+    .menu-item { flex-direction: column; gap: 0.1rem; }
+    .menu-price { font-size: 0.85rem; color: var(--gold); }
+
+    /* Wine */
+    .wine-card { padding: 0.75rem 0.9rem; font-size: 0.8rem; }
+    .wine-name { font-size: 0.9rem; }
+
+    /* Tags */
+    .tag-red { font-size: 0.68rem; }
+    .meal-tag { font-size: 0.65rem; }
+
+    /* Section label */
+    .section-label { font-size: 0.65rem; }
+
+    /* Day header */
+    .day-header { gap: 1rem; padding-bottom: 1rem; margin-bottom: 2rem; }
+    .day-date { font-size: 0.72rem; letter-spacing: 0.15em; }
+
+    /* Essential card */
+    .essential-card { padding: 1.4rem 1.5rem; }
+    .essential-title { font-size: 1rem; }
+    .essential-detail { font-size: 0.8rem; }
+
+    /* Footer */
+    footer { padding: 2rem 1.5rem; font-size: 0.7rem; }
   }
 </style>
 </head>
@@ -559,10 +710,10 @@
 
   <p class="hero-eyebrow">March 2026 · Japan</p>
   <h1 class="hero-title">
-    Minimalism<br>
-    <em>&amp; Mt. Fuji</em>
+    富士より<br>
+    <em>東京へ</em>
   </h1>
-  <p class="hero-sub">富士山 踏破 · 3박4일간의 여정</p>
+  <p class="hero-sub">설봉의 고요에서 도시의 빛으로 · 4일간의 여정</p>
   <div class="hero-divider"></div>
 </header>
 
@@ -597,6 +748,37 @@
         <strong>예약자:</strong> 박근일 (パク グニル)
       </div>
       <div class="tag-red">3/3(화) SMS 예약확인 답장 필수</div>
+    </div>
+
+    <div class="essential-card">
+      <div class="essential-icon">🎨</div>
+      <div class="essential-title">팀랩 보더리스</div>
+      <div class="essential-detail">
+        3/5(목) 14:00 · 성인 2명<br>
+        <strong>예약번호:</strong> YSX821999<br>
+        <strong>예약자:</strong> PARK KEUNIL
+      </div>
+      <div class="tag-red">✅ 예약 확정 · 모바일 QR 입장</div>
+    </div>
+
+    <div class="essential-card">
+      <div class="essential-icon">♨️</div>
+      <div class="essential-title">유엔 벳테이 다이타</div>
+      <div class="essential-detail">
+        3/5(목) 20:00 도착 · 2명 · 온천+다실<br>
+        <strong>예약번호:</strong> 3376-9305-7005<br>
+        <strong>다실:</strong> 21:15~22:15 · 요금 ¥8,700 (결제 완료)
+      </div>
+      <div class="tag-red">✅ 예약 확정 · 온라인 결제 완료</div>
+    </div>
+
+    <div class="essential-card">
+      <div class="essential-icon">🏮</div>
+      <div class="essential-title">곤파치 니시아자부</div>
+      <div class="essential-detail">
+        3/5(목) 23:15 · 2명 · 테이블
+      </div>
+      <div class="tag-red">✅ 예약 확정</div>
     </div>
 
   </div>
@@ -995,34 +1177,79 @@
         <div class="event-time">12:00</div>
         <div class="event-dot"></div>
         <div class="event-body">
-          <div class="event-name"><a href="https://maps.google.com/?q=鮨柳次郎+南青山" target="_blank" rel="noopener">스시 료지로 (鮨 柳次郎 · Sushi Ryujiro)</a></div>
-          <div class="event-sub">정통 에도마에 · 미나미아오야마 · 네즈 미술관 도보 7분</div>
-          <div class="meal-tag">LUNCH · OMAKASE</div>
-          <div class="tip-box">
-            <div class="tip-header"><span class="tip-header-icon">💡</span><span class="tip-header-label">Insider Guide</span></div>
+          <div class="event-name">점심 — 아래 3곳 중 선택</div>
+          <div class="event-sub">미나미아오야마 · 네즈 미술관 도보 5~10분 이내</div>
+          <div class="meal-tag">LUNCH</div>
+
+          <!-- 옵션 1 -->
+          <div class="tip-box" style="margin-top:1rem;">
+            <div class="tip-header"><span class="tip-header-icon">🅐</span><span class="tip-header-label">텐푸라 야마노우에 아오야마 (てんぷら 山の上 青山) — 추천 1순위</span></div>
             <div class="tip-rows">
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">📍</span>위치</div>
+                <div class="tip-row-content">가이엔마에역 뒷골목 · 미나미아오야마 5초메 — 네즈 미술관 도보 8분. <a href="https://maps.google.com/?q=てんぷら山の上+青山" target="_blank" rel="noopener" style="color:var(--red);">지도 보기 ↗</a></div>
+              </div>
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">🍤</span>특징</div>
+                <div class="tip-row-content"><strong>46년 역사</strong>의 미나미아오야마 뒷골목 히든 텐푸라 전문점. 스모 세계 유명인사들의 단골 맛집으로 알려진 현지인 성지. 정갈한 일본식 공간에서 즉석 튀김 코스 제공 — 일정 내 아직 먹지 않은 장르</div>
+              </div>
+              <div class="tip-row cat-cost">
+                <div class="tip-row-label"><span class="tip-cat-icon">💴</span>가격</div>
+                <div class="tip-row-content">점심 코스 <strong>¥5,000~8,000</strong> 수준. 스시 오마카세 대비 부담 없는 예산으로 고급 코스 경험 가능</div>
+              </div>
               <div class="tip-row cat-warn">
-                <div class="tip-row-label"><span class="tip-cat-icon">📱</span>예약 방법</div>
-                <div class="tip-row-content"><strong>tabelog.com</strong> 또는 <strong>omakaseje.com</strong> 에서 예약 가능. 점심 12관 전후 니기리 코스 기준 <strong>¥12,000~14,000</strong> — 예산 ¥15,000 이내로 안전하게 수렴</div>
-              </div>
-              <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">👨‍🍳</span>셰프</div>
-                <div class="tip-row-content">아오야마 명문 <strong>스시 우미(鮨 宇海)</strong> 초대 주방장 수련 출신 오너 셰프. 기소 히노키 카운터에서 셰프의 손놀림을 바로 눈앞에서 감상할 수 있는 정통 카운터 구성</div>
-              </div>
-              <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">🍣</span>코스 구성</div>
-                <div class="tip-row-content">흰살생선·조개류·새우 등 전채 → 12~15관 니기리 → 계절 별미 순서. 화려한 기교보다 <strong>재료 본연의 온도와 숙성도</strong>에 집중하는 스타일</div>
-              </div>
-              <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">🎌</span>스시 에티켓</div>
-                <div class="tip-row-content">간장은 <strong>재료 쪽만 살짝</strong> 찍는 것이 에티켓. 스시는 나온 즉시 먹을 것 — 장인이 온도까지 계산해 쥔 것. <strong>향수 자제 필수</strong></div>
-              </div>
-              <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">🌊</span>3월 제철</div>
-                <div class="tip-row-content">3월은 <strong>도미(타이)·새조개·봄 전어</strong>가 절정. 특히 도미는 봄의 왕으로 불리며 이 시기 지방이 가장 오른 상태. 셰프에게 제철 추천을 물어보는 것도 좋음</div>
+                <div class="tip-row-label"><span class="tip-cat-icon">⚠️</span>예약</div>
+                <div class="tip-row-content tip-warn">현지인 중심 소규모 가게로 <strong>tabelog에서 사전 예약 권장</strong>. 워크인 가능 여부는 당일 확인</div>
               </div>
             </div>
           </div>
+
+          <!-- 옵션 2 -->
+          <div class="tip-box" style="margin-top:0.6rem;">
+            <div class="tip-header"><span class="tip-header-icon">🅑</span><span class="tip-header-label">우나기 히쓰마부시 노부 아오야마 (うな重 のぶ 青山) — 추천 2순위</span></div>
+            <div class="tip-rows">
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">📍</span>위치</div>
+                <div class="tip-row-content">가이엔마에역 도보 3분 · 미나미아오야마. <a href="https://maps.google.com/?q=うなぎ+青山+南青山+うな重" target="_blank" rel="noopener" style="color:var(--red);">지도 보기 ↗</a></div>
+              </div>
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">🐟</span>특징</div>
+                <div class="tip-row-content"><strong>장어덮밥(우나주)</strong> 전문점 — 숯불에 구운 국산 천연 장어를 달콤짭짤한 타레 소스와 함께. 3월은 겨울 지방이 오른 장어 최상 시즌. 이 여정의 메뉴 중 유일하게 빠진 일본 미식 장르</div>
+              </div>
+              <div class="tip-row cat-cost">
+                <div class="tip-row-label"><span class="tip-cat-icon">💴</span>가격</div>
+                <div class="tip-row-content">우나주(장어덮밥) <strong>¥4,000~6,000</strong>. 런치 세트 있음</div>
+              </div>
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">🎌</span>에티켓</div>
+                <div class="tip-row-content">장어덮밥은 <strong>산쇼(산초가루)</strong>를 살짝 뿌려 먹는 것이 정석. 히쓰마부시 스타일이면 1/3은 그대로, 1/3은 김과 고추냉이와 함께, 나머지 1/3은 다시에 말아서 먹는 3단계 방식</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 옵션 3 -->
+          <div class="tip-box" style="margin-top:0.6rem;">
+            <div class="tip-header"><span class="tip-header-icon">🅒</span><span class="tip-header-label">니시야마 와규 아오야마 (にしやま牛 青山) — 추천 3순위</span></div>
+            <div class="tip-rows">
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">📍</span>위치</div>
+                <div class="tip-row-content">가이엔마에역 도보 2분 · 미나미아오야마. <a href="https://maps.google.com/?q=にしやま牛+南青山+外苑前" target="_blank" rel="noopener" style="color:var(--red);">지도 보기 ↗</a></div>
+              </div>
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">🥩</span>특징</div>
+                <div class="tip-row-content"><strong>창업 115년</strong>의 아오야마 와규 노포. 니시야마가 엄선한 프리미엄 흑모 와규를 야키니쿠·스테이크·스키야키 형태로. 전통과 격을 동시에 — 규카츠(Day 2)와는 완전히 다른 결의 와규 경험</div>
+              </div>
+              <div class="tip-row cat-cost">
+                <div class="tip-row-label"><span class="tip-cat-icon">💴</span>가격</div>
+                <div class="tip-row-content">런치 코스 <strong>¥8,000~15,000</strong>. 단품 주문 가능. 프라이빗룸 있어 2인 조용한 식사 최적</div>
+              </div>
+              <div class="tip-row cat-warn">
+                <div class="tip-row-label"><span class="tip-cat-icon">⚠️</span>예약</div>
+                <div class="tip-row-content tip-warn">노포 인기 가게로 <strong>사전 예약 필수</strong>. tabelog 또는 전화 예약 (일본어 응대 가능성 높음 — 구글 번역 활용)</div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -1031,24 +1258,68 @@
         <div class="event-dot"></div>
         <div class="event-body">
           <div class="event-name"><a href="https://maps.google.com/?q=チームラボボーダレス+麻布台ヒルズ" target="_blank" rel="noopener">팀랩 보더리스 @ 아자부다이 힐스</a></div>
-          <div class="tip-box">
+          <div class="event-sub">MORI Building DIGITAL ART MUSEUM · 아자부다이 힐스 가든 플라자 B</div>
+          <div class="tag-red">✅ 예약 확정 · 2명 · 2026.03.05 14:00 · YSX821999</div>
+
+          <!-- QR 티켓 -->
+          <div class="ticket-box">
+            <div class="ticket-header">
+              <span class="ticket-header-label">🎫 Mobile Voucher — 입장 QR</span>
+              <span class="ticket-confirmed">✓ Confirmed</span>
+            </div>
+            <div class="ticket-body">
+              <div class="ticket-qr">
+                <div id="teamlab-qr"></div>
+              </div>
+              <div class="ticket-info">
+                <div class="ticket-row">
+                  <span class="ticket-row-label">예약자</span>
+                  <span class="ticket-row-value">PARK KEUNIL</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-row-label">일시</span>
+                  <span class="ticket-row-value">2026.03.05 · 14:00</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-row-label">수량</span>
+                  <span class="ticket-row-value">성인 2명</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-row-label">예약번호</span>
+                  <span class="ticket-row-value">YSX821999</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-row-label">Voucher No.</span>
+                  <span class="ticket-row-value mono">KLb9750bd0d4403e2d7474b7649bec8ae061fe906583f424917ebd80176095cb7f</span>
+                </div>
+              </div>
+            </div>
+            <hr class="ticket-divider">
+            <div class="ticket-notice">
+              <strong>입장 방법:</strong> 모바일 화면의 QR을 입구 스캐너에 제시. 실물 바우처 불필요.<br>
+              <strong>주소:</strong> Azabudai Hills Garden Plaza B · 가미야초역 5번 출구 도보 2분<br>
+              <strong>주의:</strong> 플래시·삼각대·셀카봉 금지 · 재입장 불가 · 외부 음식물 반입 불가
+            </div>
+          </div>
+
+          <div class="tip-box" style="margin-top:0.6rem;">
             <div class="tip-header"><span class="tip-header-icon">💡</span><span class="tip-header-label">Insider Guide</span></div>
             <div class="tip-rows">
-              <div class="tip-row cat-warn">
-                <div class="tip-row-label"><span class="tip-cat-icon">⚠️</span>예약 필수</div>
-                <div class="tip-row-content tip-warn"><strong>사전 온라인 예약 없이 당일 현장 구매 거의 불가</strong> (¥3,200~). 공식 사이트(teamlab.art) 또는 현지 편의점 예약 티켓 확보 필수</div>
-              </div>
               <div class="tip-row cat-time">
                 <div class="tip-row-label"><span class="tip-cat-icon">⏰</span>최적 시간</div>
-                <div class="tip-row-content">이 일정은 <strong>목요일 오후</strong> — 주말 대비 현저히 한산하여 최적. 10,000㎡ 규모로 최소 2.5시간 여유 필요. 자누 라운지(17:30) 역방향으로 걸어서 이동 가능</div>
+                <div class="tip-row-content">목요일 오후 — 주말 대비 현저히 한산. 10,000㎡ 규모로 <strong>최소 2.5시간</strong> 여유 필요. 자누 라운지(17:30)까지 도보 이동 가능</div>
               </div>
               <div class="tip-row cat-photo">
                 <div class="tip-row-label"><span class="tip-cat-icon">📸</span>촬영 팁</div>
-                <div class="tip-row-content"><strong>삼각대·셀카봉 금지</strong>. 스마트폰 광각 모드 권장. 노출값 높이면 빛의 궤적을 포착 가능. 어두운 공간 특성상 밝은 색 옷이 작품에 잘 반응</div>
+                <div class="tip-row-content">플래시·삼각대·셀카봉 <strong>전면 금지</strong>. 스마트폰 광각 모드 + 노출값 높이면 빛의 궤적 포착 가능. 어두운 공간이므로 <strong>밝은 색 옷</strong>이 작품과 더 잘 반응</div>
               </div>
               <div class="tip-row cat-local">
                 <div class="tip-row-label"><span class="tip-cat-icon">👟</span>복장 팁</div>
-                <div class="tip-row-content">바닥에 앉거나 눕는 공간 다수 — <strong>편한 신발·복장 필수</strong>. 흰 양말이나 밝은 색 옷은 작품과 상호작용해 더 재미있는 경험 가능</div>
+                <div class="tip-row-content">바닥에 앉거나 눕는 공간 다수 — <strong>편한 신발·바지 필수</strong>. 거울 전시실에서 치마는 속옷이 비칠 수 있으니 바지 착용 권장</div>
+              </div>
+              <div class="tip-row cat-warn">
+                <div class="tip-row-label"><span class="tip-cat-icon">⚠️</span>주의</div>
+                <div class="tip-row-content tip-warn">혼잡 시간대에는 <strong>팀랩 앱</strong>을 통해 일부 전시 입장권 배포 — 방문 전 앱 미리 다운로드 권장. 뮤지엄 내부 어둡고 바닥 고르지 않으니 이동 시 주의</div>
               </div>
             </div>
           </div>
@@ -1074,27 +1345,31 @@
         <div class="event-time">20:00</div>
         <div class="event-dot"></div>
         <div class="event-body">
-          <div class="event-name"><a href="https://maps.google.com/?q=豊島園庭の湯" target="_blank" rel="noopener">토시마엔 니와노유 &amp; 만요테이</a></div>
-          <div class="event-sub">성인 전용 온천 · 1,200평 정원 · 일식 석식</div>
-          <div class="meal-tag">DINNER</div>
+          <div class="event-name"><a href="https://maps.google.com/?q=Yuen+Bettei+Daita+世田谷区代田" target="_blank" rel="noopener">유엔 벳테이 다이타 (Yuen Bettei Daita)</a></div>
+          <div class="event-sub">온천 + 다실 당일치기 플랜 · 예약번호 3376-9305-7005</div>
+          <div class="tag-red">✅ 예약 확정 · 2명 · 16:00~ 입장 / 20:00 도착 / 22:00 퇴장</div>
           <div class="tip-box">
             <div class="tip-header"><span class="tip-header-icon">💡</span><span class="tip-header-label">Insider Guide</span></div>
             <div class="tip-rows">
-              <div class="tip-row cat-cost">
-                <div class="tip-row-label"><span class="tip-cat-icon">💴</span>요금</div>
-                <div class="tip-row-content">입장료 <strong>평일 ¥1,400 / 주말 ¥1,600</strong>. 수건 ¥300 렌트 가능. 목요일이므로 평일 요금 적용</div>
-              </div>
               <div class="tip-row cat-warn">
-                <div class="tip-row-label"><span class="tip-cat-icon">⚠️</span>입장 제한</div>
-                <div class="tip-row-content tip-warn"><strong>중학생 미만 입장 불가</strong> (성인 전용). 타투(문신) 있을 경우 입장 거부 가능 — 사전 확인 권장. 음주 후 입욕 금지</div>
+                <div class="tip-row-label"><span class="tip-cat-icon">📋</span>예약 내용</div>
+                <div class="tip-row-content">플랜: <strong>[Afternoon day trip] 숙박 없음 · 온천 + 다실</strong><br>요금: ¥8,700 (세금 포함) · 온라인 결제 완료<br>다실 이용: <strong>21:15 ~ 22:15 (1시간)</strong></div>
               </div>
               <div class="tip-row cat-local">
                 <div class="tip-row-label"><span class="tip-cat-icon">♨️</span>온천 팁</div>
-                <div class="tip-row-content">1,200평 정원을 바라보는 <strong>노천탕</strong>이 하이라이트. 야간 은은한 조명이 켜지는 20:00 이후 입장이 가장 아름다운 타이밍. 식사 전 온천 → 식사 순서 추천</div>
+                <div class="tip-row-content">자누 라운지(17:30)에서 다이타역까지 택시 약 15분. <strong>20:00 도착</strong>이 예약 기준이므로 온천을 1시간 충분히 즐긴 뒤 다실로 이동 가능한 타이밍</div>
               </div>
               <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">🍱</span>식당 팁</div>
-                <div class="tip-row-content">온천 내 만요테이는 <strong>온천 이용 고객 우선 입장</strong>. 정원 조망 창가 석이 인기이므로 입장 시 바로 자리 확보. 메뉴는 일본어만 있으므로 사진 메뉴 요청</div>
+                <div class="tip-row-label"><span class="tip-cat-icon">🍵</span>다실 (21:15~)</div>
+                <div class="tip-row-content"><strong>21:15 다실 입장 시각 엄수</strong> — 1시간 제도이므로 늦어도 21:10까지 다실 앞 도착. 온천 후 유카타 차림으로 다실에서 말차를 마시는 것이 이 플랜의 하이라이트</div>
+              </div>
+              <div class="tip-row cat-warn">
+                <div class="tip-row-label"><span class="tip-cat-icon">⚠️</span>주의</div>
+                <div class="tip-row-content tip-warn">알레르기 확인 완료 · 해산물 육수·밀·간장 확인 완료 (예약 시 고지됨). <strong>향수 자제</strong> — 밀폐된 다실 특성상 향이 강한 제품은 타인에게 방해될 수 있음</div>
+              </div>
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">🚕</span>이후 이동</div>
+                <div class="tip-row-content">22:15 퇴장 후 곤파치 니시아자부(23:15 예약)까지 택시 약 15~20분. <strong>22:30에 시바 공원</strong>에서 도쿄 타워 야경 감상 후 곤파치로 이동하는 루트 추천</div>
               </div>
             </div>
           </div>
@@ -1161,9 +1436,18 @@
         <div class="event-body">
           <div class="event-name"><a href="https://maps.google.com/?q=根津神社+東京" target="_blank" rel="noopener">네즈 신사 (根津神社)</a></div>
           <div class="event-sub">도쿄에서 가장 오래된 신사 중 하나 · 1,900년 역사</div>
+          <div class="tag-red">🧳 체크아웃 전 에어포터 짐 위탁 필수 (09:00 마감)</div>
           <div class="tip-box">
             <div class="tip-header"><span class="tip-header-icon">💡</span><span class="tip-header-label">Insider Guide</span></div>
             <div class="tip-rows">
+              <div class="tip-row cat-warn">
+                <div class="tip-row-label"><span class="tip-cat-icon">🧳</span>짐 배송 서비스</div>
+                <div class="tip-row-content"><strong>에어포터(Airporter)</strong> 이용 — 호텔 프런트에 <strong>09:00 이전</strong>까지 캐리어 위탁 필수. 당일 16:00 이후 하네다 공항 지정 카운터에서 수령. 요금 약 <strong>¥4,500/개</strong>. 전날 밤 예약 완료 필요</div>
+              </div>
+              <div class="tip-row cat-local">
+                <div class="tip-row-label"><span class="tip-cat-icon">📍</span>공항 수령처</div>
+                <div class="tip-row-content">하네다 국제선 <strong>제3터미널 3층 출발 로비 · JALABC 카운터</strong> (06:00~22:00). 또는 제2터미널 1층 야마토 카운터 (16:00~21:00). 예약 확인 이메일 지참</div>
+              </div>
               <div class="tip-row cat-time">
                 <div class="tip-row-label"><span class="tip-cat-icon">⏰</span>최적 시간</div>
                 <div class="tip-row-content"><strong>07:00~08:30</strong>이 가장 고요한 골든타임 — 새벽 안개 사이로 붉은 센본도리이(千本鳥居)가 열을 지어 서있는 풍경은 하루 중 이 시간에만 존재</div>
@@ -1171,10 +1455,6 @@
               <div class="tip-row cat-photo">
                 <div class="tip-row-label"><span class="tip-cat-icon">📸</span>포토 스팟</div>
                 <div class="tip-row-content"><strong>센본도리이 통로 중간</strong>에서 낮은 앵글로 촬영 — 붉은 도리이가 무한히 이어지는 구도. 3월 아침 역광이 도리이를 투과하며 가장 극적인 빛을 만들어냄</div>
-              </div>
-              <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">🎌</span>역사</div>
-                <div class="tip-row-content">도쿠가와 5대 쇼군이 현 위치로 이전·재건한 에도 시대 대표 신사. 경내 연못의 잉어와 매화(3월 초순까지)가 어우러지는 시기 — 이 여정의 타이밍이 딱 맞음</div>
               </div>
               <div class="tip-row cat-warn">
                 <div class="tip-row-label"><span class="tip-cat-icon">⚠️</span>안내</div>
@@ -1247,10 +1527,10 @@
       </div>
 
       <div class="event">
-        <div class="event-time">11:30</div>
+        <div class="event-time">11:00</div>
         <div class="event-dot"></div>
         <div class="event-body">
-          <div class="event-name"><a href="https://maps.google.com/?q=鷹匠+谷中+蕎麦" target="_blank" rel="noopener">소바 타카조 (鷹匠) — 또는 야나카 인근 소바 전문점</div>
+          <div class="event-name"><a href="https://maps.google.com/?q=鷹匠+谷中+蕎麦" target="_blank" rel="noopener">소바 타카조 (鷹匠)</a> — 또는 야나카 인근 소바 전문점</div>
           <div class="event-sub">야나카 골목 수타 소바 · 일본 정식의 완성</div>
           <div class="meal-tag">LUNCH</div>
           <div class="tip-box">
@@ -1274,10 +1554,10 @@
       </div>
 
       <div class="event">
-        <div class="event-time">13:30</div>
+        <div class="event-time">12:30</div>
         <div class="event-dot"></div>
         <div class="event-body">
-          <div class="event-name"><a href="https://maps.google.com/?q=築地場外市場" target="_blank" rel="noopener">츠키지 장외시장 (築地場外市場)</a></div>
+          <div class="event-name"><a href="https://maps.google.com/?q=築地場外市場+東京" target="_blank" rel="noopener">츠키지 장외시장 (築地場外市場)</a></div>
           <div class="event-sub">88년 역사의 전통 수산시장 골목 · 귀국 전 마지막 미식</div>
           <div class="tip-box">
             <div class="tip-header"><span class="tip-header-icon">💡</span><span class="tip-header-label">Insider Guide</span></div>
@@ -1300,7 +1580,7 @@
       </div>
 
       <div class="event">
-        <div class="event-time">15:00</div>
+        <div class="event-time">14:30</div>
         <div class="event-dot"></div>
         <div class="event-body">
           <div class="event-name"><a href="https://maps.google.com/?q=浜離宮恩賜庭園" target="_blank" rel="noopener">하마리큐 온시 정원 (浜離宮恩賜庭園)</a></div>
@@ -1322,7 +1602,7 @@
               </div>
               <div class="tip-row cat-warn">
                 <div class="tip-row-label"><span class="tip-cat-icon">⏰</span>시간 관리</div>
-                <div class="tip-row-content tip-warn">공항 역산 일정상 <strong>15:45 출발 필수</strong>. 입장 즉시 다실 먼저 방문 후 정원 산책 순서로 움직이면 45분 안에 핵심 모두 소화 가능</div>
+                <div class="tip-row-content tip-warn">공항 역산 일정상 <strong>15:30 출발 필수</strong>. 짐은 이미 공항에 도착해 있으므로 호텔 경유 불필요 — 하마리큐에서 공항 직행으로 시간 절약. 입장 즉시 다실 먼저, 정원 산책은 후반부에</div>
               </div>
             </div>
           </div>
@@ -1330,51 +1610,29 @@
       </div>
 
       <div class="event">
-        <div class="event-time">15:50</div>
+        <div class="event-time">16:00</div>
         <div class="event-dot"></div>
         <div class="event-body">
-          <div class="event-name"><a href="https://maps.google.com/?q=三井ガーデンホテル神宮外苑の杜プレミア" target="_blank" rel="noopener">미쓰이 가든 호텔 — 짐 픽업</a></div>
-          <div class="event-sub">하마리큐 → 호텔 택시 약 25분 · 프런트 수하물 수령</div>
+          <div class="event-name"><a href="https://maps.google.com/?q=羽田空港国際線ターミナル" target="_blank" rel="noopener">하네다 공항 · 탑승 수속 &amp; 짐 수령</a></div>
+          <div class="event-sub">하마리큐 → 하네다 택시 약 20분 · 국제선 제3터미널</div>
           <div class="tip-box">
             <div class="tip-header"><span class="tip-header-icon">💡</span><span class="tip-header-label">Insider Guide</span></div>
             <div class="tip-rows">
-              <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">🧳</span>짐 보관 팁</div>
-                <div class="tip-row-content">아침 체크아웃 시 프런트에 짐 맡길 때 <strong>"공항 이동 전 16:00~16:30 사이 픽업 예정"</strong> 미리 고지. 픽업 시 대기 없이 바로 받을 수 있도록 태그 부착 요청</div>
-              </div>
               <div class="tip-row cat-warn">
-                <div class="tip-row-label"><span class="tip-cat-icon">🚕</span>택시 연속 이용</div>
-                <div class="tip-row-content tip-warn">하마리큐에서 탄 택시를 호텔 앞에서 <strong>잠깐 대기</strong>시키는 것이 가장 효율적. 짐 픽업 5~10분 소요 후 바로 공항행. Uber라면 호텔 도착 시 새로 호출</div>
+                <div class="tip-row-label"><span class="tip-cat-icon">🧳</span>짐 수령</div>
+                <div class="tip-row-content">도착 후 먼저 <strong>제3터미널 3층 출발 로비 · JALABC 카운터</strong>로 이동해 에어포터 예약 확인 이메일 제시 후 짐 수령. 16:00부터 수령 가능 — 공항 도착 즉시 처리</div>
               </div>
-              <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">✈️</span>이후 동선</div>
-                <div class="tip-row-content">호텔 → 하네다 국제선 터미널 택시 <strong>약 35~40분 / ¥3,500~4,500</strong>. 16:30 출발 시 17:10~17:15 공항 도착 — 출국심사·면세 쇼핑 충분</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="event">
-        <div class="event-time">16:30</div>
-        <div class="event-dot"></div>
-        <div class="event-body">
-          <div class="event-name"><a href="https://maps.google.com/?q=羽田空港国際線ターミナル" target="_blank" rel="noopener">하네다 공항 · 탑승 수속</a></div>
-          <div class="event-sub">호텔 → 하네다 택시 약 35분 · 국제선 터미널 도착 17:10~</div>
-          <div class="tip-box">
-            <div class="tip-header"><span class="tip-header-icon">💡</span><span class="tip-header-label">Insider Guide</span></div>
-            <div class="tip-rows">
               <div class="tip-row cat-warn">
                 <div class="tip-row-label"><span class="tip-cat-icon">⏰</span>체크인 마감</div>
-                <div class="tip-row-content tip-warn">김포행 20:00 출발 기준 체크인 마감 <strong>19:00</strong>. 17:10 도착 시 약 1시간 50분 여유 — 수하물 위탁 + 출국심사 + 면세 쇼핑 충분히 소화 가능</div>
+                <div class="tip-row-content tip-warn">김포행 20:00 출발 기준 체크인 마감 <strong>19:00</strong>. 16:00~16:20 공항 도착 시 짐 수령 + 탑승 수속 + 출국심사 + 면세 쇼핑까지 <strong>약 3시간 여유</strong></div>
               </div>
               <div class="tip-row cat-local">
                 <div class="tip-row-label"><span class="tip-cat-icon">🛍</span>에도코지</div>
-                <div class="tip-row-content">하네다 국제선 터미널 <strong>에도코지(江戸小路)</strong> — 에도 시대 상점가 재현 구역. 마지막 기념품 쇼핑 최적지. 이자카야 스타일 식당도 운영 중</div>
+                <div class="tip-row-content">하네다 국제선 터미널 <strong>에도코지(江戸小路)</strong> — 에도 시대 상점가를 재현한 쇼핑 구역. 마지막 기념품 쇼핑 최적지. 출국심사 후 면세 구역에도 별도 상점 다수</div>
               </div>
               <div class="tip-row cat-local">
-                <div class="tip-row-label"><span class="tip-cat-icon">🚕</span>택시 vs Uber</div>
-                <div class="tip-row-content">호텔 앞 택시 잡기 vs <strong>Uber 사전 예약</strong> — 짐이 있으므로 Uber 대형 차량(UberXL) 호출 추천. 호텔 픽업 시간에 맞춰 미리 예약해두면 대기 없이 바로 탑승</div>
+                <div class="tip-row-label"><span class="tip-cat-icon">🚕</span>하마리큐→공항</div>
+                <div class="tip-row-content">하마리큐에서 택시/Uber 직행 <strong>약 20분 / ¥2,500~3,500</strong>. 호텔 경유 불필요 — 짐은 이미 공항에 도착해 있음. 15:30~15:40 출발 목표</div>
               </div>
             </div>
           </div>
@@ -1397,7 +1655,7 @@
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
 <footer>
-  <span>Japan 2026.03</span> &nbsp;·&nbsp; Minimalism &amp; Mt. Fuji Expedition &nbsp;·&nbsp; 3 Days
+  <span>Japan 2026.03</span> &nbsp;·&nbsp; Minimalism &amp; Mt. Fuji Expedition &nbsp;·&nbsp; 4 Days
 </footer>
 
 <script>
@@ -1410,10 +1668,20 @@
       }
     });
   }, { threshold: 0.08 });
-
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // TeamLab QR Code
+  window.addEventListener('load', function() {
+    const qrEl = document.getElementById('teamlab-qr');
+    if (qrEl && typeof QRCode !== 'undefined') {
+      new QRCode(qrEl, {
+        text: 'KLb9750bd0d4403e2d7474b7649bec8ae061fe906583f424917ebd80176095cb7f',
+        width: 100,
+        height: 100,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }
+  });
 </script>
-
-</body>
-</html>
-
