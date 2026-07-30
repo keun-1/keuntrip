@@ -1,229 +1,380 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>Keun's Travel Record</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --main-blue: #0d47a1;
-      --card-bg: #ffffff;
-      --tag-bg: #e3f2fd;
-      --tag-color: #0d47a1;
-      --planned: #ffe082;
-      --visited: #c8e6c9;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    html, body {
-      font-family: 'Roboto', sans-serif;
-      background: #f5f7fa;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-    h1 {
-      text-align: center;
-      font-size: 2.6em;
-      color: var(--main-blue);
-      margin-bottom: 30px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-      padding-bottom: 40px;
-    }
-    .card {
-      background: var(--card-bg);
-      border-radius: 14px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-      padding: 24px;
-      transition: transform 0.2s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-    }
-    .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .card-header .flag {
-      font-size: 1.6em;
-      margin-right: 8px;
-    }
-    .card-header h2 {
-      font-size: 1.1em;
-      margin: 0;
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      letter-spacing: -0.2px;
-    }
-    .badge {
-      font-size: 0.75em;
-      padding: 4px 10px;
-      border-radius: 20px;
-      color: #333;
-      background: var(--visited);
-      margin-left: 8px;
-    }
-    .badge.planned {
-      background: var(--planned);
-    }
-    .city-list {
-      margin: 10px 0;
-      padding-left: 20px;
-    }
-    .city-list li {
-      font-size: 0.9em;
-      margin-bottom: 4px;
-    }
-    .view-link {
-      margin-top: auto;
-      font-size: 0.9em;
-      color: var(--main-blue);
-      text-decoration: none;
-      font-weight: bold;
-      align-self: flex-end;
-    }
-    .view-link:hover {
-      text-decoration: underline;
-    }
-    .sub-region {
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: 1px solid #eee;
-    }
-    .sub-region h3 {
-      margin: 0;
-      font-size: 1em;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-    }
-    .sub-region .flag {
-      margin-right: 6px;
-      font-size: 1.1em;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keun's Travel Record</title>
+<meta name="description" content="여행 기록 · 국가별 일정표 모음">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0d47a1;--bg:#f4f6fa;--card:#fff;
+  --ink:#25313d;--body-t:#5a6772;--mute:#93a0ac;--edge:#e7ecf2;
+  --planned:#ffd166;--planned-t:#7a5600;
+  --visited:#c8e6c9;--visited-t:#2c6b3f;
+  --asia:#e2703a;--europe:#3b6fd4;--mideast:#c9a227;--eurasia:#8b5fbf;--america:#2f9e8f;--oceania:#d4568a;
+  --shadow:0 6px 16px rgba(19,42,66,.07);
+  --shadow-up:0 16px 32px rgba(19,42,66,.13);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:'Roboto','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);
+     font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.wrap{max-width:1180px;margin:0 auto;padding:36px 20px 60px}
+
+.masthead{text-align:center;padding:26px 0 6px}
+.masthead h1{font-size:clamp(2rem,5vw,2.7rem);font-weight:700;color:var(--blue);margin:0 0 6px;letter-spacing:-.5px}
+.masthead p{margin:0;color:var(--mute);font-size:.95rem}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--edge);
+       border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin:26px 0 34px}
+.stat{background:var(--card);padding:16px 12px;text-align:center}
+.stat b{display:block;font-size:1.6rem;font-weight:700;color:var(--blue);line-height:1.1}
+.stat span{display:block;font-size:.74rem;color:var(--mute);margin-top:4px;letter-spacing:.06em;text-transform:uppercase}
+
+.sec-h{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+.sec-h h2{font-size:1.05rem;font-weight:700;margin:0}
+.sec-h .count{font-size:.74rem;font-weight:500;color:var(--mute);background:var(--card);
+              border:1px solid var(--edge);border-radius:20px;padding:2px 10px}
+.sec-h .rule{flex:1;height:1px;background:var(--edge)}
+.sec-h.next h2{color:#b8541f}
+.sec-h.arc h2{color:var(--visited-t)}
+
+/* 히어로 */
+.hero{display:block;position:relative;overflow:hidden;border-radius:16px;box-shadow:var(--shadow);
+      margin-bottom:14px;color:#fff;transition:transform .25s ease,box-shadow .25s ease}
+.hero:hover{transform:translateY(-6px);box-shadow:var(--shadow-up)}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0b3d5c 0%,#12658a 46%,#2ba3b8 82%,#7fd4d0 112%)}
+.hero-wave{position:absolute;left:0;right:0;bottom:0;height:62%;width:100%;opacity:.42}
+.hero-in{position:relative;z-index:2;padding:30px 32px 26px;display:grid;grid-template-columns:1fr auto;gap:22px;align-items:end}
+.hero-eyebrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.8rem;font-weight:500;color:#cdeef0;margin-bottom:12px}
+.hero-eyebrow .pill{background:rgba(255,255,255,.16);border-radius:20px;padding:3px 11px}
+.hero h3{margin:0;font-size:clamp(1.9rem,5.2vw,2.9rem);font-weight:700;letter-spacing:-.5px;line-height:1.1}
+.hero .en{font-size:1.02rem;font-weight:400;color:#b6e5e8;margin-top:4px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px;font-size:.85rem;color:#d5eff1}
+.hero-meta b{color:#fff;font-weight:700}
+.hero-right{text-align:right;white-space:nowrap}
+.dday{font-size:clamp(2.2rem,6vw,3.2rem);font-weight:700;line-height:1;letter-spacing:-1px}
+.dday small{display:block;font-size:.7rem;font-weight:400;letter-spacing:.14em;color:#b6e5e8;margin-top:6px;text-transform:uppercase}
+.hero-cta{display:inline-block;margin-top:16px;font-size:.85rem;font-weight:700;background:#fff;color:#0b3d5c;border-radius:22px;padding:8px 18px}
+
+.prep{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--edge);
+      border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin:0 0 34px}
+.prep div{background:var(--card);padding:13px 16px}
+.prep dt{font-size:.72rem;color:var(--mute);letter-spacing:.05em;text-transform:uppercase;margin:0 0 3px}
+.prep dd{margin:0;font-size:.92rem;font-weight:700}
+.prep .ok{color:var(--visited-t)}
+.prep .no{color:#c0392b}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:22px;margin-bottom:40px}
+.card{position:relative;background:var(--card);border-radius:14px;box-shadow:var(--shadow);
+      padding:22px 22px 18px;display:flex;flex-direction:column;
+      border-top:4px solid var(--tone,var(--edge));transition:transform .2s ease,box-shadow .2s ease}
+a.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-up)}
+.card.asia{--tone:var(--asia)}
+.card.europe{--tone:var(--europe)}
+.card.mideast{--tone:var(--mideast)}
+.card.eurasia{--tone:var(--eurasia)}
+.card.america{--tone:var(--america)}
+.card.oceania{--tone:var(--oceania)}
+
+.c-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.c-head .flag{font-size:1.75rem;line-height:1}
+.c-head h3{margin:0;font-size:1.08rem;font-weight:700;flex:1;min-width:0;
+           white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.2px}
+.badge{font-size:.72rem;font-weight:700;padding:4px 11px;border-radius:20px;white-space:nowrap;
+       background:var(--visited);color:var(--visited-t)}
+.badge.plan{background:var(--planned);color:var(--planned-t)}
+.badge.now{background:#0d47a1;color:#fff}
+
+.cities{margin:0 0 10px;padding-left:19px}
+.cities li{font-size:.9rem;color:var(--body-t);margin-bottom:3px}
+.cities li::marker{color:var(--tone,var(--mute))}
+
+.go{margin-top:auto;align-self:flex-end;font-size:.85rem;font-weight:700;color:var(--blue)}
+a.card:hover .go{text-decoration:underline}
+.nolink{margin-top:auto;align-self:flex-end;font-size:.8rem;color:#b9c3cd}
+
+.sub{padding-top:12px;margin-top:12px;border-top:1px solid var(--edge)}
+.sub:first-of-type{padding-top:0;margin-top:0;border-top:none}
+.sub h4{margin:0;font-size:.98rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.sub h4 .flag{font-size:1.25rem}
+.sub h4 .badge{margin-left:auto}
+.sub .cities{margin-top:6px;margin-bottom:0}
+
+.empty{background:var(--card);border-radius:14px;box-shadow:var(--shadow);
+       padding:28px;text-align:center;color:var(--mute);margin-bottom:34px}
+
+footer{text-align:center;color:var(--mute);font-size:.8rem;padding:8px 0 4px}
+footer b{color:var(--body-t)}
+
+@media(max-width:640px){
+  .wrap{padding:20px 16px 44px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero-in{grid-template-columns:1fr;padding:24px 20px 22px;gap:16px}
+  .hero-right{text-align:left}
+  .grid{grid-template-columns:1fr;gap:16px}
+}
+</style>
 </head>
 <body>
-  <h1>🌍 Keun's Travel Record</h1>
-  <div class="grid">
-    <div class="card">
-      <div class="card-header">
-        <span class="flag">🇯🇵</span><h2>Japan</h2><span class="badge planned">2026년 3월</span>
-      </div>
-      <ul class="city-list">
-        <li>Kyoto</li><li>Mt. Fuji</li>
-      </ul>
-      <a href="japan_2026.html" class="view-link">일정 보기 →</a>
-    </div>
+<div class="wrap">
 
-    <div class="card">
-      <div class="card-header">
-        <span class="flag">🇫🇷</span><h2>France</h2><span class="badge">2025년 5월</span>
-      </div>
-      <ul class="city-list">
-        <li>Paris</li>
-      </ul>
-      <a href="france.html" class="view-link">일정 보기 →</a>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="flag">🇧🇪</span><h2>Belgium</h2><span class="badge">2025년 5월</span>
-      </div>
-      <ul class="city-list">
-        <li>Brussels</li><li>Bruges</li>
-      </ul>
-      <a href="belgium.html" class="view-link">일정 보기 →</a>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="flag">🇦🇪</span><h2>UAE</h2><span class="badge">2025년 5월</span>
-      </div>
-      <ul class="city-list">
-        <li>Abu Dhabi</li><li>Dubai</li>
-      </ul>
-      <a href="uae.html" class="view-link">일정 보기 →</a>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="flag">🇮🇳</span><h2>India</h2><span class="badge">2024년 11월</span>
-      </div>
-      <ul class="city-list">
-        <li>New Delhi</li><li>Jaipur</li><li>Agra</li><li>Varanasi</li>
-      </ul>
-      <a href="india.html" class="view-link">일정 보기 →</a>
-    </div>
-
-    <div class="card">
-      <div class="sub-region">
-        <h3><span class="flag">🇨🇳</span>China <span class="badge">2024년 9월</span></h3>
-        <ul class="city-list"><li>Shanghai</li></ul>
-      </div>
-      <div class="sub-region">
-        <h3><span class="flag">🇭🇰</span>Hong Kong <span class="badge">2024년 3월</span></h3>
-        <ul class="city-list"><li>Hong Kong</li></ul>
-      </div>
-      <div class="sub-region">
-        <h3><span class="flag">🇲🇴</span>Macau <span class="badge">2024년 3월</span></h3>
-        <ul class="city-list"><li>Macau</li></ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="flag">🇬🇧</span><h2>United Kingdom</h2><span class="badge">2023년 3월</span>
-      </div>
-      <ul class="city-list"><li>London</li></ul>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span class="flag">🇲🇳</span><h2>Mongolia</h2><span class="badge">2022년 7월</span>
-      </div>
-      <ul class="city-list"><li>Gobi Desert</li></ul>
-      <a href="mongolia.html" class="view-link">일정 보기 →</a>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><span class="flag">🇯🇵</span><h2>Japan</h2><span class="badge">방문</span></div>
-      <ul class="city-list"><li>Tokyo</li><li>Osaka</li><li>Kyoto</li><li>Fukuoka</li><li>Hiroshima</li><li>Nagasaki</li><li>Okinawa</li></ul>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><span class="flag">🇨🇭</span><h2>Switzerland</h2><span class="badge">방문</span></div>
-      <ul class="city-list"><li>Zurich</li></ul>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><span class="flag">🇹🇼</span><h2>Taiwan</h2><span class="badge">방문</span></div>
-      <ul class="city-list"><li>Taipei</li></ul>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><span class="flag">🇹🇭</span><h2>Thailand</h2><span class="badge">방문</span></div>
-      <ul class="city-list"><li>Bangkok</li><li>Pattaya</li></ul>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><span class="flag">🇷🇺</span><h2>Russia</h2><span class="badge">방문</span></div>
-      <ul class="city-list">
-        <li>Moscow</li><li>Saint Petersburg</li><li>Novosibirsk</li><li>Yekaterinburg</li><li>Irkutsk</li><li>Vladivostok</li>
-      </ul>
-    </div>
+  <div class="masthead">
+    <h1>🌍 Keun's Travel Record</h1>
+    <p id="tagline">여행 기록과 일정표</p>
   </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div id="upcoming"></div>
+  <div id="archive"></div>
+
+  <noscript>
+    <div class="empty">이 페이지는 자바스크립트로 목록을 그립니다. 브라우저에서 스크립트를 켜 주세요.</div>
+  </noscript>
+
+  <footer><b>Keun's Travel Record</b> · <span id="upd"></span></footer>
+</div>
+
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   ▼▼▼ 여기만 고치면 됩니다. 나머지는 전부 자동입니다. ▼▼▼
+
+   start / end 를 적으면
+     · 아직 안 지났으면  → "다가오는 여행"
+     · 지났으면          → "다녀온 곳"
+   으로 알아서 옮겨가고, 정렬·D-Day·통계·배지도 자동 계산됩니다.
+
+   필드
+     country  나라 이름
+     flag     국기 이모지
+     region   asia | europe | mideast | eurasia | america | oceania  (카드 띠 색)
+     cities   도시 배열
+     start    "2026-08-29"  (날짜 모르면 생략 → 맨 뒤에 "방문"으로 표시)
+     end      "2026-09-01"  (생략하면 start 와 같게 취급)
+     href     일정표 파일명 (없으면 "일정표 없음")
+     also     한 카드에 묶을 다른 나라들 (중국·홍콩·마카오처럼)
+     hero     이 여행이 "다음 출발"이 됐을 때 크게 보여줄 내용 (선택)
+   ══════════════════════════════════════════════════════════════ */
+
+const TRIPS = [
+
+  { country:"Japan", flag:"🇯🇵", region:"asia",
+    cities:["Miyakojima","Irabujima","Shimojishima"],
+    start:"2026-08-29", end:"2026-09-01",
+    href:"miyakojima-2026.html",
+    hero:{
+      title:"미야코지마 宮古島",
+      en:"Miyakojima",
+      where:"🇯🇵 Japan · Okinawa",
+      meta:[["진에어","KE5097"],["렌터카","확정"],["실사용","2.5일"],["일몰","19:00"]],
+      prep:[["항공","확정",true],["렌터카","확정 ¥38,270",true],
+            ["숙소","미예약",false],["식당","3곳 미예약",false],["국제면허","발급 전",false]]
+    }
+  },
+
+  { country:"Japan", flag:"🇯🇵", region:"asia",
+    cities:["Mt. Fuji","Kawaguchiko","Hakone","Tokyo"],
+    start:"2026-03-03", end:"2026-03-06",
+    href:"japan_2026.html" },
+
+  { country:"France", flag:"🇫🇷", region:"europe",
+    cities:["Paris"], start:"2025-05-01", href:"france.html" },
+
+  { country:"Belgium", flag:"🇧🇪", region:"europe",
+    cities:["Brussels","Bruges"], start:"2025-05-01", href:"belgium.html" },
+
+  { country:"UAE", flag:"🇦🇪", region:"mideast",
+    cities:["Abu Dhabi","Dubai"], start:"2025-05-01", href:"uae.html" },
+
+  { country:"India", flag:"🇮🇳", region:"asia",
+    cities:["New Delhi","Jaipur","Agra","Varanasi"], start:"2024-11-01", href:"india.html" },
+
+  { country:"China", flag:"🇨🇳", region:"asia",
+    cities:["Shanghai"], start:"2024-09-01",
+    also:[
+      { country:"Hong Kong", flag:"🇭🇰", cities:["Hong Kong"], start:"2024-03-01" },
+      { country:"Macau",     flag:"🇲🇴", cities:["Macau"],     start:"2024-03-01" }
+    ]
+  },
+
+  { country:"United Kingdom", flag:"🇬🇧", region:"europe",
+    cities:["London"], start:"2023-03-01" },
+
+  { country:"Mongolia", flag:"🇲🇳", region:"asia",
+    cities:["Gobi Desert"], start:"2022-07-01", href:"mongolia.html" },
+
+  { country:"Japan", flag:"🇯🇵", region:"asia",
+    cities:["Tokyo","Osaka","Kyoto","Fukuoka","Hiroshima","Nagasaki","Okinawa"] },
+
+  { country:"Russia", flag:"🇷🇺", region:"eurasia",
+    cities:["Moscow","Saint Petersburg","Novosibirsk","Yekaterinburg","Irkutsk","Vladivostok"] },
+
+  { country:"Thailand", flag:"🇹🇭", region:"asia", cities:["Bangkok","Pattaya"] },
+
+  { country:"Taiwan", flag:"🇹🇼", region:"asia", cities:["Taipei"] },
+
+  { country:"Switzerland", flag:"🇨🇭", region:"europe", cities:["Zurich"] }
+
+];
+
+/* ══════════ 아래는 손댈 필요 없음 ══════════ */
+(function(){
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const DAY = 86400000;
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const parse = s => { if(!s) return null; const d = new Date(s+"T00:00:00"); return isNaN(d)?null:d; };
+  const endOf = t => parse(t.end) || parse(t.start);
+  const ymLabel = s => { const d = parse(s); return d ? d.getFullYear()+"년 "+(d.getMonth()+1)+"월" : "방문"; };
+
+  // 1. 예정 / 완료 분류
+  const upcoming = [], past = [];
+  TRIPS.forEach(t => {
+    const e = endOf(t);
+    (e && e >= today ? upcoming : past).push(t);
+  });
+  upcoming.sort((a,b) => parse(a.start) - parse(b.start));
+  past.sort((a,b) => {
+    const x = parse(a.start), y = parse(b.start);
+    if(!x && !y) return 0;
+    if(!x) return 1;            // 날짜 없는 방문 기록은 맨 뒤
+    if(!y) return -1;
+    return y - x;               // 최근순
+  });
+
+  // 2. 통계
+  const countries = new Set(), cities = new Set();
+  let sheets = 0, firstYear = null;
+  TRIPS.forEach(t => {
+    [t].concat(t.also||[]).forEach(u => {
+      countries.add(u.country);
+      (u.cities||[]).forEach(c => cities.add(u.country+"/"+c));
+      const d = parse(u.start);
+      if(d && (!firstYear || d.getFullYear() < firstYear)) firstYear = d.getFullYear();
+    });
+    if(t.href) sheets++;
+  });
+
+  $("#stats").innerHTML =
+    stat(countries.size, "Countries") +
+    stat(cities.size, "Cities") +
+    stat(upcoming.length, "Upcoming") +
+    stat(sheets, "일정표");
+  function stat(n,l){ return '<div class="stat"><b>'+n+'</b><span>'+l+'</span></div>'; }
+
+  $("#tagline").textContent = (firstYear||"") + " — " + (new Date().getFullYear()+1) + " · 여행 기록과 일정표";
+  $("#upd").textContent = "최종 확인 " + new Date().toISOString().slice(0,10);
+
+  // 3. 다가오는 여행
+  let html = sectionHead("next","다가오는 여행",upcoming.length);
+  if(upcoming.length){
+    html += heroHTML(upcoming[0]);
+    if(upcoming[0].hero && upcoming[0].hero.prep) html += prepHTML(upcoming[0].hero.prep);
+    if(upcoming.length > 1)
+      html += '<div class="grid">' + upcoming.slice(1).map(t => cardHTML(t,true)).join("") + '</div>';
+    else html += '<div style="height:34px"></div>';
+  } else {
+    html += '<div class="empty">예정된 여행이 없습니다. 위 <code>TRIPS</code> 배열에 새 여행을 추가하세요.</div>';
+  }
+  $("#upcoming").innerHTML = html;
+
+  // 4. 다녀온 곳
+  $("#archive").innerHTML =
+    sectionHead("arc","다녀온 곳",past.length) +
+    '<div class="grid">' + past.map(t => cardHTML(t,false)).join("") + '</div>';
+
+  function sectionHead(cls,title,n){
+    return '<div class="sec-h '+cls+'"><h2>'+title+'</h2>'+
+           '<span class="count">'+n+'</span><span class="rule"></span></div>';
+  }
+
+  function badge(t, isUpcoming){
+    const s = parse(t.start), e = endOf(t);
+    if(isUpcoming && s && s <= today && e >= today)
+      return '<span class="badge now">여행 중</span>';
+    return '<span class="badge'+(isUpcoming?' plan':'')+'">'+ymLabel(t.start)+'</span>';
+  }
+
+  function citiesHTML(list){
+    return '<ul class="cities">' + (list||[]).map(c => '<li>'+esc(c)+'</li>').join("") + '</ul>';
+  }
+
+  function cardHTML(t, isUpcoming){
+    const tag = t.href ? "a" : "div";
+    const href = t.href ? ' href="./'+esc(t.href)+'"' : "";
+    const foot = t.href ? '<span class="go">일정 보기 →</span>'
+                        : '<span class="nolink">일정표 없음</span>';
+    let inner;
+    if(t.also && t.also.length){
+      inner = [t].concat(t.also).map(u =>
+        '<div class="sub"><h4><span class="flag">'+u.flag+'</span>'+esc(u.country)+
+        badge(u,false)+'</h4>'+citiesHTML(u.cities)+'</div>').join("");
+    } else {
+      inner = '<div class="c-head"><span class="flag">'+t.flag+'</span><h3>'+esc(t.country)+'</h3>'+
+              badge(t,isUpcoming)+'</div>' + citiesHTML(t.cities);
+    }
+    return '<'+tag+' class="card '+(t.region||"")+'"'+href+'>'+inner+foot+'</'+tag+'>';
+  }
+
+  function heroHTML(t){
+    const h = t.hero || {};
+    const s = parse(t.start), e = endOf(t);
+    const nights = s && e ? Math.round((e-s)/DAY) : 0;
+    const span = s ? fmt(s) + (e && +e !== +s ? " — " + fmt(e,true) : "") : "";
+    const diff = s ? Math.ceil((s - new Date())/DAY) : null;
+    let dd = "";
+    if(diff > 0) dd = "D-"+diff;
+    else if(diff === 0) dd = "D-DAY";
+    else dd = "여행 중";
+
+    const meta = (h.meta||[]).map(m => '<span>'+esc(m[0])+' <b>'+esc(m[1])+'</b></span>').join("");
+    const pills = [span, nights ? nights+"박 "+(nights+1)+"일" : ""]
+                  .filter(Boolean).map(x => '<span class="pill">'+esc(x)+'</span>').join("");
+
+    return '<a class="hero"'+(t.href?' href="./'+esc(t.href)+'"':'')+'>'+
+      '<div class="hero-bg"></div>'+
+      '<svg class="hero-wave" viewBox="0 0 1200 340" preserveAspectRatio="none" aria-hidden="true">'+
+        '<path d="M-40 300 Q600 148 1240 300" fill="none" stroke="#fff" stroke-width="1.4" opacity=".75"/>'+
+        '<path d="M-40 238 Q600 128 1240 238" fill="none" stroke="#fff" stroke-width="1.1" opacity=".36"/>'+
+        '<path d="M-40 188 Q600 116 1240 188" fill="none" stroke="#fff" stroke-width=".9" opacity=".2"/>'+
+        '<g stroke="#fff" stroke-width="1" opacity=".34">'+
+        '<line x1="180" y1="277" x2="180" y2="340"/><line x1="360" y1="246" x2="360" y2="340"/>'+
+        '<line x1="540" y1="224" x2="540" y2="340"/><line x1="720" y1="224" x2="720" y2="340"/>'+
+        '<line x1="900" y1="246" x2="900" y2="340"/><line x1="1080" y1="277" x2="1080" y2="340"/></g>'+
+      '</svg>'+
+      '<div class="hero-in"><div>'+
+        '<div class="hero-eyebrow"><span>'+esc(h.where || (t.flag+" "+t.country))+'</span>'+pills+'</div>'+
+        '<h3>'+esc(h.title || t.country)+'</h3>'+
+        (h.en ? '<div class="en">'+esc(h.en)+'</div>' : "")+
+        (meta ? '<div class="hero-meta">'+meta+'</div>' : "")+
+      '</div><div class="hero-right">'+
+        '<div class="dday">'+dd+'<small>until departure</small></div>'+
+        (t.href ? '<span class="hero-cta">일정표 열기 →</span>' : "")+
+      '</div></div></a>';
+  }
+
+  function fmt(d, short){
+    const p = n => String(n).padStart(2,"0");
+    return short ? p(d.getMonth()+1)+"."+p(d.getDate())
+                 : d.getFullYear()+"."+p(d.getMonth()+1)+"."+p(d.getDate());
+  }
+
+  function prepHTML(rows){
+    return '<dl class="prep">' + rows.map(r =>
+      '<div><dt>'+esc(r[0])+'</dt><dd class="'+(r[2]?"ok":"no")+'">'+esc(r[1])+'</dd></div>'
+    ).join("") + '</dl>';
+  }
+})();
+</script>
 </body>
 </html>
