@@ -201,6 +201,38 @@ a.tel{font-family:var(--data);color:var(--sango);text-decoration:none;border-bot
 .pack{font-size:1rem;line-height:2.15;color:var(--ash);max-width:66ch}
 .pack b{color:var(--sumi);font-weight:500}
 
+/* v7 컴팩트 */
+.ck{border:1px solid var(--line);background:var(--paper)}
+.ck-h{padding:.55rem 1rem;font-family:var(--data);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
+.ck-h.ok{background:#e7efe6;color:#2c6349}
+.ck-h.todo{background:#f6e8de;color:#94402a;border-top:1px solid var(--line)}
+.ck-r{display:flex;gap:.9rem;padding:.62rem 1rem;border-top:1px solid var(--line2);font-size:.92rem;align-items:baseline}
+.ck-r b{flex:0 0 128px;font-weight:500;color:var(--sumi);font-size:.9rem}
+.ck-r span{color:var(--ash);line-height:1.65}
+.ck-r.hot b{color:var(--sango)}
+.must{margin-top:2rem;border:1px solid var(--line);border-top:3px solid var(--sango);background:var(--paper)}
+.must-h{padding:.6rem 1rem;font-family:var(--data);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sango);border-bottom:1px solid var(--line2)}
+.must ol{margin:0;padding:.5rem 1rem .8rem 2.1rem}
+.must li{padding:.28rem 0;font-size:.94rem;color:var(--ash);line-height:1.7}
+.must li b{color:var(--sumi);font-weight:500}
+details.fold{margin-top:.9rem;border:1px solid var(--line);background:var(--paper)}
+.day:nth-of-type(even) details.fold{background:#fff}
+details.fold>summary{list-style:none;cursor:pointer;padding:.5rem .95rem;font-family:var(--data);font-size:.73rem;letter-spacing:.06em;color:var(--ai7);display:flex;align-items:center;gap:.55rem;line-height:1.5}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::before{content:'▸';color:var(--sango);flex-shrink:0;transition:transform .18s}
+details.fold[open]>summary::before{transform:rotate(90deg)}
+details.fold .nt{margin-top:0;border:none;border-top:1px solid var(--line2)}
+details.fold .rows{margin-top:0;border:none;border-top:1px solid var(--line2)}
+details.fold .vch{margin-top:0;border:none}
+@media (max-width:760px){.ck-r{flex-direction:column;gap:.1rem}.ck-r b{flex:none}}
+
+/* v8 탭 */
+[hidden]{display:none!important}
+.tabs{position:sticky;top:0;z-index:60;display:flex;background:#fcfaf5f0;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:0 3vw;padding-left:max(3vw,env(safe-area-inset-left));padding-right:max(3vw,env(safe-area-inset-right))}
+.tabs button{flex:1;appearance:none;border:none;background:none;border-bottom:3px solid transparent;min-height:48px;font-family:var(--data);font-size:.74rem;letter-spacing:.02em;color:var(--grey);cursor:pointer;padding:0 2px;white-space:nowrap}
+.tabs button.on{color:var(--sango);border-bottom-color:var(--sango);font-weight:500}
+@media print{.tabs{display:none}}
+
 footer{background:var(--sumi);color:var(--grey);text-align:center;padding:2.9rem 2rem;font-family:var(--data);font-size:.76rem;letter-spacing:.16em}
 footer b{color:var(--ai3);font-weight:400}
 footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52}
@@ -235,7 +267,15 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
 </head>
 <body>
 
-<header class="hero">
+<nav class="tabs" id="tabbar" hidden aria-label="일정 탭">
+  <button data-t="over">개요</button>
+  <button data-t="d1">토 29</button>
+  <button data-t="d2">일 30</button>
+  <button data-t="d3">월 31</button>
+  <button data-t="d4">화 1</button>
+</nav>
+
+<header class="hero" data-tab="over">
   <div class="hero-sky"></div><div class="hero-weave"></div>
   <svg class="hero-br" viewBox="0 0 1200 340" preserveAspectRatio="none" aria-hidden="true">
     <path d="M-40 300 Q600 150 1240 300" fill="none" stroke="#fff" stroke-width="1.2" opacity=".7"/>
@@ -253,7 +293,7 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
     <div class="hero-r"></div>
     <div class="hero-f">
       <span>3박 4일 · 실사용 <b>2.5일</b></span>
-      <span>펌프킨홀 <b>13:30 확정</b></span>
+      <span>예약 액티비티 <b>2</b></span>
       <span>일몰 <b>19:04</b></span>
       <span>물때 <b>대조기</b></span>
       <span>낮 <b>31℃</b> · 수온 <b>29℃</b></span>
@@ -263,44 +303,37 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
 </header>
 
 <!-- 예약 -->
-<section class="sec tint rv">
+<section class="sec tint rv" data-tab="over">
   <div class="eb">Bookings</div>
   <h2>지금 잡힌 것</h2>
-  <p class="ld gap">항공과 렌터카가 확정됐다. 남은 건 숙소와 식당 세 곳이다.</p>
+  <p class="ld gap">굵직한 것은 전부 잡혔다. 남은 건 셋 — 야비지 인원 정정, 식당 예약, 보험.</p>
 
-  <div class="board">
-    <div class="slot ok">
-      <div class="st">◆ 확정</div><div class="sh">진에어</div>
-      <p class="sp">KE5097 · 08:25 ICN → 11:00 SHI<br>KE5098 · 12:00 SHI → 14:30 ICN<br><code>2h35m · 시차 없음</code></p>
-    </div>
-    <div class="slot ok">
-      <div class="st">◆ 확정 · ¥38,270</div><div class="sh">Budget 렌터카</div>
-      <p class="sp">경차 N-BOX급 · CDW + NOC 포함<br>지점 <b>이라부 나카치 166-1</b><br>아래 바우처 참조</p>
-    </div>
-    <div class="slot no">
-      <div class="st">● 미예약 · 최우선</div>
-      <div class="sh"><a href="https://www.google.com/maps/search/?api=1&query=Canopy+by+Hilton+Okinawa+Miyako+Island+Resort&query_place_id=ChIJyREvegBV9DQRK4b4ZndUclE" target="_blank" rel="noopener">캐노피 바이 힐튼</a></div>
-      <p class="sp">히라라 투리버 지구 · 3박 · <b>2026년 4월 개관</b><br>이라부 대교 차로 <code>5분</code> · 루프탑 인피니티 풀<br>스시 키자하시 <code>도보 15분 안팎</code></p>
-    </div>
-    <div class="slot no">
-      <div class="st">● 미예약</div><div class="sh">식당 3곳</div>
-      <p class="sp">토 · <b>스시 키자하시</b> 오마카세<br>일 · <b>앤드미야코</b> 인스타 DM<br>월 · <b>갓포 SUI</b></p>
-    </div>
-    <div class="slot wt">
-      <div class="st">▲ 출국 전</div><div class="sh">국제운전면허증</div>
-      <p class="sp"><b>운전자 본인 명의</b>로 국제면허 + 국내면허 + 여권 셋 다. 하나라도 없으면 차를 안 내준다</p>
-    </div>
-    <div class="slot ok">
-      <div class="st">◆ 확정 · Klook</div><div class="sh">펌프킨홀 카약</div>
-      <p class="sp">8/30 일 <b>13:30</b> · 성인 2<br>케이빙 &amp; 씨카약 반나절<br><code>간조 14:34와 정확히 맞물림</code></p>
-    </div>
-    <div class="slot wt">
-      <div class="st">◆ 기상청 실측표 검증 완료</div><div class="sh">물때</div>
-      <p class="sp">나흘 모두 <b>간조가 오후</b>에 걸린다. 아래 조석표가 이 일정의 뼈대다</p>
-    </div>
+  <div class="ck">
+    <div class="ck-h ok">✓ 확정 — 손댈 것 없음</div>
+    <div class="ck-r"><b>진에어</b><span>KE5097 · 8/29 토 08:25 인천 출발 → KE5098 · 9/1 화 12:00 귀국</span></div>
+    <div class="ck-r"><b>캐노피 바이 힐튼</b><span>3박 · 히라라 투리버 지구 · 2026년 4월 개관 · 루프탑 인피니티 풀</span></div>
+    <div class="ck-r"><b>Budget 렌터카</b><span>¥38,270 · 8/29 11:30 이라부 나카치 인수 · 착륙 후 셔틀 전화 필수</span></div>
+    <div class="ck-r"><b>펌프킨홀</b><span>8/30 일 <b>13:30</b> · PiPi 전용 주차장 집합 · 성인 2</span></div>
+    <div class="ck-h todo">● 남은 것 — 이 순서대로</div>
+    <div class="ck-r hot"><b>1. 야비지 인원</b><span>예약이 <b>1인분(₩153,000)</b>으로 잡혀 있다 — 확정 전에 2인으로 정정 (마이리얼트립 1670-8208)</span></div>
+    <div class="ck-r"><b>2. 식당 3곳</b><span>토 스시 키자하시(전화) · 일 앤드미야코(인스타 DM) · 월 갓포 SUI(전화)</span></div>
+    <div class="ck-r"><b>3. 여행자보험</b><span>라이트 2인 · 기간을 <b>8/29~9/3</b>으로 넉넉히 · 가입 직후 항공편 등록</span></div>
+    <div class="ck-r"><b>4. 국제운전면허증</b><span>운전자 본인 명의 · 국내면허·여권과 셋 다 지참 — 하나라도 없으면 차를 못 받는다</span></div>
   </div>
 
-  <div class="vch">
+  <div class="must">
+    <div class="must-h">잊으면 일정이 무너지는 다섯 가지</div>
+    <ol>
+      <li><b>8/29(토) 18:00</b> — 펌프킨홀 집합 안내가 안 왔으면 즉시 전화 <a class="tel" href="tel:+81980795990">0980-79-5990</a></li>
+      <li><b>8/30(일) 저녁</b> — 야비지 확정 시각이 카톡으로 온다 → 월요일 오전을 그 시각으로 재계산</li>
+      <li><b>일요일은 절주</b> — 야비지는 숙취·당일 음주 참가 불가, 걸리면 환불 없음. 제대로 마시는 밤은 월요일 SUI</li>
+      <li><b>지각 = 취소</b> — 일 13:15 PiPi 주차장 · 월 12:15 항구(주차 포함). 노쇼는 환불이 없다</li>
+      <li><b>마감 시각</b> — 일 등대 입장 16:45 · 월 SUI 22:00 · 화 렌터카 반납 09:30</li>
+    </ol>
+  </div>
+
+  <details class="fold"><summary>Budget 렌터카 바우처 — RC…0555 · ¥38,270 · 셔틀 0980-66-0018</summary>
+<div class="vch">
     <div class="vch-h"><b>Budget Rent-a-Car — 시모지시마 공항점</b><span class="vch-ok">✓ CONFIRMED</span></div>
     <div class="vch-body">
       <div class="vch-l">
@@ -324,28 +357,57 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
       <b>인수 때 물어볼 것</b> — 만땅 반납 시 인정되는 주유소 위치. Budget은 “영수증 15분 이내”를 요구한다는 후기가 반복된다.
     </div>
   </div>
+</details>
 
-  <div class="vch">
-    <div class="vch-h"><b>Klook — 미야코지마 동굴 탐험 &amp; 씨카약 반나절 투어</b><span class="vch-ok">✓ 결제 완료</span></div>
+  <details class="fold"><summary>펌프킨홀 바우처 — Klook ZCH561006 · 8/30 13:30 ✓</summary>
+<div class="vch">
+    <div class="vch-h"><b>Klook — 미야코지마 동굴 탐험 &amp; 씨카약 반나절 투어</b><span class="vch-ok">✓ 결제 완료 · ₩188,784</span></div>
     <div class="vch-body">
       <div class="vch-l">
-        <div class="vf"><span class="vk">주문번호</span><span class="vv mono">5577157418</span></div>
         <div class="vf"><span class="vk">바우처 번호</span><span class="vv mono">ZCH561006</span></div>
+        <div class="vf"><span class="vk">주문번호</span><span class="vv mono">5577157418</span></div>
         <div class="vf"><span class="vk">집합 시각</span><span class="vv big">13:30</span>
-          <span class="vv mono" style="font-size:.78rem;color:#ffffff85">2026.08.30 일요일</span></div>
+          <span class="vv mono" style="font-size:.78rem;color:#ffffff85">2026.08.30 일요일 · 체류 1시간 30분</span></div>
       </div>
       <div class="vch-r">
-        <div class="vf"><span class="vk">패키지</span><span class="vv">케이빙 &amp; 씨카약<br><small>반나절 · 약 2시간</small></span></div>
-        <div class="vf"><span class="vk">인원</span><span class="vv">2명<br><small>연령 구분 7~59세</small></span></div>
-        <div class="vf"><span class="vk">집합 장소</span><span class="vv">보라가 비치 일대<br><small>바우처 상세에서 정확한 좌표 확인</small></span></div>
-        <div class="vf"><span class="vk">예약일</span><span class="vv">2026.08.10</span></div>
+        <div class="vf"><span class="vk">집합 장소</span><span class="vv"><b style="color:#fff">PiPi 전용 호박 주차장</b><br><small>구스쿠베 보라 히가시카타 585-2<br>보라가 비치 파크가 아니다</small></span></div>
+        <div class="vf"><span class="vk">운영사</span><span class="vv">MIYAKO ADVENTURE PiPi<br><a class="tel" href="tel:+81980795990" style="font-size:.88rem">0980-79-5990</a><br><small>WhatsApp +81 80-6736-6408</small></span></div>
+        <div class="vf"><span class="vk">인원</span><span class="vv">2명 · 현지 집합<br><small>7~59세 · 99kg 이하</small></span></div>
+        <div class="vf"><span class="vk">무료 취소</span><span class="vv">8/29 토 13:30까지<br><small>태풍 판단은 이 시각 전에</small></span></div>
       </div>
     </div>
     <div class="vch-f">
-      <b>QR 바우처는 폰에 미리 저장해 둔다.</b> 현장 통신이 불안정할 수 있고, <b>바우처를 여러 장 받았다면 반드시 함께 제시</b>해야 한다.<br>
-      <b>출발 전 확인할 것 세 가지</b> — ① 집합 장소의 정확한 좌표(보라가 비치 주차장과 업체 전용 주차장이 다르다) ② 실제 소요 시간이 2시간인지 2.5시간인지 ③ 현지 집합인지 송영인지. 렌터카가 있으니 <b>현지 집합</b>이어야 한다.
+      <b>전날 18:00 규칙.</b> 투어 전날까지 업체가 예약 시 기재한 연락처로 집합 안내를 보낸다. <b>8/29 18:00까지 연락이 없으면 반드시 먼저 전화한다.</b> 첫날 저녁 식사 전에 확인할 것.<br>
+      <b>지각은 곧 취소다.</b> 집합 시간에 늦고 연락이 닿지 않으면 취소 처리되고 취소 요금이 발생한다. 오전 아라구스쿠를 11:45에 끊는 이유가 이것이다.<br>
+      <b>현장 조건</b> — 화장실 없음 · 짐 보관 없음(귀중품은 차에) · <b>수영복을 미리 입고 간다</b> · 구명조끼 착용 필수 · 면책 동의서 서명 · 안내는 일본어 또는 영어(예약 상황에 따라 일본어만일 수도 있다).
     </div>
   </div>
+</details>
+
+  <details class="fold"><summary>야비지 바우처 — 마이리얼트립 EXP…11647 · 8/31 12:40 · ⚠ 인원 1→2 정정</summary>
+<div class="vch">
+    <div class="vch-h"><b>마이리얼트립 — 야비지 보트 스노클링 (한국어 대응)</b><span class="vch-ok" style="color:#e0b95c">◐ 확정 대기</span></div>
+    <div class="vch-body">
+      <div class="vch-l">
+        <div class="vf"><span class="vk">예약번호</span><span class="vv mono">EXP-20260813-00011647</span></div>
+        <div class="vf"><span class="vk">운영사</span><span class="vv">Cerulean Blue (Okinawa)</span></div>
+        <div class="vf"><span class="vk">집합 시각</span><span class="vv big">12:40</span>
+          <span class="vv mono" style="font-size:.78rem;color:#ffffff85">2026.08.31 월요일 · 4시간 30분</span></div>
+      </div>
+      <div class="vch-r">
+        <div class="vf"><span class="vk">집합 장소</span><span class="vv"><b style="color:#fff">HOTEL LOCUS 뒤쪽 항구</b><br><small>히라라 시모자토 108-17 · 현지 집합</small></span></div>
+        <div class="vf"><span class="vk">복귀</span><span class="vv">17:10 시모자토<br><small>호텔과 같은 히라라</small></span></div>
+        <div class="vf"><span class="vk">수량</span><span class="vv" style="color:#f0a58c">1개 · ₩153,000<br><small>2명이면 한 자리 부족</small></span></div>
+        <div class="vf"><span class="vk">포함</span><span class="vv">장비 · 승선료<br><small>수중 사진 데이터</small></span></div>
+      </div>
+    </div>
+    <div class="vch-f">
+      <b>지금 당장 확인할 것 — 인원.</b> 수량이 1개로 잡혀 있다. 예약 정보 변경이 불가하고 “취소 후 재예약”으로 안내되니, <b>확정되기 전에</b> 고객센터(1670-8208)로 연락하는 편이 빠르다.<br>
+      <b>확정 대기 상태다.</b> 파트너 확정 전까지는 자리가 보장되지 않는다. 확정 알림을 받을 때까지 이 날의 다른 일정을 굳히지 않는다.<br>
+      <b>집합 시각은 바뀔 수 있다.</b> 해양 상황에 따라 조정되고 <b>전날(8/30) 저녁 카톡으로 통보</b>된다. 노쇼·지각은 환불이 없다.
+    </div>
+  </div>
+</details>
 
   <div class="tide">
     <div class="tide-h">기상청 추산 조위 · 히라라(平良) 관측점</div>
@@ -354,7 +416,7 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
       <tbody>
         <tr><td class="d">8/29 토</td><td>07:43 · 20:22</td><td>01:42 · <b>14:06 (38cm)</b></td><td>사와다 13:50 · 17END 14:30 — 나흘 중 최적</td></tr>
         <tr><td class="d">8/30 일</td><td>08:20 · 20:48</td><td>02:16 · <b>14:34 (44cm)</b></td><td>오전 만조 → 아라구스쿠 / <b>13:30 투어 = 저조 직전</b></td></tr>
-        <tr><td class="d">8/31 월</td><td>08:58 · 21:15</td><td>02:51 · <b>15:03 (53cm)</b></td><td>마에하마 오후에 백사장이 넓어진다</td></tr>
+        <tr><td class="d">8/31 월</td><td>08:58 · 21:15</td><td>02:51 · <b>15:03 (53cm)</b></td><td>마에하마는 오전 만조 · 오후는 야비지 배 위</td></tr>
         <tr><td class="d">9/1 화</td><td><b>09:39 (185cm)</b> · 21:44</td><td>03:28 · 15:32</td><td>17END 재방문은 만조 — 백사장은 안 나온다</td></tr>
       </tbody>
     </table>
@@ -363,7 +425,7 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
 </section>
 
 <!-- 항로도 -->
-<section class="sec rv">
+<section class="sec rv" data-tab="over">
   <div class="eb">Route</div>
   <h2>나흘의 경로</h2>
   <p class="ld gap">번호가 방문 순서다. 지도의 번호와 아래 일정표의 번호가 같다. 목록의 지명을 누르면 구글 지도로 간다.</p>
@@ -393,7 +455,7 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
       <polyline fill="none" stroke="#bf4a2f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity=".85"
         points="404,373 868,481 887,564 990,593 615,591 463,357"/>
       <polyline fill="none" stroke="#0e2a37" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity=".85"
-        points="404,373 407,41 430,90 447,104 414,550 382,575 404,373 464,263 463,357"/>
+        points="404,373 414,550 382,575 409,368 464,263 463,357"/>
       <polyline fill="none" stroke="#a37c31" stroke-width="2.6" stroke-dasharray="7 5" stroke-linejoin="round" opacity=".9"
         points="404,373 396,385 68,257 130,285 81,289"/>
 
@@ -436,12 +498,12 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
           <text x="990" y="597">3</text><text x="615" y="595">4</text>
         </g>
         <g fill="#0e2a37">
-          <circle cx="407" cy="41" r="11"/><circle cx="430" cy="90" r="11"/>
-          <circle cx="414" cy="550" r="11"/><circle cx="382" cy="575" r="11"/><circle cx="464" cy="263" r="11"/>
+          <circle cx="414" cy="550" r="11"/><circle cx="382" cy="575" r="11"/>
+          <circle cx="409" cy="345" r="11"/><circle cx="464" cy="263" r="11"/>
         </g>
         <g fill="#fff">
-          <text x="407" y="45">1</text><text x="430" y="94">2</text>
-          <text x="414" y="554">3</text><text x="382" y="579">4</text><text x="464" y="267">5</text>
+          <text x="414" y="554">1</text><text x="382" y="579">2</text>
+          <text x="409" y="349">3</text><text x="464" y="267">4</text>
         </g>
       </g>
 
@@ -452,84 +514,35 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
         <text x="100" y="352">나카노시마</text>
         <text x="412" y="404">이라부 대교</text>
         <text x="776" y="470">아라구스쿠</text>
-        <text x="838" y="590">보라가 · 펌프킨홀</text>
+        <text x="838" y="590">PiPi · 펌프킨홀</text>
         <text x="596" y="562" fill="#8b9299" font-size="11.5">이무갸(대안)</text>
         <text x="812" y="616">히가시헨나자키</text>
         <text x="498" y="610">시기라 온천</text>
-        <text x="424" y="26">이케마 대교</text>
-        <text x="446" y="84">유키시오</text>
-        <text x="462" y="112" fill="#6d757c" font-size="11.5">니이마소바</text>
+        <text x="424" y="26" fill="#a8b0b5" font-size="11.5">이케마 대교(제외)</text>
+        <text x="446" y="84" fill="#a8b0b5" font-size="11.5">유키시오(제외)</text>
+        <text x="425" y="340" fill="#0e2a37">LOCUS 항구</text>
+        <text x="425" y="356" fill="#6d757c" font-size="11.5">→ 야비지 15km 북동</text>
         <text x="430" y="546">요나하 마에하마</text>
-        <text x="286" y="592">류구조</text>
+        <text x="286" y="592">류구조 · 라쿠엔노카지츠</text>
         <text x="480" y="260">스나야마</text>
         <text x="478" y="360" fill="#6d757c" font-size="11.5">니시자토 · 저녁</text>
       </g>
     </svg>
   </div>
 
-  <div class="seq">
-    <div class="seq-row">
-      <span class="seq-d" style="background:#26839a">토 · 51분</span>
-      <span class="seq-list">
-        <span class="soft">나카치 인수</span><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Hamaya+Irabu&query_place_id=ChIJDcq0wiGt9TQRLyteN2JexeU" target="_blank" rel="noopener"><span class="soft">점심 · 하마야</span></a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Sawada+no+Hama&query_place_id=ChIJBZ10JXes9TQRfCVDIOg5eAk" target="_blank" rel="noopener"><span class="seq-n" style="background:#26839a">1</span>사와다노하마</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=17END+Beach&query_place_id=ChIJl_YCCtit9TQRPOnSIDYCHWI" target="_blank" rel="noopener"><span class="seq-n" style="background:#26839a">2</span>17END</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Toriike+Pond&query_place_id=ChIJWxeNweWr9TQRs76MjAFnCjk" target="_blank" rel="noopener"><span class="seq-n" style="background:#26839a">3</span>도리이케</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Nakanoshima+Beach+Shimojishima&query_place_id=ChIJVdoORQCr9TQRrbOkkA94PE8" target="_blank" rel="noopener"><span class="seq-n" style="background:#26839a">4</span>나카노시마</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Irabu+Ohashi&query_place_id=ChIJIcyWcoRV9DQRgVWFnrUtXsM" target="_blank" rel="noopener"><span class="seq-n" style="background:#26839a">5</span>이라부 대교</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Sushi+Kizahashi+Miyakojima&query_place_id=ChIJ5xCvpHJV9DQRTZ0WPtAPUdw" target="_blank" rel="noopener"><span class="soft">체크인 · 스시 키자하시</span></a>
-      </span>
-    </div>
-
-    <div class="seq-row">
-      <span class="seq-d" style="background:#bf4a2f">일 · 117분</span>
-      <span class="seq-list">
-        <a href="https://www.google.com/maps/search/?api=1&query=Aragusuku+Beach+Miyakojima&query_place_id=ChIJRe3qlIdZ9DQReV321AJnrj0" target="_blank" rel="noopener"><span class="seq-n" style="background:#bf4a2f">1</span>아라구스쿠 (오전)</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Boraga+Beach+Miyakojima&query_place_id=ChIJK465T6ZZ9DQRyU6ldZHPEsA" target="_blank" rel="noopener"><span class="seq-n" style="background:#bf4a2f">2</span>보라가 · 펌프킨홀 13:30</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Cape+Higashi-Hennazaki&query_place_id=ChIJv2CYFDBZ9DQRquU0-OMAYmE" target="_blank" rel="noopener"><span class="seq-n" style="background:#bf4a2f">3</span>히가시헨나자키</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Shigira+Ogon+Onsen&query_place_id=ChIJWck7wzlW9DQRDXvZ2nrJDko" target="_blank" rel="noopener"><span class="seq-n" style="background:#bf4a2f">4</span>시기라 온천</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=And+Miyako+izakaya&query_place_id=ChIJCQmLZJtT9DQRNJnNSlaTyFk" target="_blank" rel="noopener"><span class="soft">저녁 · 앤드미야코</span></a>
-      </span>
-    </div>
-
-    <div class="seq-row">
-      <span class="seq-d" style="background:#0e2a37">월 · 130분</span>
-      <span class="seq-list">
-        <a href="https://www.google.com/maps/search/?api=1&query=Ikema+Bridge&query_place_id=ChIJm0LZUM9N9DQR4a9qJHcIxrg" target="_blank" rel="noopener"><span class="seq-n" style="background:#0e2a37">1</span>이케마 대교</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Yukishio+Salt+Factory&query_place_id=ChIJn47M6plN9DQR-eFd68m8QK4" target="_blank" rel="noopener"><span class="seq-n" style="background:#0e2a37">2</span>유키시오</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Niima+Soba&query_place_id=ChIJc7j9S5lN9DQRVLNt7E65ZF0" target="_blank" rel="noopener"><span class="soft">점심 · 니이마소바</span></a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Yonaha+Maehama+Beach&query_place_id=ChIJOfnsBJBV9DQRA0W-m-UpUUo" target="_blank" rel="noopener"><span class="seq-n" style="background:#0e2a37">3</span>요나하 마에하마</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Ryugu+Castle+Observation+Deck&query_place_id=ChIJ0XiGNI__9DQREaRvPPydG5E" target="_blank" rel="noopener"><span class="seq-n" style="background:#0e2a37">4</span>류구조</a><span class="ar">→</span>
-        <span class="soft">호텔 풀</span><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Sunayama+Beach&query_place_id=ChIJ-zfBYbVT9DQR9rYeL_9KHpw" target="_blank" rel="noopener"><span class="seq-n" style="background:#0e2a37">5</span>스나야마</a><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=Kappo+Yakiniku+SUI&query_place_id=ChIJ98f-pYBT9DQRHqyYef3Uo4A" target="_blank" rel="noopener"><span class="soft">저녁 · 갓포 SUI</span></a>
-      </span>
-    </div>
-
-    <div class="seq-row">
-      <span class="seq-d" style="background:#a37c31">화 · 44분</span>
-      <span class="seq-list">
-        <span class="soft">체크아웃</span><span class="ar">→</span>
-        <a href="https://www.google.com/maps/search/?api=1&query=17END+Beach&query_place_id=ChIJl_YCCtit9TQRPOnSIDYCHWI" target="_blank" rel="noopener"><span class="seq-n" style="background:#a37c31">1</span>17END 재방문</a><span class="ar">→</span>
-        <span class="seq-n" style="background:#a37c31">2</span><span>이라부 주유</span><span class="ar">→</span>
-        <span class="seq-n" style="background:#a37c31">3</span><span>나카치 반납</span><span class="ar">→</span>
-        <span class="soft">SHI</span>
-      </span>
-    </div>
-  </div>
+  
 
   <div class="keys">
     <span><i style="background:#26839a"></i>토 · 이라부·시모지</span>
     <span><i style="background:#bf4a2f"></i>일 · 남동부 + 펌프킨홀</span>
-    <span><i style="background:#0e2a37"></i>월 · 북부 + 남서부</span>
+    <span><i style="background:#0e2a37"></i>월 · 남서부 + 야비지</span>
     <span><i style="background:#a37c31"></i>화 · 반납</span>
     <span><i style="background:#c0392b"></i>같은 날 금지 구간</span>
   </div>
 </section>
 
 <!-- DAY 1 -->
-<section class="day rv">
+<section class="day rv" data-tab="d1">
   <div class="dt"><div class="dn">DAY 1 · SAT</div>
     <div><div class="dh">이라부에서 시작해 시모지로 내려간다</div>
       <div class="ds">08.29 · 운전 51분 · 저녁은 걸어서</div></div></div>
@@ -552,7 +565,8 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
     <div class="ev"><div class="et">12:40</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
       <div class="eh">점심 · 이라부 북부</div>
       <div class="es">Budget 지점에서 4~5분. 세 곳 모두 반경 2km 안에 있다</div>
-      <div class="rows">
+      <details class="fold"><summary>식당 카드 — 1순위 하마야 4.6 · 대안 카메, 푸카라스</summary>
+<div class="rows">
         <div class="r f">
           <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Hamaya+Irabu&query_place_id=ChIJDcq0wiGt9TQRLyteN2JexeU" target="_blank" rel="noopener">하마야 (浜屋)</a></div><span class="r1">1순위</span></div>
           <div class="sc"><span class="scn">4.6</span><span class="scb"><i style="width:92%"></i></span><span class="scc">103</span></div>
@@ -572,63 +586,74 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
           <div class="rp">에그 샌드위치와 아사이 볼. 비행기에서 내린 직후라 무거운 걸 먹기 싫을 때 고른다. 리뷰가 52건뿐이라 기대치는 낮춰 잡는다.</div>
         </div>
       </div>
+</details>
     </div></div>
 
     <div class="ev"><div class="et">13:50</div><div class="emk"><span class="eo">1</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Sawada+no+Hama&query_place_id=ChIJBZ10JXes9TQRfCVDIOg5eAk" target="_blank" rel="noopener">사와다노하마</a></div>
       <div class="es">1771년 메이와 대쓰나미가 밀어 올린 바위밭 · 점심 자리에서 3분</div>
       <span class="mn">25분 · ★4.3</span>
-      <div class="nt"><div class="nh">Field notes</div>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
         <div class="nr"><div class="nk">물때</div><div class="nv"><b>이날은 대조 — 간조 14:06(38cm), 만조 20:22.</b> 13:50 도착은 정확히 최간조 직전이라 조건이 가장 좋다. 물이 빠지면 쓰나미가 옮겨놓은 바위들이 모래 위로 드러나고 남은 물웅덩이에 그 모습이 비친다. 만조에는 평범한 얕은 바다로 보인다.</div></div>
         <div class="nr"><div class="nk">보이는 것</div><div class="nv">활주로 건너편으로 <b>17END가 보인다.</b> 다음에 갈 곳을 미리 건너다보게 된다.</div></div>
         <div class="nr w"><div class="nk">수영</div><div class="nv">물이 아주 얕고 해초가 많아 헤엄치기에는 맞지 않는다. 보고 사진 찍고 나오는 곳이다.</div></div>
       </div>
+</details>
     </div></div>
 
     <div class="ev key"><div class="et">14:30</div><div class="emk"><span class="eo">2</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=17END+Beach&query_place_id=ChIJl_YCCtit9TQRPOnSIDYCHWI" target="_blank" rel="noopener">17END</a></div>
       <div class="es">시모지시마 활주로 북쪽 끝</div>
       <span class="mn">40분 · ★4.7 · 747</span>
-      <div class="nt"><div class="nh">Field notes</div>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
         <div class="nr"><div class="nk">물때</div><div class="nv">사진의 하얀 백사장은 물이 빠져야 드러난다. <b>이날 간조가 14:06(38cm)이라 14:30 도착은 나흘 중 최적의 시간대다.</b> 화요일 아침 재방문은 만조 부근이라 백사장 목적으로는 기대하지 않는다.</div></div>
         <div class="nr g"><div class="nk">숨은 볼거리</div><div class="nv">활주로 끝이라 <b>착륙하는 비행기가 머리 위를 지나간다.</b> 다만 이 공항은 편수가 적어 늘 볼 수 있는 건 아니다.</div></div>
         <div class="nr w"><div class="nk">주차</div><div class="nv">자리가 몇 개뿐이라 <b>앞차가 빠지기를 기다렸다</b>는 후기가 반복된다. 갓길 주차 금지 구간이 늘고 있으니 표지를 확인한다.</div></div>
         <div class="nr"><div class="nk">현장</div><div class="nv">망고 스무디 푸드트럭이 서 있을 때가 있다. <b>¥1,200</b>으로 비싼 편이라는 평이다.</div></div>
       </div>
+</details>
     </div></div>
 
     <div class="ev"><div class="et">15:25</div><div class="emk"><span class="eo">3</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Toriike+Pond&query_place_id=ChIJWxeNweWr9TQRs76MjAFnCjk" target="_blank" rel="noopener">도리이케</a></div>
       <div class="es">바다와 지하로 이어진 쌍둥이 싱크홀</div>
       <span class="mn">20분 · ★4.2 · 2,919</span>
-      <div class="nt"><div class="nh">Field notes</div>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
         <div class="nr g"><div class="nk">타이밍</div><div class="nv"><b>관광버스 단체가 몰려온다.</b> “아무도 없어 조용했는데 나올 때 단체가 들어왔다”는 후기가 많다. 이 연못은 조용할 때 좋은 곳이라 버스와 겹치면 의미가 줄어든다.</div></div>
         <div class="nr"><div class="nk">동선</div><div class="nv">주차 무료. <b>대나무 길</b>을 따라 올라간다. 연못 말고 <b>바다 쪽 전망 지점</b>이 따로 있으니 놓치지 않는다.</div></div>
         <div class="nr"><div class="nk">날씨</div><div class="nv">흐린 날에는 물빛이 탁해 보인다. 맑을 때 가야 제 색이 나온다.</div></div>
       </div>
+</details>
     </div></div>
 
     <div class="ev key"><div class="et">15:50</div><div class="emk"><span class="eo">4</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Nakanoshima+Beach+Shimojishima&query_place_id=ChIJVdoORQCr9TQRrbOkkA94PE8" target="_blank" rel="noopener">나카노시마 해안</a></div>
       <div class="es">시모지 서쪽 해안 · 오늘의 스노클</div>
       <span class="mn hi">130분 · 스노클 · ★4.5</span>
-      <div class="nt"><div class="nh">Field notes</div>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
         <div class="nr w"><div class="nk">안전</div><div class="nv"><b>얕은 구간이 아주 짧고 곧바로 깊어진다.</b> 이날은 14시 간조 뒤 물이 차오르는 시간대라 흐름이 생긴다. 바깥으로 끌려간다는 후기가 반복되니 구명조끼를 반드시 챙긴다.</div></div>
         <div class="nr"><div class="nk">볼 것</div><div class="nv">멀리 나갈 필요가 없다. <b>해안 바로 앞 바위틈</b>에 열대어와 불가사리가 모여 있다.</div></div>
         <div class="nr w"><div class="nk">시설</div><div class="nv">화장실도 샤워도 안전요원도 없다. 도로변에 차를 세우고 석회암 비탈을 걸어 내려간다. <b>리프슈즈</b>가 없으면 발을 벤다.</div></div>
       </div>
+</details>
     </div></div>
 
     <div class="ev key"><div class="et">18:05</div><div class="emk"><span class="eo">5</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Irabu+Ohashi&query_place_id=ChIJIcyWcoRV9DQRgVWFnrUtXsM" target="_blank" rel="noopener">이라부 대교 · 미야코지마 입구</a></div>
       <div class="es">3,540m · 일본에서 통행료 없는 다리 중 가장 길다</div>
       <span class="mn">70분 · ★4.6</span>
-      <div class="nt"><div class="nh">Field notes</div>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
         <div class="nr"><div class="nk">경유</div><div class="nv">나카노시마에서 대교로 가는 길에 <b>토구치노하마(渡口の浜)</b> 백사장 입구를 지난다. 800m 활처럼 휜 흰 모래밭 — 5분만 세워 봐도 아깝지 않다.</div></div>
         <div class="nr g"><div class="nk">시각</div><div class="nv">일몰은 19:04지만 <b>18:30 전후가 가장 좋았다</b>는 후기가 있다. 두 시간을 앉아서 보고 갔다는 사람도 있다. 18:05에 도착하면 자리를 고를 수 있다.</div></div>
         <div class="nr"><div class="nk">주차</div><div class="nv">이라부에서 넘어와 <b>다리를 다 건넌 미야코 쪽 초입</b>에 주차 공간이 있다. 크지 않다.</div></div>
         <div class="nr"><div class="nk">위치</div><div class="nv">사와다에서 석양을 보면 숙소까지 25분을 더 달려야 한다. 여기서 보면 <b>2분</b>이다.</div></div>
       </div>
+</details>
     </div></div>
 
     <!-- 저녁 -->
@@ -636,7 +661,8 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
       <div class="eh">체크인 → 저녁</div>
       <div class="es">호텔 주변 히라라 시내에서 해결한다. 차를 두고 걸어 나간다</div>
       <span class="fl">도착일에 운전대를 두 번만 잡는다 · 술을 마셔도 된다</span>
-      <div class="rows">
+      <details class="fold"><summary>식당 카드 — 1순위 스시 키자하시 4.9 · 대안 Free Bird, 철두철미</summary>
+<div class="rows">
         <div class="r f">
           <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Sushi+Kizahashi+Miyakojima&query_place_id=ChIJ5xCvpHJV9DQRTZ0WPtAPUdw" target="_blank" rel="noopener">스시 키자하시 (鮨 階)</a></div><span class="r1">섬 최고점</span></div>
           <div class="sc"><span class="scn">4.9</span><span class="scb"><i style="width:98%"></i></span><span class="scc">189</span></div>
@@ -656,116 +682,132 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
           <div class="rp">고기를 배부르게 먹고 싶으면 여기다. QR로 주문해 언어 문제가 없다. 다만 <b>운전해야 해서 술을 못 마신다.</b></div>
         </div>
       </div>
+</details>
     </div></div>
   </div>
 </section>
 
 <!-- DAY 2 -->
-<section class="day rv">
+<section class="day rv" data-tab="d2">
   <div class="dt"><div class="dn">DAY 2 · SUN</div>
     <div><div class="dh">아침엔 거북, 오후엔 동굴</div>
       <div class="ds">08.30 · 운전 117분 · 13:30에 고정점이 하나 박힌 날</div></div></div>
   <div class="gist">
     <div class="gc"><div class="gk">출발</div><div class="gv">08:40</div></div>
     <div class="gc"><div class="gk">운전</div><div class="gv">117분</div></div>
-    <div class="gc"><div class="gk">물속</div><div class="gv hot">150분</div></div>
+    <div class="gc"><div class="gk">물속</div><div class="gv hot">145분</div></div>
     <div class="gc"><div class="gk">투어</div><div class="gv hot">13:30 집합</div></div>
     <div class="gc"><div class="gk">간조</div><div class="gv">14:34</div></div>
   </div>
 
-  <div class="nt" style="margin:0 0 2.3rem 0;border-top-color:var(--midori)">
+  <details class="fold" style="margin:0 0 2.2rem 0"><summary>왜 13:30이 하루를 정하는가 — 배경 · 비상 분기 규칙</summary>
+<div class="nt">
     <div class="nh" style="color:#2c6349">확정 — 13:30. 오늘은 이 시각을 중심으로 앞뒤가 정해졌다</div>
-    <div class="nr"><div class="nk">왜 13:30인가</div><div class="nv">펌프킨홀은 <b>동굴 입구가 바다에 잠겨 있어 저조 때만 열린다.</b> 업체가 물때를 보고 시각을 정하는데, 이날 간조가 <b>14:34</b>다. 13:30 집합이면 카약을 저어 도착할 무렵이 정확히 최저조 — <b>이 날짜에 가능한 가장 좋은 시간대를 받았다.</b></div></div>
-    <div class="nr"><div class="nk">앞</div><div class="nv">오전은 만조(08:20)라 아라구스쿠 스노클에 최적이다. <b>09:20~11:50을 물속에서 쓰고 12시 전에 나온다.</b> 점심은 이동 중에 해결한다 — 13:15까지 집합 장소에 도착해야 한다.</div></div>
-    <div class="nr"><div class="nk">뒤</div><div class="nv">반나절 코스는 약 2시간이라 <b>15:30 전후 종료</b>. 환복까지 20분을 잡아도 16:05에 헨나자키에 닿는다. <b>등대 입장 마감 16:45에 40분 여유</b>가 남는다.</div></div>
-    <div class="nr w"><div class="nk">남은 변수</div><div class="nv">소요 시간이 2.5시간이면 종료가 16:00이 되고 등대가 위태로워진다. <b>바우처 상세에서 소요 시간을 확인해 두고,</b> 16:00을 넘겨 끝나면 등대는 포기하고 곶만 걷는다(곶 자체는 24시간 개방).</div></div>
+    <div class="nr"><div class="nk">왜 13:30인가</div><div class="nv">펌프킨홀은 <b>동굴 입구가 바다에 잠겨 있어 저조 때만 열린다.</b> 업체가 물때를 보고 시각을 정하는데, 이날 간조가 <b>14:34</b>다. 카약을 저어 도착할 무렵이 정확히 최저조 — <b>이 날짜에 가능한 가장 좋은 시간대를 받았다.</b></div></div>
+    <div class="nr w"><div class="nk">집합 장소</div><div class="nv"><b>보라가 비치 파크가 아니다.</b> PiPi 전용 호박 주차장(구스쿠베 보라 히가시카타 585-2)이고, <b>여기엔 화장실이 없다.</b> 수영복을 미리 입고, 화장실은 점심 먹은 곳에서 해결하고 온다.</div></div>
+    <div class="nr"><div class="nk">앞</div><div class="nv">오전은 만조(08:20)라 아라구스쿠 스노클에 최적이다. <b>11:45에 물에서 나온다</b> — 지각하면 취소 처리되고 요금이 청구된다. 여유를 두지 않는다.</div></div>
+    <div class="nr"><div class="nk">뒤</div><div class="nv">체류 <b>1시간 30분</b>이라 15:00 전후 해산. 환복까지 40분을 잡아도 15:40에 헨나자키에 닿는다. <b>등대 입장 마감 16:45에 65분 여유</b>가 남는다.</div></div>
+    <div class="nr w"><div class="nk">내일을 위해</div><div class="nv">월요일 야비지는 <b>숙취와 당일 음주가 참가 불가 사유</b>다. 오늘 저녁은 마시더라도 가볍게 끝낸다. <b>제대로 마시는 밤은 내일 SUI다.</b></div></div>
   </div>
+</details>
 
   <div class="tl">
 
     <div class="ev key"><div class="et">09:20</div><div class="emk"><span class="eo">1</span></div><div class="eb2">
-      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Aragusuku+Beach+Miyakojima&query_place_id=ChIJRe3qlIdZ9DQReV321AJnrj0" target="_blank" rel="noopener">아라구스쿠 해안 — 오전으로 올렸다</a></div>
+      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Aragusuku+Beach+Miyakojima&query_place_id=ChIJRe3qlIdZ9DQReV321AJnrj0" target="_blank" rel="noopener">아라구스쿠 해안</a></div>
       <div class="es">호텔에서 40분 · 만조(08:20) 직후의 높은 물</div>
-      <span class="mn hi">150분 · 바다거북 · ★4.5 · 1,517</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr g"><div class="nk">왜 오전인가</div><div class="nv">원안은 13:10 도착이었는데, 그 시각 조위가 <b>67cm까지 떨어지고 14:34에 44cm로 바닥</b>을 친다. 배가 산호에 닿을 만큼 얕아 스노클이 되지 않는다. <b>09:20~11:50은 195cm에서 150cm로 내려오는 구간</b>이라 물이 넉넉하고, 거북도 해초를 뜯으러 얕은 곳까지 들어온다. <b>11:50에는 반드시 물에서 나온다</b> — 오늘은 13:15이라는 데드라인이 있다.</div></div>
+      <span class="mn hi">145분 · 바다거북 · ★4.5 · 1,517</span>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
+        <div class="nr g"><div class="nk">왜 오전인가</div><div class="nv">원안은 13:10 도착이었는데, 그 시각 조위가 <b>67cm까지 떨어지고 14:34에 44cm로 바닥</b>을 친다. 배가 산호에 닿을 만큼 얕아 스노클이 되지 않는다. <b>09:20~11:45는 195cm에서 155cm로 내려오는 구간</b>이라 물이 넉넉하고, 거북도 해초를 뜯으러 얕은 곳까지 들어온다.</div></div>
         <div class="nr w"><div class="nk">주차</div><div class="nv"><b>도로 끝의 밭은 유료(¥1,000~2,000), 그 앞쪽은 무료다.</b> “돈을 내지 말라”고 명시한 후기가 있다. 다만 여름에는 <b>7시까지 가야 자리가 있다</b>는 후기도 있어, 오전으로 옮겨도 무료 구간이 찼을 수 있다. <b>이건 완전히 해결되지 않는 문제다</b> — 유료 주차를 낼 각오는 하고 간다.</div></div>
-        <div class="nr g"><div class="nk">장비</div><div class="nv">스노클과 핀이 각 ¥1,000. <b>핀은 빌릴 필요가 없다.</b> 해안에서 한참 얕아 쓸모가 없었다는 후기가 구체적이다. 파라솔·의자·테이블 세트는 ¥2,000.</div></div>
-        <div class="nr w"><div class="nk">각오</div><div class="nv">해변에 <b>떠밀려 온 쓰레기가 많고 쓰레기통도 화장실도 없다.</b> 산호 조각이 많아 리프슈즈가 필요하다. <b>씻는 건 다음 목적지에서 한다</b> — 보라가 비치에 무료 샤워가 있다.</div></div>
+        <div class="nr g"><div class="nk">장비</div><div class="nv">스노클과 핀이 각 ¥1,000. <b>핀은 빌릴 필요가 없다.</b> 해안에서 한참 얕아 쓸모가 없었다는 후기가 구체적이다.</div></div>
+        <div class="nr w"><div class="nk">각오</div><div class="nv">해변에 <b>떠밀려 온 쓰레기가 많고 쓰레기통도 화장실도 없다.</b> 산호 조각이 많아 리프슈즈가 필요하다. <b>오늘은 씻지 않고 그대로 이동한다</b> — 어차피 두 시간 뒤에 다시 바다로 들어간다.</div></div>
       </div>
+</details>
     </div></div>
 
     <div class="ev"><div class="et">11:55</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
-      <div class="eh">보라가로 이동 · 점심</div>
-      <div class="es">아라구스쿠에서 남쪽으로 10분 · 12:05 도착 → 13:15 체크인까지 <b>70분</b>이 있다</div>
-      <span class="fl">늦으면 투어를 통째로 잃는다 · 13:15까지 집합 장소 도착</span>
-      <div class="rows">
+      <div class="eh">점심 · 보라 일대</div>
+      <div class="es">아라구스쿠에서 남쪽 10분 · <b>13:15까지 PiPi 주차장 도착</b>이 오늘의 마지노선</div>
+      <span class="fl">여기서 화장실을 반드시 다녀온다 · 집합 장소엔 없다</span>
+      <details class="fold"><summary>식당 카드 — 1순위 kitchen BO-RA 4.7 · 투어 후 샤워는 보라가 파크</summary>
+<div class="rows">
         <div class="r f">
-          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Boraga+Beach+Miyakojima&query_place_id=ChIJK465T6ZZ9DQRyU6ldZHPEsA" target="_blank" rel="noopener">보라가 비치 파크 매점</a></div><span class="r1">1순위</span></div>
-          <div class="sc"><span class="scn">4.2</span><span class="scb"><i style="width:84%"></i></span><span class="scc">329</span></div>
-          <div class="rm">매일 09:00–17:00 · <a class="tel" href="tel:+81980797652">0980-79-7652</a><br>구스쿠베 보라 1139-1</div>
-          <div class="rp">투어 집합 장소 그 자체다. <b>경식을 팔고 맛있었다는 후기가 있고, 무료 샤워·탈의실·화장실·로커(¥100)가 갖춰져 있다.</b> 아라구스쿠에서 소금기를 씻는 문제까지 여기서 같이 해결된다. 일반 입장료는 성인 ¥500이지만 <b>투어 요금에 시설 이용료가 포함된 업체가 있으니</b> 예약 때 확인한다.</div>
+          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=kitchen+BO-RA+Miyakojima&query_place_id=ChIJBY-xqbtZ9DQRJ3_PKwaAqvg" target="_blank" rel="noopener">kitchen BO-RA</a></div><span class="r1">1순위</span></div>
+          <div class="sc"><span class="scn">4.7</span><span class="scb"><i style="width:94%"></i></span><span class="scc">80</span></div>
+          <div class="rm">PiPi 주차장에서 <b>5분</b> · 일 11:00–14:00 · <em>수·목 휴무</em><br><a class="tel" href="tel:+81980772700">0980-77-2700</a> · 구스쿠베 보라 344-1</div>
+          <div class="rp">60대 부부가 운영하는 작은 집인데 평이 아주 좋다. 카츠카레, 타코라이스, <b>시콰사 소스를 곁들인 가라아게 정식</b>이 반복해 언급된다. 양이 넉넉하고 서비스가 빠르다는 점이 오늘 특히 중요하다. 집합 장소와 같은 보라 지구라 이동이 5분이다.</div>
         </div>
         <div class="r">
-          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Maruyoshi+Shokudo+Miyakojima&query_place_id=ChIJVzDy0a1X9DQRE0oDzDWPGRQ" target="_blank" rel="noopener">마루요시 식당</a></div></div>
-          <div class="sc"><span class="scn">4.2</span><span class="scb"><i style="width:84%"></i></span><span class="scc">1,173</span></div>
-          <div class="rm">보라가에서 <b>서쪽 20분</b> · 일 10:30–14:00 · <em>월·화·금 휴무</em><br><a class="tel" href="tel:+81980774211">0980-77-4211</a> · 스나가와 975-1</div>
-          <div class="rp">뼈에서 떨어지는 소키소바가 간판이고 리뷰 1,173건에 회전이 빠르다. 13:30 집합 기준으로 <b>아라구스쿠를 11:30에 나오면</b> 성립한다(11:50 도착 → 12:40 출발 → 13:00 보라가). 스노클 20분을 점심과 맞바꾸는 셈이다.</div>
+          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Boraga+Beach+Park+Miyakojima&query_place_id=ChIJIzKK0Q5U9DQRsjNuGdpRsBI" target="_blank" rel="noopener">보라가 비치 파크</a></div><span class="r1">샤워용</span></div>
+          <div class="sc"><span class="scn">4.2</span><span class="scb"><i style="width:84%"></i></span><span class="scc">16</span></div>
+          <div class="rm">매일 09:00–17:00 · <b>성인 ¥500</b>(수영 안 해도 부과)<br><a class="tel" href="tel:+81980797652">0980-79-7652</a> · 구스쿠베 보라 1139-1</div>
+          <div class="rp"><b>무료 샤워·탈의실·화장실·무료 주차, 로커 ¥100.</b> 경식도 판다. PiPi 주차장과 별개 시설이라 입장료를 따로 내야 하지만, <b>투어 뒤 소금기를 씻고 갈아입을 유일한 현실적 선택지</b>다. 17시에 닫으니 15:00 해산이면 딱 맞는다.</div>
         </div>
         <div class="r">
-          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Shima+Bistro+TAJIYA&query_place_id=ChIJI_-XoZJX9DQRzG0u1S-vDno" target="_blank" rel="noopener">TAJIYA</a></div></div>
-          <div class="sc"><span class="scn">4.9</span><span class="scb"><i style="width:98%"></i></span><span class="scc">124</span></div>
-          <div class="rm">보라가에서 서쪽 20분 · 일 <b>08:00–10:00</b> / 11:00–15:00 · <em>화 휴무</em><br><a class="tel" href="tel:+818044005131">080-4400-5131</a> · 스나가와 1168-2</div>
-          <div class="rp">치즈 카레 보울과 라떼로 평이 가장 좋은 집이다. 점심으로는 마루요시와 같은 거리 문제를 안지만, <b>일요일 08:00에 문을 연다</b>는 점이 남는다 — 아침을 여기서 먹고 아라구스쿠로 내려가는 방법도 있다.</div>
+          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Store+San+Bora+Miyakojima&query_place_id=ChIJHYQiBqVZ9DQRUl-rSJA8-do" target="_blank" rel="noopener">스토어 산</a></div></div>
+          <div class="sc"><span class="scn">4.3</span><span class="scb"><i style="width:86%"></i></span><span class="scc">11</span></div>
+          <div class="rm">매일 <b>07:00–21:30</b> · <a class="tel" href="tel:+81980777601">0980-77-7601</a><br>구스쿠베 보라 538</div>
+          <div class="rp">편의점이 생기기 전부터 있던 동네 가게다. 음료가 150엔대. <b>물과 간식은 여기서 조달</b>한다. 남동부에는 편의점이 거의 없어 이 일대에서 유일하게 늦게까지 여는 곳이다.</div>
         </div>
       </div>
+</details>
     </div></div>
 
     <div class="ev key"><div class="et">13:30</div><div class="emk"><span class="eo">2</span></div><div class="eb2">
       <div class="eh">펌프킨홀 — 카약 + 케이빙 <span style="font-family:var(--data);font-size:.6rem;letter-spacing:.09em;color:#fff;background:var(--midori);padding:3px 7px;vertical-align:middle">예약 확정</span></div>
-      <div class="es">정식 명칭 쿠바쿤다이 종유동 · 13:15 체크인 → 13:30 집합</div>
-      <span class="mn hi">약 2시간 · 바우처 ZCH561006 · 성인 2</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr"><div class="nk">무엇을</div><div class="nv">보라가 비치에서 카약을 저어 해안을 따라가다, <b>바다에 면한 좁은 구멍 하나</b>로 종유동에 들어간다. 안에 지름 4m짜리 호박 모양 종유석이 있어 이 이름이 붙었다. 가이드가 먼저 올라가 로프로 끌어올리는 식으로 그 위를 넘어 안쪽까지 들어간다. <b>보고 나오는 곳이 아니라 몸을 쓰는 곳이다.</b></div></div>
-        <div class="nr g"><div class="nk">왜 이걸 넣었나</div><div class="nv">나흘 일정에서 <b>유일하게 “차 세우고 보는 것”이 아닌 항목</b>이다. 그리고 이 섬의 다른 볼거리와 달리 <b>아무 때나 갈 수 없다</b> — 물때가 맞는 날, 맞는 시간에만 열린다. 8/30은 대조기 저조라 조건이 좋은 편이다.</div></div>
-        <div class="nr g"><div class="nk">고른 것</div><div class="nv">거북 스노클을 붙인 종일 콤보가 아니라 <b>케이빙+씨카약만 하는 반나절 코스</b>다. 오전에 아라구스쿠에서 이미 거북을 보고 오기 때문에 중복이 없고, 짧은 만큼 등대 시간이 살아난다.</div></div>
-        <div class="nr"><div class="nk">가져갈 것</div><div class="nv">젖어도 되는 옷, <b>수영복은 입고 간다</b>, 샌들, 타월, 갈아입을 옷. 구명조끼·마린부츠·라이트·보험은 요금에 포함된다. <b>동굴 안은 촬영 금지</b>로 바뀐 곳이 있고, 대신 업체가 사진 데이터를 준다.</div></div>
-        <div class="nr w"><div class="nk">취소</div><div class="nv">우천에는 진행하지만 <b>파도와 바람이 세면 중지된다.</b> 업체 사정으로 중지되면 전액 환불이지만 <b>환불 처리는 예약 플랫폼을 거친다</b> — 현지에서 즉시 정산되지 않는다. 당일 아침 중지 통보를 받으면 원안대로 <a href="https://www.google.com/maps/search/?api=1&query=Imgyaa+Marine+Garden&query_place_id=ChIJH9px0qVX9DQRqBB2sPVZ0t0" target="_blank" rel="noopener" style="color:var(--sango)"><b>이무갸 마린 가든</b></a>(잔잔한 만, 무료 주차, 화장실 없음)으로 대체한다 — 이 일정에서 빠진 자리가 그것이다.</div></div>
+      <div class="es">PiPi 전용 호박 주차장 · 13:15 도착 → 13:30 집합 · 체류 1시간 30분</div>
+      <span class="mn hi">ZCH561006 · 성인 2 · ₩188,784</span>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
+        <div class="nr"><div class="nk">무엇을</div><div class="nv">보라가 앞바다에서 카약을 저어 해안을 따라가다, <b>바다에 면한 좁은 구멍 하나</b>로 종유동에 들어간다. 안에 지름 4m짜리 호박 모양 종유석이 있어 이 이름이 붙었다. 가이드가 로프로 끌어올리는 식으로 그 위를 넘어 안쪽까지 들어간다. <b>보고 나오는 곳이 아니라 몸을 쓰는 곳이다.</b></div></div>
+        <div class="nr g"><div class="nk">왜 이걸 넣었나</div><div class="nv">나흘 일정에서 <b>스노클이 아닌 유일한 해양 항목</b>이다. 그리고 이 섬의 다른 볼거리와 달리 <b>아무 때나 갈 수 없다</b> — 물때가 맞는 날, 맞는 시간에만 열린다.</div></div>
+        <div class="nr w"><div class="nk">현장 조건</div><div class="nv"><b>화장실 없음 · 짐 보관 없음.</b> 귀중품은 차에 두고, 큰 가방은 아예 가져가지 않는다. 구명조끼 착용이 필수이고 거부하면 참가가 거절된다. 면책 동의서에 서명한다. 체중 <b>99kg 이하</b>, 연령 <b>7~59세</b>.</div></div>
+        <div class="nr"><div class="nk">가져갈 것</div><div class="nv"><b>수영복은 입고 간다.</b> 젖어도 되는 신발, 타월, 갈아입을 옷, 현금. 구명조끼·마린부츠·라이트·보험은 요금에 포함된다.</div></div>
+        <div class="nr w"><div class="nk">전날 18:00</div><div class="nv">업체가 <b>8/29 저녁까지 집합 안내를 보낸다.</b> 그때까지 연락이 없으면 반드시 먼저 전화한다 — <a class="tel" href="tel:+81980795990">0980-79-5990</a> 또는 WhatsApp +81 80-6736-6408. <b>첫날 저녁 먹기 전에 확인할 것.</b></div></div>
+        <div class="nr w"><div class="nk">취소</div><div class="nv">우천에는 진행하지만 <b>파도와 바람이 세면 중지된다.</b> 무료 취소는 <b>8/29 13:30까지</b> — 태풍 판단도 이 시각 전에 내린다. 당일 중지 통보를 받으면 원안대로 <a href="https://www.google.com/maps/search/?api=1&query=Imgyaa+Marine+Garden&query_place_id=ChIJH9px0qVX9DQRqBB2sPVZ0t0" target="_blank" rel="noopener" style="color:var(--sango)"><b>이무갸 마린 가든</b></a>으로 대체한다.</div></div>
       </div>
+</details>
     </div></div>
 
-    <div class="ev"><div class="et">16:05</div><div class="emk"><span class="eo">3</span></div><div class="eb2">
+    <div class="ev"><div class="et">15:40</div><div class="emk"><span class="eo">3</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Cape+Higashi-Hennazaki&query_place_id=ChIJv2CYFDBZ9DQRquU0-OMAYmE" target="_blank" rel="noopener">히가시헨나자키</a></div>
-      <div class="es">투어 종료 15:30 → 환복 20분 → 보라가에서 12분</div>
-      <span class="mn">65분 · ★4.5 · 3,901</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr w"><div class="nk">마감</div><div class="nv">¥300 · 참관 <b>일요일 09:30–17:00 · 입장 마감 16:45</b>(평일은 16:30 종료). 곶 자체는 24시간 개방이라, <b>투어가 늦어 등대를 못 올라가도 헨나자키에 오는 것 자체는 의미가 있다.</b> 16:05 도착 기준으로 <b>40분의 여유</b>가 있지만, 주차장에서 등대까지 걷는 시간이 여기에 포함된다는 걸 잊지 않는다.</div></div>
+      <div class="es">해산 15:00 → 환복 → 보라가에서 12분 · 2km 곶 끝의 등대</div>
+      <span class="mn">75분 · ★4.5 · 3,901</span>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
+        <div class="nr w"><div class="nk">마감</div><div class="nv">¥300 · 참관 <b>일요일 09:30–17:00 · 입장 마감 16:45</b>. 15:40 도착이면 65분 여유가 있지만, <b>주차장에서 등대까지 걷는 시간이 여기에 포함된다.</b> 투어가 밀려 16:30을 넘기면 등대는 포기하고 곶만 걷는다(곶 자체는 24시간 개방).</div></div>
         <div class="nr w"><div class="nk">바람</div><div class="nv">“사람이 밀릴 정도”라는 표현이 반복된다. 모자와 가벼운 물건은 차에 두고 간다.</div></div>
         <div class="nr w"><div class="nk">해변</div><div class="nv">아래 해변에 <b>떠밀려 온 쓰레기와 깨진 유리</b>가 있다는 후기가 있다. 맨발로 내려가지 않는다.</div></div>
       </div>
+</details>
     </div></div>
 
-    <div class="ev"><div class="et">17:40</div><div class="emk"><span class="eo">4</span></div><div class="eb2">
+    <div class="ev"><div class="et">17:20</div><div class="emk"><span class="eo">4</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Shigira+Ogon+Onsen&query_place_id=ChIJWck7wzlW9DQRDXvZ2nrJDko" target="_blank" rel="noopener">시기라 황금온천</a></div>
       <div class="es">돌아오는 길 위에 있다 · 11:00–22:00 (최종 입관 21:30)</div>
       <span class="mn">70분 · ★3.9 · 1,470</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr"><div class="nk">오늘 특히</div><div class="nv">아침에 스노클, 오후에 카약과 케이빙 — <b>온몸을 쓴 날의 마무리로 이 순서가 맞다.</b> 노천이 남녀 공용 수영복 착용이라 젖은 채로 그대로 이어진다.</div></div>
-        <div class="nr"><div class="nk">요금</div><div class="nv">일반 <b>성인 ¥2,000</b>(시기라 리조트 투숙객 ¥1,600). 프라이빗 룸은 별도 예약이고 90분 단위다. 수영복은 지참(대여·판매도 있음).</div></div>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
+        <div class="nr"><div class="nk">오늘 특히</div><div class="nv">아침에 스노클, 오후에 카약과 케이빙 — <b>온몸을 쓴 날의 마무리로 이 순서가 맞다.</b> 노천이 남녀 공용 수영복 착용이라 그대로 이어진다.</div></div>
+        <div class="nr"><div class="nk">요금</div><div class="nv">일반 <b>성인 ¥2,000</b>(시기라 리조트 투숙객 ¥1,600). 프라이빗 룸은 별도 예약이고 90분 단위다.</div></div>
         <div class="nr"><div class="nk">평점 3.9</div><div class="nv">실내가 사우나 두 개, 탕 세 개로 단출하고 카페가 별로라는 지적이 낮은 점수의 이유다. <b>노천만 쓸 거면 상관없다.</b></div></div>
-        <div class="nr w"><div class="nk">문신</div><div class="nv">공식 규정상 <b>문신이 있으면 입장을 거절할 수 있다.</b> 펌프킨홀 업체와 같은 문제이니, 해당된다면 오늘 하루를 통째로 다시 짜야 한다.</div></div>
+        <div class="nr w"><div class="nk">문신</div><div class="nv">공식 규정상 <b>문신이 있으면 입장을 거절할 수 있다.</b> 펌프킨홀 업체와 같은 문제다.</div></div>
       </div>
+</details>
     </div></div>
 
-    <div class="ev"><div class="et">19:25</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
+    <div class="ev"><div class="et">19:15</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
       <div class="eh">저녁 · 히라라</div>
-      <div class="es">투어 종료가 15:30이라 시간은 넉넉하다 · 그래도 밀릴 때를 대비해 심야 영업 한 곳을 남겨둔다</div>
-      <div class="rows">
+      <div class="es"><b>내일 야비지 때문에 오늘은 절주한다</b> · 늦게까지 여는 곳을 대안으로 둔다</div>
+      <details class="fold"><summary>식당 카드 — 1순위 앤드미야코 4.8 · 심야 대안 우오텐</summary>
+<div class="rows">
         <div class="r f">
           <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=And+Miyako+izakaya&query_place_id=ChIJCQmLZJtT9DQRNJnNSlaTyFk" target="_blank" rel="noopener">앤드미야코</a></div><span class="r1">1순위</span></div>
           <div class="sc"><span class="scn">4.8</span><span class="scb"><i style="width:96%"></i></span><span class="scc">411</span></div>
           <div class="rm">일 18:00–23:00 · <em>목 휴무</em><br><a class="tel" href="tel:+81980798703">0980-79-8703</a> · 시모자토 603</div>
-          <div class="rp">리뷰 411건에 4.8. 폰으로 주문하고 결제하는 방식이고 <b>영어 안내 카드</b>를 따로 준비해 둔다. 인스타그램 DM으로 예약했다는 후기가 여럿이다. 투어가 15:30에 끝나므로 <b>19:30 전후로 예약하면 안전하다.</b></div>
+          <div class="rp">리뷰 411건에 4.8. 폰으로 주문하고 결제하는 방식이고 <b>영어 안내 카드</b>를 따로 준비해 둔다. 인스타그램 DM으로 예약했다는 후기가 여럿이다. 투어가 15:00에 끝나므로 <b>19:15 전후로 예약하면 안전하다.</b></div>
         </div>
         <div class="r">
           <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Uoten+Miyakojima&query_place_id=ChIJ3eyiVYpT9DQRqtTosxUblLM" target="_blank" rel="noopener">우오텐</a></div></div>
@@ -780,132 +822,144 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
           <div class="rp">생선과 향토 요리를 저렴하게 낸다. 식당보다 바에 가까운 분위기라 시끄럽다는 후기가 있다.</div>
         </div>
       </div>
+</details>
     </div></div>
   </div>
 </section>
 
 <!-- DAY 3 -->
-<section class="day rv">
+<section class="day rv" data-tab="d3">
   <div class="dt"><div class="dn">DAY 3 · MON</div>
-    <div><div class="dh">북단을 찍고 남서 해변으로</div>
-      <div class="ds">08.31 · 운전 130분 · 남북 왕복 한 번</div></div></div>
+    <div><div class="dh">오전은 남서 해변, 오후는 외해로</div>
+      <div class="ds">08.31 · 운전 105분 · 12:40에 두 번째 고정점</div></div></div>
   <div class="gist">
-    <div class="gc"><div class="gk">시작</div><div class="gv">09:00 출발</div></div>
-    <div class="gc"><div class="gk">운전</div><div class="gv hot">130분</div></div>
-    <div class="gc"><div class="gk">해변</div><div class="gv">200분</div></div>
-    <div class="gc"><div class="gk">리조트</div><div class="gv">90분</div></div>
+    <div class="gc"><div class="gk">출발</div><div class="gv">08:15</div></div>
+    <div class="gc"><div class="gk">운전</div><div class="gv">105분</div></div>
+    <div class="gc"><div class="gk">해변</div><div class="gv">85분</div></div>
+    <div class="gc"><div class="gk">야비지</div><div class="gv hot">12:40 집합</div></div>
     <div class="gc"><div class="gk">석양</div><div class="gv">스나야마</div></div>
   </div>
+
+  <details class="fold" style="margin:0 0 2.2rem 0"><summary>월요일을 다시 짠 이유 — 야비지 규칙 · 인원 주의</summary>
+<div class="nt">
+    <div class="nh" style="color:#94402a">이 날은 통째로 다시 짰다 — 북부 루프를 버렸다</div>
+    <div class="nr"><div class="nk">무엇이 바뀌었나</div><div class="nv">야비지가 <b>12:40 집합 → 17:10 복귀</b>로 오후를 통째로 먹고, 시작과 끝이 둘 다 히라라다. 오전 반나절에 하나만 넣을 수 있어 <b>남서부(마에하마·쿠리마 대교·류구조)를 남기고 북부(이케마 대교·유키시오·니이마소바)를 버렸다.</b></div></div>
+    <div class="nr g"><div class="nk">왜 북부를 버렸나</div><div class="nv">① 마에하마는 대체 불가고, 쿠리마까지 빼면 3대 대교 중 하나만 보게 된다. ② 유키시오는 후기가 “박물관이라기보다 기념품점”으로 수렴한다. ③ 무엇보다 <b>야비지가 곧 이케마 앞바다</b>다 — 북쪽 끝을 육로로 보는 대신 그 바다로 들어가는 셈이라 손해가 아니다. 유키시오 소금 제품은 히라라 시내 마트와 공항 매장에서도 팔아 기념품은 대체된다.</div></div>
+    <div class="nr w"><div class="nk">전날 저녁 카톡</div><div class="nv">야비지도 <b>집합 시각이 해양 상황에 따라 바뀌고, 전날 저녁 카톡으로 통보된다.</b> 즉 8/30 일요일 저녁(앤드미야코에서 밥 먹는 동안)에 확인해야 한다. <b>시각이 앞당겨지면 이 오전 일정은 그대로 무너진다</b> — 카톡을 받는 즉시 아래를 다시 계산한다.</div></div>
+    <div class="nr w"><div class="nk">음주</div><div class="nv"><b>숙취와 당일 음주는 참가 불가</b>이고 당일 파악돼도 환불이 없다. 어젯밤 절주했어야 하고, 오늘 낮에는 마시지 않는다. <b>오늘 밤 SUI가 이 여행에서 제대로 마시는 마지막 자리다.</b></div></div>
+    <div class="nr"><div class="nk">인원 확인</div><div class="nv">마이리얼트립 예약이 <b>1개(₩153,000)</b>로 잡혀 있다. 성인 2명이면 <b>한 명이 빠져 있다.</b> 예약 변경이 안 되고 “취소 후 재예약”이라 안내되니, 확정 전에 반드시 확인한다.</div></div>
+  </div>
+</details>
+
   <div class="tl">
 
-    <div class="ev"><div class="et">09:30</div><div class="emk"><span class="eo">1</span></div><div class="eb2">
-      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Ikema+Bridge&query_place_id=ChIJm0LZUM9N9DQR4a9qJHcIxrg" target="_blank" rel="noopener">이케마 대교 → 이케마지마</a></div>
-      <div class="es">1,425m · 섬 최북단</div>
-      <span class="mn">60분 · ★4.7</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr"><div class="nk">주차</div><div class="nv">다리를 건너기 <b>직전 오른쪽</b>에 전망대·주차장·화장실이 한 세트로 있다. 다리 위에 차를 세우는 것은 금지다.</div></div>
-        <div class="nr g"><div class="nk">잘 모르는 것</div><div class="nv"><b>보도가 있어 걸어서 건널 수 있다.</b> 차로 지나가며 보는 것과 완전히 다르다. 왕복 30분 — 걸을 거면 <b>이케마지마 한 바퀴는 생략</b>해야 60분 안에 끝난다. <b>가로등이 없어</b> 해가 지면 위험하다.</div></div>
-        <div class="nr"><div class="nk">이케마지마</div><div class="nv">다리 양쪽에 작은 가게들이 있다. 섬 안쪽은 조용하고 볼거리가 적어 한 바퀴 돌고 나오면 된다.</div></div>
-        <div class="nr"><div class="nk">앞바다</div><div class="nv">북쪽 바다가 야비지(八重干瀬) — 일본 최대급 산호초다. 산호초가 크게 드러나는 건 봄 대조기이고, 8월에는 <b>반나절 보트 스노클 투어</b>로만 닿는다. 이 일정에서 뺀 유일한 프리미엄 해양 체험이라, 원하면 월요일 오전 북부 루프와 맞바꾼다(성수기 사전 예약 필수).</div></div>
-      </div>
-    </div></div>
-
-    <div class="ev"><div class="et">10:45</div><div class="emk"><span class="eo">2</span></div><div class="eb2">
-      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Yukishio+Salt+Factory&query_place_id=ChIJn47M6plN9DQR-eFd68m8QK4" target="_blank" rel="noopener">유키시오 제염소</a></div>
-      <div class="es">실내 · 09:00–18:00</div>
-      <span class="mn">40분 · ★3.9 · 2,522</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr"><div class="nk">실체</div><div class="nv">“박물관이라기보다 기념품점”이라는 후기가 지배적이다. 평점 3.9는 그 기대 차이에서 나온다. <b>쇼핑하러 간다고 생각하면 만족도가 높다.</b></div></div>
-        <div class="nr g"><div class="nk">먹을 것</div><div class="nv"><b>소금 소프트아이스크림 ¥350.</b> 사실상 여기의 목적이다. 아이스크림 샌드도 있다.</div></div>
-        <div class="nr"><div class="nk">살 것</div><div class="nv">요리용 소금 외에 여러 후기가 <b>스크럽 소금</b>을 추천한다. 비누와 화장품도 있다. 기념품을 여기서 끝낸다.</div></div>
-      </div>
-    </div></div>
-
-    <!-- 점심 -->
-    <div class="ev"><div class="et">11:30</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
-      <div class="eh">점심 · 북부</div>
-      <div class="es">유키시오에서 바로 이어진다</div>
-      <div class="rows">
-        <div class="r f">
-          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Niima+Soba&query_place_id=ChIJc7j9S5lN9DQRVLNt7E65ZF0" target="_blank" rel="noopener">니이마소바</a></div><span class="r1">1순위</span></div>
-          <div class="sc"><span class="scn">4.6</span><span class="scb"><i style="width:92%"></i></span><span class="scc">565</span></div>
-          <div class="rm"><b>유키시오에서 3분</b> · 월 11:00–15:00 · <em>목 휴무</em><br>히라라 카리마타 3</div>
-          <div class="rp">민가를 고쳐 만든 집이다. 치기레멘과 소키가 600엔대. 줄이 서지만 회전이 빠르고, 북부 동선 위에 정확히 놓여 있다.</div>
-        </div>
-        <div class="r">
-          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Koja+Soba&query_place_id=ChIJPfwuug1U9DQRxqasTBxUZkQ" target="_blank" rel="noopener">코자소바</a></div></div>
-          <div class="sc"><span class="scn">4.2</span><span class="scb"><i style="width:84%"></i></span><span class="scc">1,860</span></div>
-          <div class="rm">니이마에서 22분 · 월 11:00–16:00 · <em>수 휴무</em><br><a class="tel" href="tel:+81980728304">0980-72-8304</a> · 시모자토 1517-1</div>
-          <div class="rp">섬에서 가장 유명하지만 평점은 낮은 편이고, 문 연 직후가 아니면 줄이 길다. 니이마가 닫혔을 때의 대안이다.</div>
-        </div>
-      </div>
-    </div></div>
-
-    <div class="ev key"><div class="et">13:10</div><div class="emk"><span class="eo">3</span></div><div class="eb2">
+    <div class="ev key"><div class="et">08:45</div><div class="emk"><span class="eo">1</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Yonaha+Maehama+Beach&query_place_id=ChIJOfnsBJBV9DQRA0W-m-UpUUo" target="_blank" rel="noopener">요나하 마에하마 비치</a></div>
-      <div class="es">7km 백사장</div>
-      <span class="mn hi">110분 · ★4.6 · 2,584</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr g"><div class="nk">어디 앉나</div><div class="nv"><b>쿠리마 대교 쪽 끝은 바람이 세다.</b> 카이트서핑 하는 사람들이 그쪽에 몰린다. 느긋하게 누우려면 반대쪽으로 간다. <b>도큐 호텔 방향이 더 얕아</b> 물에 오래 있기 좋다. 이날 간조가 15시 전후(예상)라 오후로 갈수록 백사장이 한층 넓어진다.</div></div>
-        <div class="nr"><div class="nk">시설</div><div class="nv">무료 주차, 샤워, 화장실, 선베드 대여, 해변 카페. SUP과 바나나보트도 현장에서 빌린다.</div></div>
-        <div class="nr w"><div class="nk">준비</div><div class="nv"><b>주변에 상점이 없다.</b> 물과 간식은 오는 길에 사둔다.</div></div>
+      <div class="es">7km 백사장 · 호텔에서 30분 · 이른 아침이라 주차 걱정이 없다</div>
+      <span class="mn hi">85분 · ★4.6 · 2,584</span>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
+        <div class="nr g"><div class="nk">어디 앉나</div><div class="nv"><b>쿠리마 대교 쪽 끝은 바람이 세다.</b> 카이트서핑 하는 사람들이 그쪽에 몰린다. 느긋하게 누우려면 반대쪽으로 간다. <b>도큐 호텔 방향이 더 얕아</b> 물에 오래 있기 좋다.</div></div>
+        <div class="nr"><div class="nk">물때</div><div class="nv">이날 만조가 08:58이라 <b>오전 내내 물이 높다.</b> 백사장이 가장 넓어지는 건 오후(간조 15:03)지만, 그 시간엔 배 위에 있다. 오늘은 넓이보다 <b>물빛</b>을 보러 간다.</div></div>
+        <div class="nr w"><div class="nk">시간 압박</div><div class="nv">오후에 배를 타므로 <b>여기서 오래 수영하지 않는다.</b> 85분이면 충분하고, <b>10:10에는 차에 올라야 한다.</b> 주변에 상점이 없으니 물과 간식은 오는 길에 산다.</div></div>
       </div>
+</details>
     </div></div>
 
-    <div class="ev"><div class="et">15:10</div><div class="emk"><span class="eo">4</span></div><div class="eb2">
-      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Ryugu+Castle+Observation+Deck&query_place_id=ChIJ0XiGNI__9DQREaRvPPydG5E" target="_blank" rel="noopener">류구조 전망대</a></div>
-      <div class="es">쿠리마 대교 건너 · 왕복 40분</div>
-      <span class="mn">40분 · ★4.3 · 3,327</span>
-      <div class="nt"><div class="nh">Field notes</div>
+    <div class="ev"><div class="et">10:20</div><div class="emk"><span class="eo">2</span></div><div class="eb2">
+      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Ryugu+Castle+Observation+Deck&query_place_id=ChIJ0XiGNI__9DQREaRvPPydG5E" target="_blank" rel="noopener">쿠리마 대교 → 류구조 전망대</a></div>
+      <div class="es">1,690m를 건너 쿠리마지마로</div>
+      <span class="mn">30분 · ★4.3 · 3,327</span>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
         <div class="nr"><div class="nk">구도</div><div class="nv">꼭대기에서 <b>쿠리마 대교와 요나하 마에하마가 한 프레임</b>에 들어온다. 방금 누워 있던 해변을 위에서 내려다보는 순서라 인상이 남는다.</div></div>
-        <div class="nr g"><div class="nk">간식</div><div class="nv">전망대 바로 옆이 <a href="https://www.google.com/maps/search/?api=1&query=Rakuen+no+Kajitsu+Kurima+Miyakojima" target="_blank" rel="noopener" style="color:var(--sango)"><b>라쿠엔노카지츠(楽園の果実)</b></a> — 미야코 <b>완숙 망고 파르페</b>의 대표 격인 농가 카페다. ~18:00(LO 17:30) · 화 휴무 · 예약 불가. 8월 말은 망고 제철의 막바지라 이번 여행의 마지막 기회다.</div></div>
         <div class="nr"><div class="nk">접근</div><div class="nv">주차 넉넉, 도보 1분, <b>계단만</b> 있다. 건물이 낡았다는 평이 많은데 전망은 별개다.</div></div>
         <div class="nr w"><div class="nk">거미</div><div class="nv">“아주 큰 거미”가 건물 오른편과 나무에 있었다는 후기가 여럿이다. 놀랄 수 있으니 미리 알아둔다.</div></div>
       </div>
+</details>
     </div></div>
 
-    <div class="ev"><div class="et">16:10</div><div class="emk"><span class="eo pl"></span></div><div class="eb2">
-      <div class="eh">호텔 · 루프탑 풀과 샤워</div>
-      <div class="es">이 일정에서 리조트를 쓰는 유일한 구간</div>
-      <span class="mn">90분</span>
-    </div></div>
-
-    <div class="ev"><div class="et">17:55</div><div class="emk"><span class="eo">5</span></div><div class="eb2">
-      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Sunayama+Beach&query_place_id=ChIJ-zfBYbVT9DQR9rYeL_9KHpw" target="_blank" rel="noopener">스나야마 비치</a></div>
-      <div class="es">모래언덕을 넘어야 나온다 · 마지막 석양</div>
-      <span class="mn">90분 · ★4.3 · 2,338</span>
-      <div class="nt"><div class="nh">Field notes</div>
-        <div class="nr w"><div class="nk">기대치</div><div class="nv">사진으로 유명한 <b>아치 바위는 낙석 위험 때문에 펜스로 막혀 있다.</b> “막아둔 모양새가 투박해 사진이 안 나온다”는 불만이 반복된다. 그 구도는 포기하고 간다.</div></div>
-        <div class="nr"><div class="nk">시설</div><div class="nv">입구에 <b>화장실은 있고 샤워는 없다.</b> 바다에 들어갈 거면 순서를 생각한다.</div></div>
-        <div class="nr w"><div class="nk">주의</div><div class="nv"><b>파도가 세다.</b> 그리고 주차장에서 해변까지 가는 길에 “올빼미, 게, 뱀을 봤다”는 후기가 있다. 어두워지면 발밑을 본다.</div></div>
-        <div class="nr"><div class="nk">보상</div><div class="nv">차 없이는 오기 어려운 위치라 늘 한산하다. 모래가 곱고 양쪽 바위가 만드는 틀이 좋다.</div></div>
+    <div class="ev"><div class="et">11:00</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
+      <div class="eh">점심 · 쿠리마지마</div>
+      <div class="es">배 위에서 4시간 반이다 · <b>여기서 먹어두지 않으면 17시까지 굶는다</b></div>
+      <details class="fold"><summary>점심 카드 — 1순위 라쿠엔노카지츠(망고 파르페) · 차선은 편의점</summary>
+<div class="rows">
+        <div class="r f">
+          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Rakuen+no+Kajitsu+Kurima+Miyakojima" target="_blank" rel="noopener">라쿠엔노카지츠 (楽園の果実)</a></div><span class="r1">1순위</span></div>
+          <div class="rm">류구조 <b>바로 옆</b> · ~18:00 (LO 17:30) · <em>화 휴무</em> · 예약 불가<br>시모지 쿠리마</div>
+          <div class="rp">미야코 <b>완숙 망고 파르페</b>의 대표 격인 농가 카페다. 8월 말은 망고 제철의 막바지라 이번 여행의 마지막 기회다. 타코라이스와 소바 같은 식사 메뉴도 있어 파르페와 함께 점심이 된다. <b>오픈 시각을 미리 확인할 것</b> — 11시에 아직 닫혀 있으면 미련 없이 아래로 간다.</div>
+        </div>
+        <div class="r">
+          <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Store+San+Bora+Miyakojima&query_place_id=ChIJHYQiBqVZ9DQRUl-rSJA8-do" target="_blank" rel="noopener">차 안에서 해결</a></div></div>
+          <div class="rm">히라라 시내 편의점 · 항구 가는 길</div>
+          <div class="rp">파르페 집이 닫혔거나 줄이 길면 미련 없이 포기한다. <b>11:40 출발 · 12:15 항구 도착(주차 포함)이 우선</b>이다. 노쇼는 환불이 없다. 배에서 먹을 물도 함께 산다.</div>
+        </div>
       </div>
+</details>
     </div></div>
 
-    <!-- 저녁 -->
-    <div class="ev"><div class="et">19:45</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
+    <div class="ev key"><div class="et">12:40</div><div class="emk"><span class="eo">3</span></div><div class="eb2">
+      <div class="eh">야비지 보트 스노클링 <span style="font-family:var(--data);font-size:.6rem;letter-spacing:.09em;color:#fff;background:var(--kin);padding:3px 7px;vertical-align:middle">확정 대기</span></div>
+      <div class="es"><a href="https://www.google.com/maps/search/?api=1&query=HOTEL+LOCUS+Miyakojima" target="_blank" rel="noopener">HOTEL LOCUS</a> 뒤쪽 항구 · 히라라 시모자토 108-17 · <b>주차까지 끝내고 12:15 도착 목표</b></div>
+      <span class="mn hi">4시간 30분 · EXP-20260813-00011647 · 한국어 가이드</span>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
+        <div class="nr"><div class="nk">무엇을</div><div class="nv">이케마지마 북동쪽 <b>15km 외해의 야에비시(八重干瀬)</b> — 남북 17km, 동서 6.5km에 걸친 일본 최대급 탁상산호 군락이다. 100개가 넘는 산호군으로 이루어져 “일본의 그레이트 배리어 리프”로 불린다. 배로 1시간, 현장 체류 1시간 45분.</div></div>
+        <div class="nr g"><div class="nk">이 여행에서 유일한 것</div><div class="nv"><b>한국어 가이드</b>다. 펌프킨홀은 예약 상황에 따라 일본어로만 진행될 수 있다. 수중 사진·영상 데이터도 포함이고, <b>아이폰은 종료 직후 바로 전송</b>된다(안드로이드는 구글 드라이브로 2~3일).</div></div>
+        <div class="nr"><div class="nk">난이도</div><div class="nv">수심 <b>1.5~2m</b>로 얕아 초보도 안전하다는 안내다. 구명조끼 필착이고 <b>프리다이빙은 금지</b>다. 다른 팀과 함께 진행하는 조인 투어라 자유도는 낮다.</div></div>
+        <div class="nr w"><div class="nk">참가 불가</div><div class="nv">순환기·호흡기 질환, 고혈압, 중이염, 천식, 당뇨, 간장 장애 등으로 <b>약을 복용 중인 경우 참가할 수 없다.</b> <b>숙취와 당일 음주</b>도 마찬가지이고, 당일 파악돼도 환불이 없다. 만 6~59세.</div></div>
+        <div class="nr w"><div class="nk">멀미</div><div class="nv">편도 1시간짜리 외해 항해다. <b>멀미약은 불포함</b>이니 직접 챙긴다. 배 타기 <b>30분 전</b>에 먹어야 듣는다.</div></div>
+        <div class="nr"><div class="nk">가져갈 것</div><div class="nv"><b>수영복은 입고 간다.</b> 타월, <b>젖어도 되는 신발</b>, 여벌 옷, 자외선 차단제. 짐 보관 시설이 없으니 큰 가방은 차에 둔다. 개별 여행자보험 가입을 권장한다.</div></div>
+        <div class="nr w"><div class="nk">중지</div><div class="nv">날씨·해양 상황에 따라 중지되면 <b>전액 환불</b>이다. 다만 우천에는 진행하고, <b>본인 판단으로 불참하면 노쇼 처리</b>되어 환불이 없다. 이 판단을 당일 아침에 하게 될 수 있다.</div></div>
+      </div>
+</details>
+    </div></div>
+
+    <div class="ev"><div class="et">17:10</div><div class="emk"><span class="eo pl"></span></div><div class="eb2">
+      <div class="eh">시모자토 복귀 → 호텔 샤워</div>
+      <div class="es">항구가 호텔과 같은 히라라라 이동이 짧다</div>
+      <span class="mn">60분</span>
+    </div></div>
+
+    <div class="ev"><div class="et">18:20</div><div class="emk"><span class="eo">4</span></div><div class="eb2">
+      <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=Sunayama+Beach&query_place_id=ChIJ-zfBYbVT9DQR9rYeL_9KHpw" target="_blank" rel="noopener">스나야마 비치</a></div>
+      <div class="es">모래언덕을 넘어야 나온다 · 마지막 석양 · 일몰 19:02</div>
+      <span class="mn">80분 · ★4.3 · 2,338</span>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
+        <div class="nr g"><div class="nk">체력</div><div class="nv">배에서 네 시간 반을 보내고 온 뒤다. <b>지쳤으면 미련 없이 건너뛴다.</b> 모래언덕을 넘어야 하고, 오늘 이미 충분히 봤다.</div></div>
+        <div class="nr w"><div class="nk">기대치</div><div class="nv">사진으로 유명한 <b>아치 바위는 낙석 위험 때문에 펜스로 막혀 있다.</b> “막아둔 모양새가 투박해 사진이 안 나온다”는 불만이 반복된다. 그 구도는 포기하고 간다.</div></div>
+        <div class="nr"><div class="nk">시설</div><div class="nv">입구에 <b>화장실은 있고 샤워는 없다.</b> 호텔에서 씻고 오는 순서가 맞다.</div></div>
+        <div class="nr w"><div class="nk">주의</div><div class="nv"><b>파도가 세다.</b> 주차장에서 해변까지 가는 길에 “올빼미, 게, 뱀을 봤다”는 후기가 있다. 어두워지면 발밑을 본다.</div></div>
+      </div>
+</details>
+    </div></div>
+
+    <div class="ev key"><div class="et">19:45</div><div class="emk"><span class="eo ml">食</span></div><div class="eb2">
       <div class="eh">저녁 · 니시자토 · 마지막 밤</div>
-      <div class="es">택시로 간다 · 일본은 음주운전 시 동승자도 처벌한다</div>
-      <div class="rows">
+      <div class="es">택시로 간다 · <b>이틀을 참았다</b> · 일본은 음주운전 시 동승자도 처벌한다</div>
+      <details class="fold"><summary>식당 카드 — 1순위 갓포 SUI 4.9 · 2차 우오텐</summary>
+<div class="rows">
         <div class="r f">
           <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Kappo+Yakiniku+SUI&query_place_id=ChIJ98f-pYBT9DQRHqyYef3Uo4A" target="_blank" rel="noopener">갓포 야키니쿠 SUI</a></div><span class="r1">1순위</span></div>
           <div class="sc"><span class="scn">4.9</span><span class="scb"><i style="width:98%"></i></span><span class="scc">78</span></div>
           <div class="rm">월 17:00–22:00 · <em>일 휴무</em><br><a class="tel" href="tel:+81980798252">0980-79-8252</a> · 니시자토 174</div>
-          <div class="rp">와규와 얇게 썬 우설, 직접 만든 드레싱, 넓은 와인 리스트. 마지막 밤에 값을 쓸 만한 집이다. <b>예약이 필요하다.</b> 22시에 닫으니 늦지 않는다.</div>
+          <div class="rp">와규와 얇게 썬 우설, 직접 만든 드레싱, 넓은 와인 리스트. 마지막 밤에 값을 쓸 만한 집이다. <b>예약이 필요하다.</b> 22시에 닫으니 늦지 않는다 — 스나야마를 건너뛰면 19:00으로 당긴다.</div>
         </div>
         <div class="r">
           <div class="rt"><div class="rn"><a href="https://www.google.com/maps/search/?api=1&query=Uoten+Miyakojima&query_place_id=ChIJ3eyiVYpT9DQRqtTosxUblLM" target="_blank" rel="noopener">우오텐</a></div></div>
           <div class="sc"><span class="scn">4.7</span><span class="scb"><i style="width:94%"></i></span><span class="scc">82</span></div>
           <div class="rm">매일 18:00–<b>04:00</b> · 걸어서 2분<br><a class="tel" href="tel:+815054893006">050-5489-3006</a> · 니시자토 82-1</div>
-          <div class="rp">SUI에서 나온 뒤 한잔 더 하고 싶을 때. 같은 거리에 있고 새벽까지 연다.</div>
+          <div class="rp">SUI에서 나온 뒤 한잔 더 하고 싶을 때. 같은 거리에 있고 새벽까지 연다. 다만 <b>내일 08:00 체크아웃</b>이다.</div>
         </div>
       </div>
+</details>
     </div></div>
   </div>
 </section>
 
 <!-- DAY 4 -->
-<section class="day rv">
+<section class="day rv" data-tab="d4">
   <div class="dt"><div class="dn">DAY 4 · TUE</div>
     <div><div class="dh">공항에서 기다리지 않는다</div>
       <div class="ds">09.01 · 반납 09:30 · SHI 12:00</div></div></div>
@@ -918,17 +972,19 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
   <div class="tl">
     <div class="ev"><div class="et">07:00</div><div class="emk"><span class="eo pl"></span></div><div class="eb2">
       <div class="eh">조식 · 08:00 체크아웃</div>
-      <div class="es">짐을 싣고 바로 다리를 건넌다</div></div></div>
+      <div class="es">조식 오픈이 07시보다 늦으면 건너뛴다(대안: 쿠니나카 상점 커피) · 짐 싣고 바로 다리를 건넌다</div></div></div>
 
     <div class="ev key"><div class="et">08:25</div><div class="emk"><span class="eo">1</span></div><div class="eb2">
       <div class="eh"><a href="https://www.google.com/maps/search/?api=1&query=17END+Beach&query_place_id=ChIJl_YCCtit9TQRPOnSIDYCHWI" target="_blank" rel="noopener">17END — 두 번째</a></div>
       <div class="es">반납 지점이 이라부라 가는 길에 그대로 있다</div>
       <span class="mn">35분</span>
-      <div class="nt"><div class="nh">Field notes</div>
+      <details class="fold"><summary>현장 노트</summary>
+<div class="nt"><div class="nh">Field notes</div>
         <div class="nr"><div class="nk">왜</div><div class="nv">차만 반납하고 공항으로 가면 <b>09:20부터 12:00까지 2시간 40분을 작은 공항에서 앉아 기다리게 된다.</b> 그 시간을 여기서 쓴다. 아침에는 주차 대기도 없다.</div></div>
         <div class="nr w"><div class="nk">물때</div><div class="nv">화요일 아침은 <b>만조 부근(만조 09시 반 전후 예상)</b>이라 토요일의 그 백사장은 안 나온다. 목적은 백사장이 아니라 <b>가장 물이 찼을 때의 짙은 물빛</b>과 비행기다. 백사장은 토요일에 이미 봤다.</div></div>
         <div class="nr g"><div class="nk">대안</div><div class="nv">호텔 조식을 건너뛴다면 <a href="https://www.google.com/maps/search/?api=1&query=Kuninaka+Shoten&query_place_id=ChIJgYtHeoqr9TQROiQl8fLY-oA" target="_blank" rel="noopener" style="color:var(--sango)"><b>쿠니나카 상점</b></a>(08:00 오픈, ★4.5 · 505)에서 커피를 마시고 오는 코스도 반납 동선 위에 있다.</div></div>
       </div>
+</details>
     </div></div>
 
     <div class="ev"><div class="et">09:10</div><div class="emk"><span class="eo">2</span></div><div class="eb2">
@@ -948,21 +1004,21 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
 </section>
 
 <!-- 날씨 -->
-<section class="sec dark rv">
+<section class="sec dark rv" data-tab="over">
   <div class="eb">If the weather turns</div>
   <h2>비가 오면</h2>
-  <p class="ld gap">날씨를 타는 날은 일요일이다. 예약이 걸린 날이기도 해서, 통째로 월요일과 맞바꾸는 것이 가장 간단하다. 다만 펌프킨홀은 물때에 묶여 있어 날짜를 옮기면 시각도 달라진다.</p>
+  <p class="ld gap">이제 일요일과 월요일 <b style="color:#fff">양쪽에 예약이 박혀</b> 있어 날짜를 통째로 맞바꾸는 카드는 쓸 수 없다. 각각 따로 대응한다.</p>
   <div class="alts">
-    <div class="alt"><div class="aa">일 · 펌프킨홀 (예약 확정)</div><div class="ab">→ 비만 오면 진행한다. <b style="color:#fff">파도·바람이 세면 중지</b>되고 전액 환불된다. 그때는 유키시오와 온천을 앞당겨 실내로 채운다. <b style="color:#fff">날짜를 옮기는 건 어렵다</b> — 물때가 매일 30분씩 밀린다</div></div>
+    <div class="alt"><div class="aa">일 · 펌프킨홀 (확정)</div><div class="ab">→ 비만 오면 진행한다. <b style="color:#fff">파도·바람이 세면 중지</b>되고 전액 환불이다. 그때는 이무갸로 대체하고 온천을 앞당긴다. <b style="color:#fff">날짜 변경은 어렵다</b> — 물때가 매일 30분씩 밀린다</div></div>
+    <div class="alt"><div class="aa">월 · 야비지 (확정 대기)</div><div class="ab">→ 15km 외해라 <b style="color:#fff">연안 투어보다 날씨에 훨씬 민감</b>하다. 업체 중지는 전액 환불이지만 <b style="color:#fff">본인 판단 불참은 노쇼</b>다. 취소되면 그날 오후가 통째로 비니, <b style="color:#fff">버렸던 북부 루프</b>(이케마·유키시오·니이마소바)를 그대로 되살린다</div></div>
     <div class="alt"><div class="aa">일 · 아라구스쿠 스노클</div><div class="ab">→ 잔잔한 만인 이무갸로 바꾼다. 거북 확률은 떨어지지만 파도를 피한다</div></div>
-    <div class="alt"><div class="aa">월 · 북부 루프</div><div class="ab">→ 루프탑 풀과 온천. 어차피 오후는 비어 있다</div></div>
     <div class="alt"><div class="aa">토 · 나카노시마</div><div class="ab">→ 17END만 보고 조기 체크인. 첫날은 원래 손실이 적다</div></div>
-    <div class="alt"><div class="aa">태풍 경보</div><div class="ab">→ 8월 말~9월 초는 연중 태풍이 가장 잦은 시기다. 섬이 이틀쯤 멈추기도 한다. 이 노선은 <b style="color:#fff">매일 운항이 아니다</b>(취항 당시 주 5회) — 결항 안내가 뜨면 즉시 대체편을 잡고, 부산(김해)발 노선까지 함께 확인한다</div></div>
+    <div class="alt"><div class="aa">태풍 경보</div><div class="ab">→ 8월 말~9월 초는 연중 태풍이 가장 잦은 시기다. 섬이 이틀쯤 멈추기도 한다. 이 노선은 <b style="color:#fff">매일 운항이 아니다</b>(취항 당시 주 5회) — 결항 안내가 뜨면 즉시 대체편을 잡고, 부산(김해)발 노선까지 함께 확인한다. <b style="color:#fff">펌프킨홀 무료 취소 기한은 8/29 13:30</b>이니 태풍 판단도 그 전에 내린다</div></div>
   </div>
 </section>
 
 <!-- 챙길 것 -->
-<section class="sec tint rv">
+<section class="sec tint rv" data-tab="over">
   <div class="eb">Pack</div>
   <h2>이 섬이라서 필요한 것</h2>
   <p class="ld gap">나머지는 현지에서 산다.</p>
@@ -972,17 +1028,18 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
     <b>국제운전면허증 + 국내 면허증 + 여권</b> — 운전자 본인 명의로 셋 다.<br>
     <b>신용카드</b> — 렌터카 ¥38,270을 지점에서 결제한다.<br>
     <b>엔화 현금</b> — 이라부소바 카메는 카드를 받지 않는다.<br>
-    <b>수영복 두 벌</b> — 일요일은 아라구스쿠·펌프킨홀·온천으로 세 번 젖는다. 온천도 수영복 착용이다.<br>
-    <b>젖어도 되는 옷과 샌들</b> — 펌프킨홀은 수영복 위에 걸치고 들어간다. 장비(구명조끼·마린부츠·라이트)는 업체가 준다.<br>
+    <b>수영복 세 벌 또는 빨리 마르는 것</b> — 토·일·월 사흘 연속 젖는다. 일요일만 세 번(아라구스쿠·펌프킨홀·온천)이다.<br>
+    <b>젖어도 되는 옷과 신발</b> — 펌프킨홀도 야비지도 “수영복을 미리 입고 오라”고 명시한다. 장비(구명조끼·마린부츠·라이트)는 업체가 준다.<br>
+    <b>멀미약</b> — 야비지는 편도 1시간 외해 항해이고 <b>불포함</b>이다. 승선 30분 전에 먹는다.<br>
     <b>차량용 폰 거치대</b> — 나흘 내내 내비를 본다.<br>
-    <b>QR 바우처 오프라인 저장</b> — 펌프킨홀 집합 장소는 해안 절벽 아래다. 통신을 믿지 않는다.<br>
-    <b>여행자보험</b> — 태풍 성수기다. 항공 지연·결항 보상 특약이 있는 상품으로 든다.
+    <b>바우처 오프라인 저장</b> — 펌프킨홀 집합 장소는 해안 절벽 아래다. 통신을 믿지 않는다.<br>
+    <b>여행자보험</b> — 라이트 등급 2인. 보험기간은 <b>9/3까지 넉넉히</b>(자동연장이 24시간뿐이다), 가입 직후 항공편을 등록해 청구 서류를 없앤다.
   </p>
 </section>
 
 <footer>
   <b>宮古島</b> · 2026.08.29 — 09.01 · 3N4D
-  <div>v4 · 최종 수정 2026-08-10 — 펌프킨홀 8/30 13:30 예약 확정 반영 / 숙소·식당 미확정</div>
+  <div>v8 · 최종 수정 2026-08-17 — 날짜 탭 도입(여행 당일 자동 선택 · 마지막 탭 기억) · 야비지 2인 확정 / 남은 것: 식당 · 보험 · 국제면허</div>
 </footer>
 
 <script>
@@ -990,6 +1047,35 @@ footer div{margin-top:.6rem;font-size:.7rem;letter-spacing:.06em;color:#ffffff52
 if(!('IntersectionObserver' in window)){e.forEach(function(x){x.classList.add('on')});return}
 var o=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');o.unobserve(x.target)}})},{threshold:.05,rootMargin:'0px 0px -30px 0px'});
 e.forEach(function(x){o.observe(x)})})();
+window.addEventListener('beforeprint',function(){document.querySelectorAll('details').forEach(function(d){d.open=true})});
+(function(){
+  var nav=document.getElementById('tabbar'); if(!nav||!('querySelectorAll' in document)) return;
+  var secs=Array.prototype.slice.call(document.querySelectorAll('[data-tab]'));
+  var btns=Array.prototype.slice.call(nav.querySelectorAll('button'));
+  var VALID=['over','d1','d2','d3','d4'], cur='over';
+  function apply(t){
+    cur=t;
+    secs.forEach(function(el){el.hidden = el.getAttribute('data-tab')!==t;});
+    btns.forEach(function(b){b.classList.toggle('on', b.getAttribute('data-t')===t);});
+    try{localStorage.setItem('miyako-tab',t)}catch(e){}
+    try{history.replaceState(null,'','#'+t)}catch(e){}
+    window.scrollTo(0,0);
+  }
+  function initial(){
+    var h=(location.hash||'').replace('#','');
+    if(VALID.indexOf(h)>-1) return h;
+    var d=new Date(), iso=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+    var trip={'2026-08-29':'d1','2026-08-30':'d2','2026-08-31':'d3','2026-09-01':'d4'};
+    if(trip[iso]) return trip[iso];
+    try{var st=localStorage.getItem('miyako-tab'); if(VALID.indexOf(st)>-1) return st;}catch(e){}
+    return 'over';
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-t'))});});
+  nav.hidden=false;
+  apply(initial());
+  window.addEventListener('beforeprint',function(){secs.forEach(function(el){el.hidden=false})});
+  window.addEventListener('afterprint',function(){apply(cur)});
+})();
 </script>
 </body>
 </html>
